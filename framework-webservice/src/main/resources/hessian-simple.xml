@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 我写的第一个hessianservice-->
+    <bean id="hessianService" class="com.yt.webservice.hessian.impl.HessianServiceImpl" />
+    <!--第二个-->
+    <bean id="helloService" class="com.yt.webservice.hessian.impl.HelloServiceImpl" />
+
+    <bean name="/hessian/webservice/hessianService.hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="service" ref="hessianService" />
+        <property name="serviceInterface" value="com.yt.webservice.hessian.HessianService" />
+    </bean>
+
+    <bean name="/hessian/webservice/helloService.hessian" class="org.springframework.remoting.caucho.HessianServiceExporter">
+        <property name="service" ref="helloService" />
+        <property name="serviceInterface" value="com.yt.webservice.hessian.HelloService" />
+    </bean>
+
+</beans>  

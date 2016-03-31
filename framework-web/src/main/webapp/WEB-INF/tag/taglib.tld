@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+    <tlib-version>1.0</tlib-version>
+    <short-name>simple</short-name>
+    <uri></uri>
+    <!-- 引入script的文件 -->
+    <tag>
+        <name>Script</name>
+        <tag-class>com.yt.util.tag.ScriptTagSupport</tag-class>
+        <body-content>empty</body-content>
+        <!-- 带标签体,但是不能使用jsp  scriptless只能使用 empty 和tagdependent两种 -->
+        <!-- 设定fragment 可以接受JspFragment标签体  -->
+        <attribute>
+            <name>hasJquery</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasAngularjs</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasZtree</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasEasyUi</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasBootStrap</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasBootStrapModal</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <!--引入angularjs的组建-->
+    <tag>
+        <name>angular</name>
+        <tag-class>com.yt.util.tag.AngularjsTreeSupport</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>hasAngularTree</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+</taglib>

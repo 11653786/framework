@@ -1,0 +1,33 @@
+mongod --dbpath \data
+/usr/local/Cellar/mongodb/3.0.7: 17 files, 158M 本地电脑路径
+http://www.cnblogs.com/junqilian/p/4109580.html
+
+##
+mongo 3.0创建用户
+https://docs.mongodb.org/manual/reference/method/db.createUser/#create-administrative-user-with-roles
+mongo 3.0 进入之后
+
+show dbs,只有local库
+先创建一个超级管理员
+use admin
+db.createUser({user:"yearnfar",pwd:"123456",roles:[]})
+
+
+
+注册验证帐号 3.0
+http://ibruce.info/2015/03/03/mongodb3-auth/
+use admin
+db.createUser(
+  {
+    user: "buru",
+    pwd: "12345678",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+
+db.auth({"buru","123456"});
+
+mongo 127.0.0.1:27017/test -u buru -p 12345678
+
+mongo登陆

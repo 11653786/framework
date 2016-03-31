@@ -1,0 +1,7 @@
+http://blog.yemou.net/article/query/info/tytfjhfascvhzxcyt269
+
+
+redis 3个jar给tomcat 配置context.xml,
+启动项目有will express session的字样,直接存就OK,
+redis会把所有服务器上的所有session存成一个类似于uuid为key的值,在这个key下存多个key和value,
+如果手动清楚浏览器的session,redis也会清除

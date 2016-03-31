@@ -1,0 +1,6 @@
+http://www.cnblogs.com/zengen/archive/2011/04/23/2025722.html
+
+MongoDB默认设置为无权限访问限制，即然这样，那我们就先把它设置成为需要权限访问限制，咱们再看看效果，怎么设置呢？
+在注册表中，找到MongoDB的节点，在它的ImgPath中，我们修改一下，加入 -auth，如下所示：
+"D:\Program Files\mongodb\bin\mongod" -dbpath  e:\work\data\mongodb\db  -logpath  e:\work\data\mongodb\log -auth --service
+修改了以后连接数据库就需要密码了

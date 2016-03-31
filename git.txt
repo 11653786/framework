@@ -1,0 +1,26 @@
+echo # yt >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+没有远程的项目首次要建立远程仓库
+首次要连接远程路径
+git配置好之后本地仓库提交好之后打这2个命令,如果一切顺利后续让输入账号密码
+git remote add origin https://github.com/11653786/yt.git
+git push -u origin master
+很烦躁的说。就这里打账号密码
+
+
+数据库隔离级别
+http://blog.sina.com.cn/s/blog_8020e4110101bfc6.html
+
+
+√: 可能出现    ×: 不会出现
+
+脏读	不可重复读	幻读
+Read uncommitted	√	√	√
+Read committed	×	√	√
+Repeatable read	×	×	√
+Serializable	×	×	×
+三大缓存框架...
+http://blog.csdn.net/jationxiaozi/article/details/8509732
+

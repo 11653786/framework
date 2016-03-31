@@ -1,0 +1,77 @@
+WHERE           $match
+GROUP BY        $group
+HAVING          $match
+SELECT          $project
+ORDER BY        $sort
+LIMIT           $limit
+SUM()           $sum
+COUNT()         $sum
+
+http://hongmin118.iteye.com/blog/2047325    and,or,in
+
+
+http://blog.csdn.net/miyatang/article/details/20997313,sql和mongo对照表
+http://docs.mongodb.org/manual/reference/operator/query/ 官方文档
+http://www.2cto.com/database/201412/365520.html 官方实例中文解释
+
+
+比如有一个保存杂志文章的集合。你可能希望找出发表文章最多哪个作者、 假设每篇文章中被保存为MongoDB的一个文档，可以按照如下步骤创建管道。
+
+1. 将每个文章文档中的作者投射出来
+
+2. 将作者按照名字排序，统计每个名字出现的次数
+
+3. 将作者按照名字出现的次数降序排列
+
+4. 将返回结果限制为前五个
+
+对于操作符号实例：
+
+1. ｛‘$project’:{'auther':1}｝ 这样可以把‘author’从每个文档中投射出来；执行结果后该文档会存在｛‘id’:id,'author':author｝
+
+2. {'$group':{'Id:''$author','count':{'$sum':1}}} 这样就会将作者按照名字排序，某个作者名字每出现一次，就会对每个作者的count加一。
+
+执行该步骤后，结果集合中的每个文档就是这样的结构：｛"_id": "authorName","count": articleCount｝
+
+3. {"$sort": {"count":-1}} 这个操作会对结果集合中的文档根据“count”字段进行降序排列
+
+4. ｛"$limit":5｝ 这个结果的显示为当前结果的前五个文档。
+
+
+http://docs.mongodb.org/manual/reference/operator/query/  普通的条件查询
+http://docs.mongodb.org/manual/meta/aggregation-quick-reference/    //聚合的条件查询
+
+ "$and": [
+
+                {"$or": [{"reported": {"$exists": false}}, {"reported": 0}]},
+                {"$or": [{"hidden": {"$exists": false}}, {"hidden":1}]}
+          ]
+          ,"_id":1081
+
+
+http://blog.csdn.net/mydeman/article/details/6652387 mongo多字段进行的条件查询
+
+http://my.oschina.net/vdroid/blog/464518条件查询的所有例子
+
+http://www.cnblogs.com/stephen-liu74/archive/2012/08/03/2553803.html js mongo
+
+
+http://www.cnblogs.com/zhwl/p/3523472.html min.max.avg
+
+
+http://garyli.iteye.com/blog/2079158        mongotemplate 聚合查询
+
+
+
+cd到
+ /usr/local/Cellar/mongodb/3.0.7/bin
+ 打命令
+mongod --dbpath \data
+
+
+
+mongodb命令,http://blog.csdn.net/shirdrn/article/details/7105539
+db.createUser({user:"admin",pwd:"admin",roles:[]})
+
+
+: 17 files, 158M
