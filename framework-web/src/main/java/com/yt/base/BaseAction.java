@@ -1,5 +1,6 @@
 package com.yt.base;
 
+import com.yt.entity.mybatis.Employee;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -8,6 +9,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -23,6 +25,12 @@ public class BaseAction {
         CustomDateEditor editor = new CustomDateEditor(df, false);
         binder.registerCustomEditor(Date.class, editor);
     }
+
+
+    protected void setSessionEmployee(HttpSession session, Employee employee) {
+        session.setAttribute("loginEmployee", employee);
+    }
+
 
     /**
      * 传递过来的reuqest参数转成map

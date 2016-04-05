@@ -2,6 +2,7 @@ package com.yt.controller.index;
 
 import com.google.code.kaptcha.Constants;
 import com.yt.base.BaseAction;
+import com.yt.entity.mybatis.Employee;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.EmployeeService;
 import com.yt.shiro.ShiroUserPasswordToken;
@@ -68,11 +69,11 @@ public class IndexController extends BaseAction {
         BaseResult baseResult = null;
         //图片验证码的session
         String imgCode = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
-        employeeService.Login(loginName, password, code, imgCode);
-
+        baseResult = employeeService.Login(loginName, password, code, imgCode);
         if (baseResult.isSuccess()) {
             //保存session用户
-
+            Employee employee = (Employee) baseResult.getObj();
+            setSessionEmployee(session, employee);
         }
         return "redirect:/index.do";
     }

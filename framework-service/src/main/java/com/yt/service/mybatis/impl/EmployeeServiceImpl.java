@@ -38,6 +38,9 @@ public class EmployeeServiceImpl extends BaseDaoImpl<Employee> implements Employ
         List<Employee> employees = this.selectByExample(example);
         if (employees.isEmpty()) {
             return BaseResult.fail("帐号密码输入错误!");
+        } else {
+
+            BaseResult.success("登录成功", employees.get(0));
         }
         return result;
     }
