@@ -66,28 +66,15 @@ public class IndexController extends BaseAction {
     public String login(@RequestParam("loginName") String loginName, @RequestParam("password") String password,
                         HttpSession session, @RequestParam(value = "isRememberMe", defaultValue = "false") boolean isRememberMe, @RequestParam(value = "code") String code, Model model) {
         BaseResult baseResult = null;
-        //判断用户名和密码是否输入正确
-        baseResult = isLogin(loginName, password, code, session);
-        if (!baseResult.isSuccess()) {
-            return "redirect:/index.do";
-        } else {
-            Subject shiroLogin = SecurityUtils.getSubject();
-            //参数名称,用户名，密码，是否记住密码，ip，登录方式，email，手机
-            //, String mobile, String loginType, String email, String nikeName
-            ShiroUserPasswordToken token = new ShiroUserPasswordToken(loginName, password, isRememberMe, null, "1", null, null);
-            try {
-                //登录
-                shiroLogin.login(token);
+        //图片验证码的session
+        String imgCode = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
+        employeeService.Login(loginName, password, code, imgCode);
 
-                return "redirect:/index.do";
-            } catch (AuthenticationException e) {
-                model.addAttribute("msg", "登录失败!");
-                logger.error(e.getMessage());
-                return "redirect:/index.do";
-            }
+        if (baseResult.isSuccess()) {
+            //保存session用户
+
         }
-
-
+        return "redirect:/index.do";
     }
 
     /**
@@ -120,17 +107,4 @@ public class IndexController extends BaseAction {
     }
 
 
-    public BaseResult isLogin(String loginName, String password, String code, HttpSession session) {
-        String imgCode = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
-        if (StringUtils.isEmpty(loginName)) {
-            return BaseResult.fail("登录名称不能为空!");
-        } else if (StringUtils.isEmpty(password)) {
-            return BaseResult.fail("登录密码不能为空!");
-
-        } else if (StringUtils.isEmpty(code) || !code.equalsIgnoreCase(imgCode)) {
-            return BaseResult.fail("验证码不正确!");
-        } else {
-            return BaseResult.success("");
-        }
-    }
 }
