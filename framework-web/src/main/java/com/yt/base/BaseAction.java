@@ -1,6 +1,7 @@
 package com.yt.base;
 
 import com.yt.entity.mybatis.Employee;
+import com.yt.util.dhqjr.EmptyUtil;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -19,6 +20,8 @@ import java.util.*;
  */
 public class BaseAction {
 
+    protected static String loginEmployee = "loginEmployee";
+
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -28,7 +31,14 @@ public class BaseAction {
 
 
     protected void setSessionEmployee(HttpSession session, Employee employee) {
-        session.setAttribute("loginEmployee", employee);
+        session.setAttribute(loginEmployee, employee);
+    }
+
+    protected static Employee getSessionEmployee(HttpSession session) {
+        if (EmptyUtil.isEmpty(session.getAttribute(loginEmployee))) {
+            return null;
+        }
+        return (Employee) session.getAttribute(loginEmployee);
     }
 
 

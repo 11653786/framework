@@ -43,12 +43,13 @@ public class IndexController extends BaseAction {
 
 
     @RequestMapping(value = {"index"})
-    public ModelAndView index() {
-        ModelAndView mv = null;
-        if (mv == null) {
-            mv = new ModelAndView("login");
+    public ModelAndView index(HttpSession session) {
+        Employee employee = getSessionEmployee(session);
+        ModelAndView mv = new ModelAndView();
+        if (employee == null) {
+            mv.setViewName("login");
         } else {
-            mv = new ModelAndView("index");
+            mv.setViewName("index");
         }
         return mv;
     }
