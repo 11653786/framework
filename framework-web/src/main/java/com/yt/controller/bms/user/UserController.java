@@ -72,7 +72,7 @@ public class UserController extends ResourceBaseController {
      */
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
     public String addOrEdit(Integer id) {
-        return "user/addOrEdit";
+        return "user/useraddoredit";
     }
 
 
