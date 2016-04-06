@@ -14,7 +14,7 @@
     <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
                    hasBootStrapModal="false"></simple:Script>
     <simple:angular hasAngularTree="false"></simple:angular>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/resource/yt-util-1.0.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-util-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/user/js/user.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit : true,border : false">
