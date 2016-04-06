@@ -63,6 +63,7 @@ public class ScriptTagSupport extends TagSupport {
         }
         if (!StringUtils.isEmpty(hasEasyUi) && hasEasyUi) {
             sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "easyui/jquery.easyui.min.js></script>");
+            sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "easyui/easyui-lang-zh_CN.js></script>");
             sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "easyui/themes/icon.css></link>");
             sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "easyui/themes/default/easyui.css></link>");
         }

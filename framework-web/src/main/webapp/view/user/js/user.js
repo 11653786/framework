@@ -2,17 +2,7 @@ var userdatagrid;
 
 $(function () {
     //日期时间框格式化
-    $('#startTime').datetimebox({
-        formatter: function (date) {
-            return date.Format("yyyy-MM-dd hh:mm:ss");
-        }
-    });
-    //日期时间框格式化
-    $('#endTime').datetimebox({
-        formatter: function (date) {
-            return date.Format("yyyy-MM-dd hh:mm:ss");
-        }
-    });
+  
 
 
     userdatagrid = new util.easyui.datagrid();
@@ -132,14 +122,16 @@ $(function () {
     userdatagrid.init();
     //条件查询
     $("#searchButton").click(function () {
+        var startTime = $("#startTime").datetimebox('getValue');
+        var endTime = $("#endTime").datetimebox('getValue');
         userdatagrid.queryParams = {
             "userName": $("#userName").val(),
             "nikeName": $("#nikeName").val(),
             "phone": $("#phone").val(),
             "email": $("#email").val(),
             "isLogin": $("#isLogin").combobox('getValue'),
-          //  "startTime": $("#startTime").datetimebox('getValue'),
-          //  "endTime": $("#endTime").datetimebox('getValue')
+            "startTime": startTime,
+            "endTime": endTime
         };
         //查询
         userdatagrid.searchInit();
