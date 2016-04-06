@@ -1,4 +1,4 @@
-package com.yt.controller;
+package com.yt.controller.bms;
 
 import com.yt.entity.mybatis.Auth;
 import com.yt.util.dhqjr.DateUtil;
