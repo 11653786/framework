@@ -131,6 +131,14 @@ $(function () {
         //查询
         userdatagrid.searchInit();
     });
+    //dialog,默认是添加
+    var dialog = new util.easyui.dialog();
+
+    //添加用户
+    $("#adduser").click(function () {
+        dialog.init('添加用户', "/api/user/addOrEdit.do");
+    });
+
 
 });
 

@@ -40,7 +40,7 @@
         <div class="searchFormRows">
             登录状态：
             <%--这里注意不要专门去写样式,因为easyui的样式已经定义了样式,加载顺序会导致每次加载页面长度不同,用style优先级最高固定住--%>
-            <select id="isLogin" data-options="editable:false" class="easyui-combobox" style="width: 100px;" >
+            <select id="isLogin" data-options="editable:false" class="easyui-combobox" style="width: 100px;">
                 <option value="">请选择</option>
                 <option value="0">正常</option>
                 <option value="1">限制登录</option>
@@ -54,9 +54,11 @@
 <div id="datagrid"></div>
 <!-- 工具栏 -->
 <div id="toolbar">
-    <a onclick="addBanner();" class="easyui-linkbutton"
-       iconCls="icon-add">发布</a>
-    <a onclick="offline();" class="easyui-linkbutton">上线/下线</a>
+    <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加用户</a>
+    <a id="updatePass" class="easyui-linkbutton" iconCls="icon-add">修改密码</a>
+    <a onclick="offline();" class="easyui-linkbutton">禁用帐号/可用帐号</a>
+    <a onclick="offline();" class="easyui-linkbutton">登录/限制登录</a>
 </div>
+<div id="addOrEditDialog"></div>
 </body>
 </html>

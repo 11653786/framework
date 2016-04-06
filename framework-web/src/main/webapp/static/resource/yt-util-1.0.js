@@ -27,6 +27,9 @@ var util = function () {
 util.easyui = function () {
 };
 
+/**
+ * easyui数据表格
+ */
 util.easyui.datagrid = function () {
     //easyui数据表格的id
     this.id = "#datagrid";
@@ -61,9 +64,9 @@ util.easyui.datagrid = function () {
     //条件查询的参数
     this.queryParams;
     //排序字段
-    this.sortName="id";
+    this.sortName = "id";
     //升序降序
-    this.sortOrder="desc";
+    this.sortOrder = "desc";
     //加载数据表格的方法
     this.init = function () {
         //作用域问题
@@ -96,4 +99,39 @@ util.easyui.datagrid = function () {
             queryParams: parent.queryParams
         });
     }
+}
+
+/**
+ * easyui dialog
+ * @param datagridObj   数据表格对象
+ * @param title dialog的标题,添加和修改用的
+ */
+util.easyui.dialog = function () {
+    //dialogid
+    this.dialogId = "#addOrEditDialog";
+    //宽度
+    this.widths = 600;
+    //高度
+    this.heights = 400;
+    //打开url
+    this.href;
+    this.cache = false;
+    //锁定当前窗口
+    this.modal = true;
+    //dialog 类型add和edit
+    this.dialogType = 'add'
+    this.init = function (titles, href) {
+        var parent = this;
+        $(parent.dialogId).dialog({
+            title: titles,
+            width: parent.widths,
+            height: parent.heights,
+            //是否不可关闭这个是固定的,bug
+            closed: false,
+            cache: parent.cache,
+            href: href,
+            modal: parent.modal
+        });
+    }
+
 }
