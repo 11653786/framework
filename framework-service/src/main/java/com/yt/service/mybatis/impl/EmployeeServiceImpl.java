@@ -39,6 +39,9 @@ public class EmployeeServiceImpl extends BaseDaoImpl<Employee> implements Employ
         if (employees.isEmpty()) {
             return BaseResult.fail("帐号密码输入错误!");
         } else {
+            if (employees.get(0).getIsEnable() == 0 || employees.get(0).getIsLogin() == 0) {
+                return BaseResult.fail("账户不可使用!");
+            }
             return BaseResult.success("登录成功", employees.get(0));
         }
     }
