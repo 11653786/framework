@@ -57,7 +57,7 @@ util.easyui.datagrid = function () {
     //数据表格
     this.columns;
     //
-    this.toolbar='#toolbar';
+    this.toolbar = '#toolbar';
 
     //加载数据表格的方法
     this.init = function () {
