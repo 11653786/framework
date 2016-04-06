@@ -60,7 +60,10 @@ util.easyui.datagrid = function () {
     this.toolbar = '#toolbar';
     //条件查询的参数
     this.queryParams;
-
+    //排序字段
+    this.sortName="id";
+    //升序降序
+    this.sortOrder="desc";
     //加载数据表格的方法
     this.init = function () {
         //作用域问题
@@ -80,7 +83,9 @@ util.easyui.datagrid = function () {
             pageList: parent.pageList,
             pagePosition: 'bottom',
             columns: parent.columns,
-            toolbar: parent.toolbar
+            toolbar: parent.toolbar,
+            sortName: parent.sortName,
+            sortOrder: parent.sortOrder
         });
     }
 

@@ -15,8 +15,6 @@ public class PageSearch implements Serializable {
 
     //每页显示数量
     private final static Integer pageSize = 10;
-    //当前分页
-    private final static Integer pages = 1;
 
     /**
      * 排序字段
@@ -24,8 +22,14 @@ public class PageSearch implements Serializable {
     private String sort;
 
     /**
+     * 排序方式:asc,desc
+     */
+    private String order;
+
+    /**
      * 排序方向
      */
+    @Deprecated
     private String direction = "desc";
 
     /**
@@ -93,6 +97,17 @@ public class PageSearch implements Serializable {
         this.direction = direction;
     }
 
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
+
+    //当前分页
+    private final static Integer pages = 1;
 
     public static PageSearch setPageInfo(PageSearch search) {
         if (EmptyUtil.isEmpty(search)) {

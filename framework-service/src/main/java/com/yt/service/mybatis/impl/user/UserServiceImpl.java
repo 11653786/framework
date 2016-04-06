@@ -43,6 +43,10 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         UserExample example = createExample(search, username, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
         //设置分页信息
         search = PageSearch.setPageInfo(search);
+        //排序
+        if (!StringUtils.isEmpty(search.getSort()) && !StringUtils.isEmpty(search.getOrder())) {
+            example.setOrderByClause(search.getSort()+" "+search.getOrder());
+        }
         example.setPageSearch(search);
 
         PageResult<User> pr = null;
