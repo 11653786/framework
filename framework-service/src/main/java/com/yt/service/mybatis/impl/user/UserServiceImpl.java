@@ -45,7 +45,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         search = PageSearch.setPageInfo(search);
         //排序
         if (!StringUtils.isEmpty(search.getSort()) && !StringUtils.isEmpty(search.getOrder())) {
-            example.setOrderByClause(search.getSort()+" "+search.getOrder());
+            example.setOrderByClause(search.getSort() + " " + search.getOrder());
         }
         example.setPageSearch(search);
 
