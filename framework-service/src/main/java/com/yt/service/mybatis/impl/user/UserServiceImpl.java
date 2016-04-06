@@ -79,11 +79,11 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         }
         //email
         if (!StringUtils.isEmpty(email)) {
-            criteria.andEmailLike(email);
+            criteria.andEmailEqualTo(email);
         }
         //电话
         if (!StringUtils.isEmpty(phone)) {
-            criteria.andPhoneLike(phone);
+            criteria.andPhoneEqualTo(phone);
         }
         //登录状态
         if (!StringUtils.isEmpty(isLogin)) {

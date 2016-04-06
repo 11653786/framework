@@ -133,8 +133,11 @@ $(function () {
     //条件查询
     $("#searchButton").click(function () {
         userdatagrid.queryParams = {
-            "title": $("#title").val(),
-            "status": $("#status").combobox('getValue'),
+            "userName": $("#userName").val(),
+            "nikeName": $("#nikeName").val(),
+            "phone": $("#phone").val(),
+            "email": $("#email").val(),
+            "isLogin": $("#isLogin").combobox('getValue'),
             "startTime": $("#startTime").datetimebox('getValue'),
             "endTime": $("#endTime").datetimebox('getValue')
         };

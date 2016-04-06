@@ -1,3 +1,15 @@
-.searchForm{
+.searchForm {
     font-size: 12px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid salmon;
+    text-align: left;
+}
+
+.searchinput {
+    width: 160px;
+}
+
+.searchFormRows {
+    margin: 10px;
 }

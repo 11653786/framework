@@ -21,21 +21,32 @@
 <body>
 <div class="searchForm">
     <form id="searchForm" method="post">
-        标题：
-        <input id="title" class="width-145"/>
-        上线时间：
-        <input
-                class="easyui-datetimebox" type="text" id="startTime" name="startTime">
-        至
-        <input
-                class="easyui-datetimebox" type="text" name="endTime" id="endTime">
-        状态：
-        <select id="status" class="easyui-combobox">
-            <option value="">请选择</option>
-            <option value="1">已上线</option>
-            <option value="0">已下线</option>
-        </select>
-        <a id="searchButton" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        <div class="searchFormRows">
+            帐号：
+            <input id="userName" class="searchinput"/>
+            昵称：
+            <input id="nikeName" class="searchinput"/>
+            email：
+            <input id="email" class="searchinput"/>
+            手机：
+            <input id="phone" class="searchinput"/>
+            最后一次登录时间：
+            <input
+                    class="easyui-datetimebox" type="text" id="startTime" name="startTime">
+            至
+            <input
+                    class="easyui-datetimebox" type="text" name="endTime" id="endTime">
+        </div>
+        <div class="searchFormRows">
+            登录状态：
+            <select id="isLogin" class="easyui-combobox">
+                <option value="">请选择</option>
+                <option value="0">正常</option>
+                <option value="1">限制登录</option>
+            </select>
+            <a id="searchButton" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+        </div>
+
     </form>
 </div>
 <!-- datagrid -->
