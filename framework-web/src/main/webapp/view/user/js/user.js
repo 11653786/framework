@@ -1,6 +1,20 @@
 var userdatagrid;
 
 $(function () {
+    //日期时间框格式化
+    $('#startTime').datetimebox({
+        formatter: function (date) {
+            return date.Format("yyyy-MM-dd hh:mm:ss");
+        }
+    });
+    //日期时间框格式化
+    $('#endTime').datetimebox({
+        formatter: function (date) {
+            return date.Format("yyyy-MM-dd hh:mm:ss");
+        }
+    });
+
+
     userdatagrid = new util.easyui.datagrid();
     userdatagrid.urls = "/api/user/selectByPageList.do";
     userdatagrid.columns = [[{
@@ -11,28 +25,28 @@ $(function () {
             field: 'userName',
             title: '帐号',
             align: 'center',
-            width:100
+            width: 100
         }, {
             field: 'nikeName',
             title: '昵称',
             align: 'center',
-            width:100
+            width: 100
         }, {
             field: 'email',
             title: 'email',
             align: 'center',
-            width:100
+            width: 100
         }, {
             field: 'phone',
             title: '手机号',
             align: 'center',
-            width:100
+            width: 100
         },
         {
             field: 'isLogin',
             title: '登录状态',
             align: 'center',
-            width:100,
+            width: 100,
             formatter: function (value, row, index) {
                 if (value != null && value != undefined) {
                     switch (value) {
@@ -58,7 +72,7 @@ $(function () {
         {
             field: 'isEnable',
             title: '是否可用',
-            width:100,
+            width: 100,
             align: 'left',
             //显示内容为:banner显示渠道+位置,sort这个字段
             formatter: function (value, row, index) {
@@ -84,7 +98,7 @@ $(function () {
             field: 'loginTotal',
             title: '登录次数',
             align: 'left',
-            width:100,
+            width: 100,
             formatter: function (value, row, index) {
                 var url = row['bannerUrl'];
                 if (url != null && url != "") {
@@ -98,7 +112,7 @@ $(function () {
             field: 'lastLoginTime',
             title: '最后登录时间',
             align: 'center',
-            width:100,
+            width: 100,
             formatter: function (value, row, index) {
                 //easyui返回的date类型为时间戳这里转换下
                 return new Date(value).Format("yyyy-MM-dd hh:mm:ss");
@@ -115,31 +129,22 @@ $(function () {
         }
     ]];
     userdatagrid.init();
+    $("#searchButton").click(function () {
+        var startTime = $("#startTime").datetimebox('getValue');
+        var endTime = $("#endTime").datetimebox('getValue');
+        var status = $("#status").combobox('getValue');
+        userdatagrid.queryParams = {
+            "title": $("#title").val(),
+            "status": status,
+            "startTime": startTime,
+            "endTime": endTime
+        };
+        //查询
+        userdatagrid.searchInit();
+    });
+
 });
 
-/**
- * 查询
- *
- * @param value
- * @param name
- */
-/*function searchBanner() {
-
- var startTime = $("[name='startTime']").val();
-
- var endTime = $("[name='endTime']").val();
-
- var status = $("#status").combobox('getValue');
-
- userdatagrid.datagrid({
- queryParams: {
- "title": $("#title").val(),
- "status": status,
- "startTime": startTime,
- "endTime": endTime
- }
- });
- }*/
 /*
  function addBanner() {
  parent.$.modalDialog({

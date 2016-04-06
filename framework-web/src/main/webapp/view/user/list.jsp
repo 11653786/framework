@@ -66,7 +66,7 @@
                 </div>
             </li>
             <li class="width-100 text-center pt-5">
-                <a onclick="searchBanner();" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+                <a id="searchButton" class="easyui-linkbutton" iconCls="icon-search">查询</a>
             </li>
         </ul>
     </form>

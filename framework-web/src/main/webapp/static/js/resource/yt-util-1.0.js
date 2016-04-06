@@ -56,8 +56,10 @@ util.easyui.datagrid = function () {
     this.pageList = [10, 15, 20, 25, 30];
     //数据表格
     this.columns;
-    //
+    //工具条
     this.toolbar = '#toolbar';
+    //条件查询的参数
+    this.queryParams;
 
     //加载数据表格的方法
     this.init = function () {
@@ -79,6 +81,14 @@ util.easyui.datagrid = function () {
             pagePosition: 'bottom',
             columns: parent.columns,
             toolbar: parent.toolbar
+        });
+    }
+
+    //条件查询方法
+    this.searchInit = function () {
+        var parent = this;
+        $(parent.id).datagrid({
+            queryParams: parent.queryParams
         });
     }
 }
