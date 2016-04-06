@@ -128,16 +128,15 @@ $(function () {
             }
         }
     ]];
+    //初始化数据表格
     userdatagrid.init();
+    //条件查询
     $("#searchButton").click(function () {
-        var startTime = $("#startTime").datetimebox('getValue');
-        var endTime = $("#endTime").datetimebox('getValue');
-        var status = $("#status").combobox('getValue');
         userdatagrid.queryParams = {
             "title": $("#title").val(),
-            "status": status,
-            "startTime": startTime,
-            "endTime": endTime
+            "status": $("#status").combobox('getValue'),
+            "startTime": $("#startTime").datetimebox('getValue'),
+            "endTime": $("#endTime").datetimebox('getValue')
         };
         //查询
         userdatagrid.searchInit();
