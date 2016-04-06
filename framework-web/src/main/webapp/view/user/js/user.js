@@ -1,123 +1,8 @@
 var userdatagrid;
 
-
 $(function () {
-    userdatagrid = $('#datagrid')
-        .datagrid({
-            url: '/api/user/selectByPageList.do',
-            fit: true,
-            fitColumns: true,
-            method: 'post', // 默认是post方法
-            border: false,
-            idField: 'id',
-            pagination: true,
-            checkOnSelect: false,
-            selectOnCheck: false,
-            singleSelect: true,
-            pageSize: 10,
-            pageList: [10, 15, 20, 25, 30],
-            pagePosition: 'bottom',
-            //行样式用来区分显示上线和下线
-            /*	rowStyler:function(index,row){
-             var status=row['status'];
-             if(status!=undefined && status!=null && status==1){
-             return 'background-color:ccc;';
-             }
-             }  ,*/
-            rownumbers: true,
-            columns: [[
-                {
-                    field: 'id',
-                    checkbox: true
-                },
-                {
-                    field: 'effectTime',
-                    title: '上线时间',
-                    width: 120,
-                    align: 'center'
-                },
-                {
-                    field: 'type',
-                    title: 'banner显示渠道',
-                    width: 120,
-                    align: 'left',
-                    formatter: function (value, row, index) {
-                        if (value != null && value != undefined) {
-                            switch (value) {
-                                case 1:
-                                    return "PC";
-                                    break;
-                                case 2:
-                                    return "微网站";
-                                    break;
-                            }
-                        }
-                    }
-                },
-                {
-                    field: 'sort',
-                    title: 'banner位置',
-                    width: 100,
-                    align: 'left',
-                    //显示内容为:banner显示渠道+位置,sort这个字段
-                    formatter: function (value, row, index) {
-                        var type = row['type'];
-                        switch (type) {
-                            case 1:
-                                return "PC-" + value;
-                                break;
-                            case 2:
-                                return "微网站-" + value;
-                                break;
-                        }
-                    }
-                },
-                {
-                    field: 'title',
-                    title: '标题',
-                    width: 200,
-                    align: 'left',
-                    formatter: function (value, row, index) {
-                        var url = row['bannerUrl'];
-                        if (url != null && url != "") {
-                            return "<a href=" + url + " target=_blank >" + value + "</a>"
-                        } else {
-                            return value;
-                        }
-                    }
-                },
-                {
-                    field: 'status',
-                    title: '状态',
-                    width: 100,
-                    align: 'left',
-                    formatter: function (value, row, index) {
-                        switch (value) {
-                            case 0:
-                                return "下线";
-                                break;
-                            case 1:
-                                return "上线";
-                                break;
-                        }
-                    }
-                },
-                {
-                    field: 'update',
-                    title: '操作',
-                    align: 'center',
-                    width: 100,
-                    formatter: function (value, row, index) {
-                        return "<a href='javascript:void(0)' onclick=\"editBanner(\'" + row.id + "\')\">编辑</a>";
-                    }
-                }
-            ]],
-            toolbar: '#userToolbar',
-            onLoadSuccess: function () {
-                parent.$.messager.progress('close');
-            }
-
-        });
+    userdatagrid=new util.easyui.datagrid();
+    userdatagrid.init();
 });
 
 /**
@@ -126,7 +11,7 @@ $(function () {
  * @param value
  * @param name
  */
-function searchBanner() {
+/*function searchBanner() {
 
     var startTime = $("[name='startTime']").val();
 
@@ -142,8 +27,8 @@ function searchBanner() {
             "endTime": endTime
         }
     });
-}
-
+}*/
+/*
 function addBanner() {
     parent.$.modalDialog({
         title: '添加banner',
@@ -233,4 +118,4 @@ function offline() {
     });
 
 
-}
+}*/

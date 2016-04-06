@@ -14,6 +14,7 @@
     <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
                    hasBootStrapModal="false"></simple:Script>
     <simple:angular hasAngularTree="false"></simple:angular>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/resource/yt-util-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/user/js/user.js"></script>
 </head>
 <body class="easyui-layout" data-options="fit : true,border : false">
@@ -23,7 +24,7 @@
     <div id="datagrid"></div>
 </div>
 <!-- 工具栏 -->
-<div id="userToolbar" class="pt-10">
+<div id="toolbar" class="pt-10">
     <form id="searchForm" method="post">
         <ul class="conditionUl">
             <li class="width-180 text-center pt-5">
