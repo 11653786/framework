@@ -20,7 +20,7 @@
 <!-- datagrid -->
 <div data-options="region:'center',border:false"
      style="overflow: hidden;">
-    <div id="userdatagrid"></div>
+    <div id="datagrid"></div>
 </div>
 <!-- 工具栏 -->
 <div id="userToolbar" class="pt-10">
