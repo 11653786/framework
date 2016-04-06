@@ -4,7 +4,7 @@ import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.Log;
 import com.yt.util.dhqjr.ByteUtil;
 import com.yt.util.yt.annotation.Table;
-import com.yt.service.mybatis.LogService;
+import com.yt.service.mybatis.system.LogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

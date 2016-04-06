@@ -1,0 +1,30 @@
+package com.yt.service.mybatis.user;
+
+import com.yt.entity.mybatis.User;
+import com.yt.util.dhqjr.page.utils.PageResult;
+import com.yt.util.dhqjr.page.utils.PageSearch;
+
+import java.net.Inet4Address;
+
+/**
+ * @author zhangsan
+ * @version 1.0
+ * @package com.yt.service.mybatis.impl.user
+ * @date 2016/4/6 0006 11:05
+ * @descption: 疯狂的王麻子团队!
+ */
+public interface UserService {
+
+    /**
+     * @param page     当前分页
+     * @param rows     每页显示数量
+     * @param username 用户名
+     * @param email    email
+     * @param phone    手机
+     * @param isLogin  是否可登录
+     * @param isEnable 是否限制
+     * @param nikeName 昵称
+     * @return
+     */
+    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName);
+}

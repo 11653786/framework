@@ -2,7 +2,7 @@ package com.yt.shiro;
 
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.EmployeeExample;
-import com.yt.service.mybatis.EmployeeService;
+import com.yt.service.mybatis.system.EmployeeService;
 import com.yt.util.yt.myutils.Md5Utils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

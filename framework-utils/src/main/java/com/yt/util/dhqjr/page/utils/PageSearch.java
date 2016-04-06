@@ -1,90 +1,117 @@
 package com.yt.util.dhqjr.page.utils;
 
+import com.yt.util.dhqjr.EmptyUtil;
+
 import java.io.Serializable;
 
 /**
  * 分页查询条件封装类
- * 
+ *
  * @author liuyijun
- * 
  */
 public class PageSearch implements Serializable {
 
-	private static final long serialVersionUID = 587754556498974978L;
+    private static final long serialVersionUID = 587754556498974978L;
 
-	/**
-	 * 排序字段
-	 */
-	private String sort;
+    //每页显示数量
+    private final static Integer pageSize = 10;
+    //当前分页
+    private final static Integer pages = 1;
 
-	/**
-	 * 排序方向
-	 */
-	private String direction = "desc";
+    /**
+     * 排序字段
+     */
+    private String sort;
 
-	/**
-	 * 分页请求时当前页变量
-	 */
-	private Integer page = 1;
-	/**
-	 * 分页请求时每页显示数量变量
-	 */
-	private Integer rows = 10;
-	/**
-	 * 分页请求时总条数
-	 */
-	private int totalResult;
+    /**
+     * 排序方向
+     */
+    private String direction = "desc";
 
-	
+    /**
+     * 分页请求时当前页变量
+     */
+    private Integer page = 1;
+    /**
+     * 分页请求时每页显示数量变量
+     */
+    private Integer rows = 10;
+    /**
+     * 分页请求时总条数
+     */
+    private int totalResult;
 
-	public int getTotalResult() {
-		return totalResult;
-	}
 
-	public void setTotalResult(int totalResult) {
-		this.totalResult = totalResult;
-	}
+    public int getTotalResult() {
+        return totalResult;
+    }
 
-	
-	public Integer getPage() {
-		return page;
-	}
+    public void setTotalResult(int totalResult) {
+        this.totalResult = totalResult;
+    }
 
-	public void setPage(Integer page) {
-		this.page = page;
 
-	}
+    public Integer getPage() {
+        return page;
+    }
 
-	public Integer getRows() {
-		return rows;
-	}
+    public void setPage(Integer page) {
+        this.page = page;
 
-	public void setRows(Integer rows) {
-		this.rows = rows;
+    }
 
-	}
+    public Integer getRows() {
+        return rows;
+    }
 
-	public int getCurrentResult() {
-		return (this.page - 1) * this.rows;
-	}
+    public void setRows(Integer rows) {
+        this.rows = rows;
 
-	public String getSort() {
-		return sort;
-	}
+    }
 
-	public void setSort(String sort) {
-		this.sort = sort;
-	}
+    public int getCurrentResult() {
+        return (this.page - 1) * this.rows;
+    }
 
-	public String getDirection() {
-		return direction;
-	}
+    public String getSort() {
+        return sort;
+    }
 
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-	
-	
-	
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+
+    public static PageSearch setPageInfo(PageSearch search) {
+        if (EmptyUtil.isEmpty(search)) {
+            search = new PageSearch();
+            search.setPage(pages);
+            search.setRows(pageSize);
+        } else if (EmptyUtil.isNotEmpty(search)
+                && EmptyUtil.isNotEmpty(search.getPage())
+                && EmptyUtil.isNotEmpty(search.getRows())) {
+            if (search.getPage().intValue() < 1) {
+                search.setPage(pages);
+            }
+            if (search.getRows().intValue() < 1) {
+                search.setRows(pageSize);
+            }
+        } else if (EmptyUtil.isNotEmpty(search)
+                && EmptyUtil.isEmpty(search.getPage())
+                && EmptyUtil.isEmpty(search.getRows())) {
+            search.setPage(pages);
+            search.setRows(pageSize);
+        }
+        return search;
+    }
+
 
 }

@@ -4,7 +4,7 @@ import com.google.code.kaptcha.Constants;
 import com.yt.base.BaseAction;
 import com.yt.entity.mybatis.Employee;
 import com.yt.model.BaseResult;
-import com.yt.service.mybatis.EmployeeService;
+import com.yt.service.mybatis.system.EmployeeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
