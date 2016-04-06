@@ -5,6 +5,7 @@ import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 
 import java.net.Inet4Address;
+import java.util.Date;
 
 /**
  * @author zhangsan
@@ -16,15 +17,17 @@ import java.net.Inet4Address;
 public interface UserService {
 
     /**
-     * @param page     当前分页
-     * @param rows     每页显示数量
-     * @param username 用户名
-     * @param email    email
-     * @param phone    手机
-     * @param isLogin  是否可登录
-     * @param isEnable 是否限制
-     * @param nikeName 昵称
+     * @param page      当前分页
+     * @param rows      每页显示数量
+     * @param username  用户名
+     * @param email     email
+     * @param phone     手机
+     * @param isLogin   是否可登录
+     * @param isEnable  是否限制
+     * @param nikeName  昵称
+     * @param startTime 用来查询最后一次登录时间的查询条件
+     * @param endTime
      * @return
      */
-    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName);
+    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime);
 }

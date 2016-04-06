@@ -4,6 +4,7 @@ import com.yt.core.dao.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.User;
 import com.yt.entity.mybatis.UserExample;
 import com.yt.service.mybatis.user.UserService;
+import com.yt.util.dhqjr.DateUtil;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageResultBuilder;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author zhangsan
@@ -33,7 +37,36 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
 
 
     @Override
-    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable,String nikeName) {
+    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
+
+        //条件查询拼装
+        UserExample example = createExample(search, username, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
+        //设置分页信息
+        search = PageSearch.setPageInfo(search);
+        example.setPageSearch(search);
+
+        PageResult<User> pr = null;
+
+        try {
+            pr = new PageResultBuilder<User>().buildPageData(
+                    this.countByExample(example),
+                    this.selectByExample(example)).toPageResult();
+        } catch (Exception e) {
+            logger.error("", e);
+            return null;
+        }
+
+        return pr;
+    }
+
+    /**
+     * 专门用来查询时间
+     *
+     * @param
+     * @param startTime 开始时间
+     * @param endTime   结束时间
+     */
+    public UserExample createExample(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         //用户名称
@@ -60,20 +93,31 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         if (!StringUtils.isEmpty(isEnable)) {
             criteria.andIsLoginEqualTo(Byte.valueOf(String.valueOf(isEnable)));
         }
-        search = PageSearch.setPageInfo(search);
-        example.setPageSearch(search);
 
-        PageResult<User> pr = null;
 
-        try {
-            pr = new PageResultBuilder<User>().buildPageData(
-                    this.countByExample(example),
-                    this.selectByExample(example)).toPageResult();
-        } catch (Exception e) {
-            logger.error("", e);
-            return null;
+        // A , NULL 上线时间
+        if (EmptyUtil.isNotEmpty(startTime)
+                && EmptyUtil.isEmpty(endTime)) {
+            criteria.andLastLoginTimeGreaterThanOrEqualTo(startTime);
+
+        } // NULL , B
+        else if (EmptyUtil.isEmpty(startTime)
+                && EmptyUtil.isNotEmpty(endTime)) {
+            Date afterDay = DateUtil.getAfterDateAsDate(endTime, 1);
+            criteria.andLastLoginTimeLessThanOrEqualTo(afterDay);
+
+        }// A , B 不为空
+        else if (EmptyUtil.isNotEmpty(startTime)
+                && EmptyUtil.isNotEmpty(endTime)) {
+            // A < = B
+            if (DateUtil.checkMax(endTime, startTime)) {
+                criteria.andLastLoginTimeGreaterThanOrEqualTo(startTime);
+        /*		Date afterDay = DateUtil
+                        .getAfterDateAsDate(dto.getEndTime(), 1);*/
+                SimpleDateFormat s = new SimpleDateFormat(DateUtil.DATETIMESHOWFORMAT);
+                criteria.andLastLoginTimeLessThanOrEqualTo(endTime);
+            }
         }
-
-        return pr;
+        return example;
     }
 }

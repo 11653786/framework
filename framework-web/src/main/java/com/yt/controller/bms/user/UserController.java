@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Date;
+
 /**
  * @author zhangsan
  * @version 1.0
@@ -44,11 +46,13 @@ public class UserController {
      * @param isLogin
      * @param isEnable
      * @param nikeName
+     * @param startTime
+     * @param endTime
      * @return
      */
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
-    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName) {
-        return userService.selectByPageList(search, username, email, phone, isLogin, isEnable, nikeName);
+    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
+        return userService.selectByPageList(search, username, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
     }
 }
