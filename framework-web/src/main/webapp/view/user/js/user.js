@@ -2,6 +2,93 @@ var userdatagrid;
 
 $(function () {
     userdatagrid=new util.easyui.datagrid();
+    userdatagrid.urls="/api/user/selectByPageList.do";
+    userdatagrid.columns=[[{
+        field: 'id',
+        checkbox: true
+    },
+    {
+        field: 'effectTime',
+        title: '上线时间',
+        width: 120,
+        align: 'center'
+    },
+    {
+        field: 'type',
+        title: 'banner显示渠道',
+        width: 120,
+        align: 'left',
+        formatter: function (value, row, index) {
+            if (value != null && value != undefined) {
+                switch (value) {
+                    case 1:
+                        return "PC";
+                        break;
+                    case 2:
+                        return "微网站";
+                        break;
+                }
+            }
+        }
+    },
+    {
+        field: 'sort',
+        title: 'banner位置',
+        width: 100,
+        align: 'left',
+        //显示内容为:banner显示渠道+位置,sort这个字段
+        formatter: function (value, row, index) {
+            var type = row['type'];
+            switch (type) {
+                case 1:
+                    return "PC-" + value;
+                    break;
+                case 2:
+                    return "微网站-" + value;
+                    break;
+            }
+        }
+    },
+    {
+        field: 'title',
+        title: '标题',
+        width: 200,
+        align: 'left',
+        formatter: function (value, row, index) {
+            var url = row['bannerUrl'];
+            if (url != null && url != "") {
+                return "<a href=" + url + " target=_blank >" + value + "</a>"
+            } else {
+                return value;
+            }
+        }
+    },
+    {
+        field: 'status',
+        title: '状态',
+        width: 100,
+        align: 'left',
+        formatter: function (value, row, index) {
+            switch (value) {
+                case 0:
+                    return "下线";
+                    break;
+                case 1:
+                    return "上线";
+                    break;
+            }
+        }
+    },
+    {
+        field: 'update',
+        title: '操作',
+        align: 'center',
+        width: 100,
+        formatter: function (value, row, index) {
+            return "<a href='javascript:void(0)' onclick=\"editBanner(\'" + row.id + "\')\">编辑</a>";
+        }
+    }
+    ]];
     userdatagrid.init();
 });
 
