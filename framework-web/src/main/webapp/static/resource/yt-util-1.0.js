@@ -130,21 +130,20 @@ util.easyui.dialog = function () {
             return false;
         }
 
-        //编辑类型的获取下数据表格内的信息
-        if (dialogType == 'add') {
+        //编辑做判断
+        if (dialogType != 'add') {
             var rows = $(parent.datagridId).datagrid("getChecked");
-            if(rows==null || rows=='' || rows==undefined){
+            if (rows == null || rows == '' || rows == undefined) {
                 alert("没有数据表格");
                 return false;
             }
 
-            if(rows.length!=1){
+            if (rows.length != 1) {
                 alert("一次只能编辑一条数据");
                 return false;
             }
-
-
         }
+        //dialog激活
         $(parent.dialogId).dialog({
             title: titles,
             width: parent.widths,
