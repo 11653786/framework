@@ -27,9 +27,9 @@ public class ScriptTagSupport extends TagSupport {
 
     private boolean hasBootStrapModal;
 
-    String jsPath = "/resource/js/";
+    String jsPath = "/static/js/";
 
-    String cssPath = "/resource/css/";
+    String cssPath = "/static/css/";
 
     @Override
     public int doStartTag() throws JspException {

@@ -18,9 +18,9 @@ public class AngularjsTreeSupport extends TagSupport {
 
     private boolean hasAngularTree;
 
-    private String jsPath = "/resource/js/";
+    private String jsPath = "/static/js/";
 
-    private String cssPath = "/resource/css/";
+    private String cssPath = "/static/css/";
 
     @Override
     public int doStartTag() throws JspException {
