@@ -21,7 +21,7 @@ public class User {
 
     private Integer loginTotal;
 
-    private Integer lastLoginTime;
+    private Date lastLoginTime;
 
     private Integer createUser;
 
@@ -103,11 +103,11 @@ public class User {
         this.loginTotal = loginTotal;
     }
 
-    public Integer getLastLoginTime() {
+    public Date getLastLoginTime() {
         return lastLoginTime;
     }
 
-    public void setLastLoginTime(Integer lastLoginTime) {
+    public void setLastLoginTime(Date lastLoginTime) {
         this.lastLoginTime = lastLoginTime;
     }
 

@@ -11,7 +11,7 @@
     <result column="is_login" property="isLogin" jdbcType="TINYINT" />
     <result column="is_enable" property="isEnable" jdbcType="TINYINT" />
     <result column="login_total" property="loginTotal" jdbcType="INTEGER" />
-    <result column="last_login_time" property="lastLoginTime" jdbcType="INTEGER" />
+    <result column="last_login_time" property="lastLoginTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_user" property="updateUser" jdbcType="INTEGER" />
@@ -93,12 +93,12 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
-    <if test="pageSearch != null" >
-      limit #{pageSearch.currentResult} , #{pageSearch.rows}
-    </if>
+      <if test="pageSearch != null">
+          limit #{pageSearch.page} , #{pageSearch.rows}
+      </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select
+    select 
     <include refid="Base_Column_List" />
     from t_user
     where id = #{id,jdbcType=INTEGER}
@@ -122,7 +122,7 @@
     values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{nikeName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{isLogin,jdbcType=TINYINT}, #{isEnable,jdbcType=TINYINT}, #{loginTotal,jdbcType=INTEGER}, 
-      #{lastLoginTime,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
       #{updateUser,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.yt.entity.mybatis.User" >
@@ -200,7 +200,7 @@
         #{loginTotal,jdbcType=INTEGER},
       </if>
       <if test="lastLoginTime != null" >
-        #{lastLoginTime,jdbcType=INTEGER},
+        #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null" >
         #{createUser,jdbcType=INTEGER},
@@ -253,7 +253,7 @@
         login_total = #{record.loginTotal,jdbcType=INTEGER},
       </if>
       <if test="record.lastLoginTime != null" >
-        last_login_time = #{record.lastLoginTime,jdbcType=INTEGER},
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.createUser != null" >
         create_user = #{record.createUser,jdbcType=INTEGER},
@@ -283,7 +283,7 @@
       is_login = #{record.isLogin,jdbcType=TINYINT},
       is_enable = #{record.isEnable,jdbcType=TINYINT},
       login_total = #{record.loginTotal,jdbcType=INTEGER},
-      last_login_time = #{record.lastLoginTime,jdbcType=INTEGER},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=INTEGER},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
       update_user = #{record.updateUser,jdbcType=INTEGER},
@@ -320,7 +320,7 @@
         login_total = #{loginTotal,jdbcType=INTEGER},
       </if>
       <if test="lastLoginTime != null" >
-        last_login_time = #{lastLoginTime,jdbcType=INTEGER},
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null" >
         create_user = #{createUser,jdbcType=INTEGER},
@@ -347,7 +347,7 @@
       is_login = #{isLogin,jdbcType=TINYINT},
       is_enable = #{isEnable,jdbcType=TINYINT},
       login_total = #{loginTotal,jdbcType=INTEGER},
-      last_login_time = #{lastLoginTime,jdbcType=INTEGER},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_user = #{updateUser,jdbcType=INTEGER},

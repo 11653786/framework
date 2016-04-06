@@ -11,9 +11,9 @@ public class UserExample {
 
     protected boolean distinct;
 
-    protected List<Criteria> oredCriteria;
-
     protected PageSearch pageSearch;
+
+    protected List<Criteria> oredCriteria;
 
     public UserExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -709,52 +709,52 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeEqualTo(Integer value) {
+        public Criteria andLastLoginTimeEqualTo(Date value) {
             addCriterion("last_login_time =", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeNotEqualTo(Integer value) {
+        public Criteria andLastLoginTimeNotEqualTo(Date value) {
             addCriterion("last_login_time <>", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeGreaterThan(Integer value) {
+        public Criteria andLastLoginTimeGreaterThan(Date value) {
             addCriterion("last_login_time >", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andLastLoginTimeGreaterThanOrEqualTo(Date value) {
             addCriterion("last_login_time >=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeLessThan(Integer value) {
+        public Criteria andLastLoginTimeLessThan(Date value) {
             addCriterion("last_login_time <", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeLessThanOrEqualTo(Integer value) {
+        public Criteria andLastLoginTimeLessThanOrEqualTo(Date value) {
             addCriterion("last_login_time <=", value, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeIn(List<Integer> values) {
+        public Criteria andLastLoginTimeIn(List<Date> values) {
             addCriterion("last_login_time in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeNotIn(List<Integer> values) {
+        public Criteria andLastLoginTimeNotIn(List<Date> values) {
             addCriterion("last_login_time not in", values, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeBetween(Integer value1, Integer value2) {
+        public Criteria andLastLoginTimeBetween(Date value1, Date value2) {
             addCriterion("last_login_time between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
 
-        public Criteria andLastLoginTimeNotBetween(Integer value1, Integer value2) {
+        public Criteria andLastLoginTimeNotBetween(Date value1, Date value2) {
             addCriterion("last_login_time not between", value1, value2, "lastLoginTime");
             return (Criteria) this;
         }
@@ -1092,7 +1092,6 @@ public class UserExample {
             this(condition, value, secondValue, null);
         }
     }
-
 
     public PageSearch getPageSearch() {
         return pageSearch;
