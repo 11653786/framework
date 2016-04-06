@@ -13,6 +13,7 @@ public class UserExample {
 
     protected PageSearch pageSearch;
 
+
     protected List<Criteria> oredCriteria;
 
     public UserExample() {
@@ -1100,4 +1101,6 @@ public class UserExample {
     public void setPageSearch(PageSearch pageSearch) {
         this.pageSearch = pageSearch;
     }
+
+
 }

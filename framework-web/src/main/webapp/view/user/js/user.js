@@ -138,8 +138,8 @@ $(function () {
             "phone": $("#phone").val(),
             "email": $("#email").val(),
             "isLogin": $("#isLogin").combobox('getValue'),
-            "startTime": $("#startTime").datetimebox('getValue'),
-            "endTime": $("#endTime").datetimebox('getValue')
+          //  "startTime": $("#startTime").datetimebox('getValue'),
+          //  "endTime": $("#endTime").datetimebox('getValue')
         };
         //查询
         userdatagrid.searchInit();

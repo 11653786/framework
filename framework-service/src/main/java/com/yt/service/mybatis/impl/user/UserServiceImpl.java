@@ -75,7 +75,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         UserExample.Criteria criteria = example.createCriteria();
         //用户名称
         if (!StringUtils.isEmpty(username)) {
-            criteria.andUserNameLike(username);
+            criteria.andUserNameEqualTo(username);
         }
         //昵称
         if (!StringUtils.isEmpty(nikeName)) {
