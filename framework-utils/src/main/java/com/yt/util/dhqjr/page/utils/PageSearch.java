@@ -41,6 +41,8 @@ public class PageSearch implements Serializable {
      */
     private int totalResult;
 
+    private int currentResult;
+
 
     public int getTotalResult() {
         return totalResult;
@@ -69,8 +71,10 @@ public class PageSearch implements Serializable {
 
     }
 
+    //返回当前分页数量
     public int getCurrentResult() {
-        return (this.page - 1) * this.rows;
+        this.currentResult = (this.page - 1) * this.rows;
+        return this.currentResult;
     }
 
     public String getSort() {
