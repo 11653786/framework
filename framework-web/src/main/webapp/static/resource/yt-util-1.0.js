@@ -152,7 +152,20 @@ util.easyui.dialog = function () {
             closed: false,
             cache: parent.cache,
             href: href,
-            modal: parent.modal
+            modal: parent.modal,
+            buttons: [{
+                text: '保存',
+                handler: function () {
+
+                }
+            }, {
+                text: '关闭',
+                handler: function () {
+                    //关闭dialog
+                    $(parent.dialogId).dialog("close", true);
+                }
+            }]
+
         });
     }
 
