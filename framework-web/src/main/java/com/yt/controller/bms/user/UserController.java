@@ -43,7 +43,7 @@ public class UserController extends ResourceBaseController {
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list() {
-        return "user/list";
+        return "user/userlist";
     }
 
     /**
@@ -64,6 +64,15 @@ public class UserController extends ResourceBaseController {
     @ResponseBody
     public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
         return userService.selectByPageList(search, username, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
+    }
+
+    /**
+     * @param id 用户列表主键,如果没有主键就是添加页面
+     * @return
+     */
+    @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
+    public String addOrEdit(Integer id) {
+        return "user/addOrEdit";
     }
 
 
