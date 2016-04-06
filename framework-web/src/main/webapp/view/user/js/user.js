@@ -156,7 +156,7 @@ function searchBanner() {
 
     var status = $("#status").combobox('getValue');
 
-    bannerdatagrid.datagrid({
+    userdatagrid.datagrid({
         queryParams: {
             "title": $("#title").val(),
             "status": status,
@@ -176,7 +176,7 @@ function addBanner() {
             text: '添加',
             iconCls: 'icon-save',
             handler: function () {
-                parent.$.modalDialog.openner_dataGrid = bannerdatagrid;
+                parent.$.modalDialog.openner_dataGrid = userdatagrid;
                 var f = parent.$.modalDialog.handler.find('#addoreditform');
                 f.submit();
             }
@@ -208,7 +208,7 @@ function editBanner(bannerId) {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                parent.$.modalDialog.openner_dataGrid = bannerdatagrid;
+                parent.$.modalDialog.openner_dataGrid = userdatagrid;
                 var f = parent.$.modalDialog.handler.find('#addoreditform');
                 f.submit();
             }
@@ -220,7 +220,7 @@ function editBanner(bannerId) {
 
 function offline() {
     //获取单选框按钮
-    var banners = bannerdatagrid.datagrid('getChecked');
+    var banners = userdatagrid.datagrid('getChecked');
     if (banners == undefined || banners == null || banners == '') {
         $.messager.alert("警告", "请选择数据");
         return;
@@ -246,7 +246,7 @@ function offline() {
             });
             //刷新datagrid
             if (data.success) {
-                bannerdatagrid.datagrid('reload');
+                userdatagrid.datagrid('reload');
             }
 
         },
