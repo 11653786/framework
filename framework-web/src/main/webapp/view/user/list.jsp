@@ -39,7 +39,8 @@
         </div>
         <div class="searchFormRows">
             登录状态：
-            <select id="isLogin" class="easyui-combobox">
+            <%--这里注意不要专门去写样式,因为easyui的样式已经定义了样式,加载顺序会导致每次加载页面长度不同,用style优先级最高固定住--%>
+            <select id="isLogin" data-options="editable:false" class="easyui-combobox" style="width: 100px;" >
                 <option value="">请选择</option>
                 <option value="0">正常</option>
                 <option value="1">限制登录</option>

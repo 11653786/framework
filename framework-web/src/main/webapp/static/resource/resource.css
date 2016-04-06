@@ -8,8 +8,8 @@
 
 .searchinput {
     width: 160px;
+    margin-right: 5px;
 }
-
 .searchFormRows {
     margin: 10px;
 }
