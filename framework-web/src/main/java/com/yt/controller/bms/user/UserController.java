@@ -1,5 +1,6 @@
 package com.yt.controller.bms.user;
 
+import com.yt.base.ResourceBaseController;
 import com.yt.entity.mybatis.User;
 import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.page.utils.PageResult;
@@ -21,7 +22,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "/api/user")
-public class UserController {
+public class UserController  extends ResourceBaseController{
 
     @Autowired
     private UserService userService;
