@@ -49,28 +49,34 @@ $(function () {
                     return 'background-color:#faccc0;color:green;';
                 }
             }
-
         },
         {
-            field: 'sort',
-            title: 'banner位置',
+            field: 'isEnable',
+            title: '是否可用',
             align: 'left',
             //显示内容为:banner显示渠道+位置,sort这个字段
             formatter: function (value, row, index) {
-                var type = row['type'];
-                switch (type) {
+                switch (value) {
+                    case 0:
+                        return "不可用"
+                        break;
                     case 1:
-                        return "PC-" + value;
+                        return "可用";
                         break;
-                    case 2:
-                        return "微网站-" + value;
-                        break;
+                }
+            },
+            styler: function (value, row, index) {
+                if (value == 0) {
+                    return 'background-color:#aaae00;color:#ccc;';
+                }
+                if (value == 1) {
+                    return 'background-color:#f00f00;color:blue;';
                 }
             }
         },
         {
-            field: 'title',
-            title: '标题',
+            field: 'loginTotal',
+            title: '登录次数',
             align: 'left',
             formatter: function (value, row, index) {
                 var url = row['bannerUrl'];
@@ -82,18 +88,12 @@ $(function () {
             }
         },
         {
-            field: 'status',
-            title: '状态',
-            align: 'left',
+            field: 'lastLoginTime',
+            title: '最后登录时间',
+            align: 'center',
             formatter: function (value, row, index) {
-                switch (value) {
-                    case 0:
-                        return "下线";
-                        break;
-                    case 1:
-                        return "上线";
-                        break;
-                }
+                //easyui返回的date类型为时间戳这里转换下
+                return new Date(value).Format("yyyy-MM-dd hh:mm:ss");
             }
         },
         {
