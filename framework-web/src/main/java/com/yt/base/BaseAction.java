@@ -21,10 +21,12 @@ import java.util.*;
 public class BaseAction {
 
     protected static String loginEmployee = "loginEmployee";
+    protected static String loginUser = "loginUser";
+    protected static String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        DateFormat df = new SimpleDateFormat(dateFormat);
         CustomDateEditor editor = new CustomDateEditor(df, false);
         binder.registerCustomEditor(Date.class, editor);
     }
@@ -33,6 +35,18 @@ public class BaseAction {
     protected void setSessionEmployee(HttpSession session, Employee employee) {
         session.setAttribute(loginEmployee, employee);
     }
+
+    protected void setSessionUser(HttpSession session, Employee employee) {
+        session.setAttribute(loginUser, employee);
+    }
+
+    protected static Employee getSessionUser(HttpSession session) {
+        if (EmptyUtil.isEmpty(session.getAttribute(loginUser))) {
+            return null;
+        }
+        return (Employee) session.getAttribute(loginUser);
+    }
+
 
     protected static Employee getSessionEmployee(HttpSession session) {
         if (EmptyUtil.isEmpty(session.getAttribute(loginEmployee))) {
