@@ -34,7 +34,7 @@ util.easyui.datagrid = function () {
     this.fit = true;
     //url,显示
     this.urls = "";
-    //填充列
+    //横向填充满
     this.fitColumns = true;
     //请求方法
     this.method = "post";
