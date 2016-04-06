@@ -27,8 +27,13 @@ public class BaseAction {
     @InitBinder
     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
         DateFormat df = new SimpleDateFormat(dateFormat);
-        CustomDateEditor editor = new CustomDateEditor(df, false);
+        //true:允许输入空值，false:不能为空值
+        CustomDateEditor editor = new CustomDateEditor(df, true);
         binder.registerCustomEditor(Date.class, editor);
+
+
+
+
     }
 
 

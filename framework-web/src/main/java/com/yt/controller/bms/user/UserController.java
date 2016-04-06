@@ -5,12 +5,19 @@ import com.yt.entity.mybatis.User;
 import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -22,7 +29,9 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "/api/user")
-public class UserController  extends ResourceBaseController{
+public class UserController extends ResourceBaseController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
@@ -56,4 +65,6 @@ public class UserController  extends ResourceBaseController{
     public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
         return userService.selectByPageList(search, username, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
     }
+
+
 }

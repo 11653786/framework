@@ -1,9 +1,6 @@
 var userdatagrid;
 
 $(function () {
-    //日期时间框格式化
-  
-
 
     userdatagrid = new util.easyui.datagrid();
     userdatagrid.urls = "/api/user/selectByPageList.do";
@@ -122,16 +119,14 @@ $(function () {
     userdatagrid.init();
     //条件查询
     $("#searchButton").click(function () {
-        var startTime = $("#startTime").datetimebox('getValue');
-        var endTime = $("#endTime").datetimebox('getValue');
         userdatagrid.queryParams = {
             "userName": $("#userName").val(),
             "nikeName": $("#nikeName").val(),
             "phone": $("#phone").val(),
             "email": $("#email").val(),
             "isLogin": $("#isLogin").combobox('getValue'),
-            "startTime": startTime,
-            "endTime": endTime
+            "startTime": $("#startTime").datetimebox('getValue'),
+            "endTime": $("#endTime").datetimebox('getValue')
         };
         //查询
         userdatagrid.searchInit();
