@@ -132,11 +132,11 @@ $(function () {
         userdatagrid.searchInit();
     });
     //dialog,默认是添加
-    var dialog = new util.easyui.dialog();
+    var addOrEditDialog = new util.easyui.dialog();
 
     //添加用户
     $("#adduser").click(function () {
-        dialog.init('添加用户', "/api/user/addOrEdit.do");
+        addOrEditDialog.init('添加用户', "/api/user/addOrEdit.do","add");
     });
 
 

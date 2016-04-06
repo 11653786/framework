@@ -27,6 +27,7 @@ var util = function () {
 util.easyui = function () {
 };
 
+
 /**
  * easyui数据表格
  */
@@ -107,21 +108,43 @@ util.easyui.datagrid = function () {
  * @param title dialog的标题,添加和修改用的
  */
 util.easyui.dialog = function () {
+
     //dialogid
     this.dialogId = "#addOrEditDialog";
+    //当前页面的datagridId用来获取数据表格的
+    this.datagridId = "#datagrid";
     //宽度
     this.widths = 600;
     //高度
     this.heights = 400;
-    //打开url
-    this.href;
+
     this.cache = false;
     //锁定当前窗口
     this.modal = true;
-    //dialog 类型add和edit
-    this.dialogType = 'add'
-    this.init = function (titles, href) {
+    //dialog标题,url和类型(add和edit)
+    this.init = function (titles, href, dialogType) {
+
         var parent = this;
+        if (dialogType == undefined || dialogType == null || dialogType == '') {
+            alert('没有传入类型');
+            return false;
+        }
+
+        //编辑类型的获取下数据表格内的信息
+        if (dialogType == 'add') {
+            var rows = $(parent.datagridId).datagrid("getChecked");
+            if(rows==null || rows=='' || rows==undefined){
+                alert("没有数据表格");
+                return false;
+            }
+
+            if(rows.length!=1){
+                alert("一次只能编辑一条数据");
+                return false;
+            }
+
+
+        }
         $(parent.dialogId).dialog({
             title: titles,
             width: parent.widths,
