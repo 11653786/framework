@@ -16,63 +16,35 @@
     <simple:angular hasAngularTree="false"></simple:angular>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-util-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/user/js/user.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resource/resource.css">
 </head>
-<body class="easyui-layout" data-options="fit : true,border : false">
-<!-- datagrid -->
-<div data-options="region:'center',border:false"
-     style="overflow: hidden;">
-    <div id="datagrid"></div>
-</div>
-<!-- 工具栏 -->
-<div id="toolbar" class="pt-10">
+<body>
+<div class="searchForm">
     <form id="searchForm" method="post">
-        <ul class="conditionUl">
-            <li class="width-180 text-center pt-5">
-                <a onclick="addBanner();" class="easyui-linkbutton"
-                   iconCls="icon-add">发布</a>
-
-                <a onclick="offline();" class="easyui-linkbutton">上线/下线</a>
-            </li>
-            <li class="height-30 width-270">
-                <div class="left text-right width-110">
-                    标题：
-                </div>
-                <div class="left width-150">
-                    <input  id="title" class="width-145" />
-                </div>
-            </li>
-            <li class="height-30 width-450">
-                <div class="left text-right width-110">
-                    上线时间：
-                </div>
-                <div class="left width-330">
-                    <input
-                            class="easyui-datetimebox" type="text" id="startTime" name="startTime">
-                    至
-                    <input
-                            class="easyui-datetimebox" type="text" name="endTime" id="endTime">
-                </div>
-            </li>
-            <li class="height-30 width-270">
-                <div class="left text-right width-110">
-                    状态：
-                </div>
-                <div class="left width-150">
-                    <select id="status"  class="easyui-combobox width-145" >
-                        <option value="">请选择</option>
-                        <option value="1">已上线</option>
-                        <option value="0">已下线</option>
-                    </select>
-                </div>
-            </li>
-            <li class="width-100 text-center pt-5">
-                <a id="searchButton" class="easyui-linkbutton" iconCls="icon-search">查询</a>
-            </li>
-        </ul>
+        标题：
+        <input id="title" class="width-145"/>
+        上线时间：
+        <input
+                class="easyui-datetimebox" type="text" id="startTime" name="startTime">
+        至
+        <input
+                class="easyui-datetimebox" type="text" name="endTime" id="endTime">
+        状态：
+        <select id="status" class="easyui-combobox">
+            <option value="">请选择</option>
+            <option value="1">已上线</option>
+            <option value="0">已下线</option>
+        </select>
+        <a id="searchButton" class="easyui-linkbutton" iconCls="icon-search">查询</a>
     </form>
-
-    <div class="clear height-10">
-    </div>
+</div>
+<!-- datagrid -->
+<div id="datagrid"></div>
+<!-- 工具栏 -->
+<div id="toolbar">
+    <a onclick="addBanner();" class="easyui-linkbutton"
+       iconCls="icon-add">发布</a>
+    <a onclick="offline();" class="easyui-linkbutton">上线/下线</a>
 </div>
 </body>
 </html>
