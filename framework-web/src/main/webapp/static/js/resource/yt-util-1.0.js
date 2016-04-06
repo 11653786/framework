@@ -35,7 +35,7 @@ util.easyui.datagrid = function () {
     //url,显示
     this.urls = "";
     //填充列
-    this.fit = true;
+    this.fitColumns = true;
     //请求方法
     this.method = "post";
     //边框
@@ -67,6 +67,7 @@ util.easyui.datagrid = function () {
             url: parent.urls,
             fit: parent.fit,
             method: parent.method,
+            fitColumns: parent.fitColumns,
             border: parent.border,
             idField: parent.idField,
             pagination: parent.paginations,
