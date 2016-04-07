@@ -166,7 +166,6 @@ util.easyui.dialog = function () {
                     //验证结果true为通过
                     var isValid = addOrEditForm.form("validate");
                     if (isValid) {
-                        //验证
                         addOrEditForm.form({
                             onSubmit: function () {
                             },
@@ -185,7 +184,7 @@ util.easyui.dialog = function () {
                                 });
                             }
                         });
-
+                        //提交
                         addOrEditForm.submit();
                     }
                 }
