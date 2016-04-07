@@ -21,6 +21,20 @@ public class Log {
 
     private byte[] logInfo;
 
+    public Log() {
+    }
+
+    public Log(String className, Integer createUser, Date createDate, Integer isSuccess, String entityName, String actions, byte[] logInfo, Integer spendTime) {
+        this.className = className;
+        this.createUser = createUser;
+        this.createDate = createDate;
+        this.isSuccess = isSuccess;
+        this.entityName = entityName;
+        this.actions = actions;
+        this.logInfo = logInfo;
+        this.spendTime = spendTime;
+    }
+
     public Integer getId() {
         return id;
     }

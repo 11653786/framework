@@ -1,7 +1,10 @@
 package com.yt.entity.mybatis;
 
+import com.yt.util.yt.annotation.Table;
+
 import java.util.Date;
 
+@Table(name = "用户表")
 public class User {
     private Integer id;
 
