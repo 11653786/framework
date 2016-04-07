@@ -159,7 +159,7 @@ util.easyui.dialog = function () {
             buttons: [{
                 text: '保存',
                 handler: function () {
-
+                    $('#addOrEditForm').submit();
                 }
             }, {
                 text: '关闭',

@@ -11,7 +11,7 @@
     <title></title>
 </head>
 <body>
-<form id="addOrEditForm" method="post">
+<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/saveAddOrEdit.do">
     <div class="mymenu">
         <div class="two">
             <label for="userName">用户名:</label>
