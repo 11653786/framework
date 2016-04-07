@@ -17,16 +17,20 @@
 
 .mymenu {
     text-align: center;
-    list-style-type: none;
+    margin-top: 10px;
+
 }
 
 .mymenu .two {
     float: left;
-    width: 40%;
-    height: 30px;
+    width: 50%;
+    height: 8%;
 }
 
-.mymenu  label {
+/*label,宽度百分之30左浮动,摆正最多可以输入6个字'*/
+.mymenu label {
     display: inline-block;
-    width: 50px;
+    float: left;
+    width: 30%;
+    font-size:12px;
 }
