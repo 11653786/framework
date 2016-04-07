@@ -51,14 +51,15 @@ public class Proxy {
         Object object = objects[0];
         //判断当前实体类使用是否注解
         Table table = object.getClass().getAnnotation(Table.class);
-        long end = System.currentTimeMillis();
-        //String className, Integer createUser, Date createDate, Integer isSuccess, String entityName, String actions, byte[] logInfo, Integer spendTime
+
         String tableName = table != null && !StringUtils.isEmpty(table.name()) ? table.name() : object.getClass().getSimpleName();
 
         //获取监控方法得到的返回值
         BaseResult result = (BaseResult) pjp.proceed();
+        Integer sendTime = Long.valueOf(System.currentTimeMillis() - start).intValue();
         if (result.isSuccess()) {
-            Log log = new Log(object.getClass().getName(), 0, new Date(), 1, tableName, "保存", ByteUtil.ObjectToByte(object), Long.valueOf(end - start).intValue());
+            //String className, Integer createUser, Date createDate, Integer isSuccess, String entityName, String actions, byte[] logInfo, Integer spendTime
+            Log log = new Log(object.getClass().getName(), 0, new Date(), 1, tableName, "保存", ByteUtil.ObjectToByte(object), sendTime);
             logService.insertSelective(log);
         } else {
             //保存异常信息信息

@@ -1,8 +1,11 @@
 package com.yt.entity.mybatis;
 
+import com.yt.util.yt.annotation.Table;
+
 import java.io.Serializable;
 import java.util.Date;
 
+@Table(name = "成功日志表")
 public class Log implements Serializable {
     private Integer id;
 
