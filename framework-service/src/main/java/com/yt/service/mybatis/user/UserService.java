@@ -1,6 +1,6 @@
 package com.yt.service.mybatis.user;
 
-import com.yt.core.dao.BaseDao;
+import com.yt.core.dao.base.BaseDao;
 import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.page.utils.PageResult;

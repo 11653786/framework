@@ -1,6 +1,6 @@
 package com.yt.service.mybatis.impl.user;
 
-import com.yt.core.dao.impl.BaseDaoImpl;
+import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.User;
 import com.yt.entity.mybatis.UserExample;
 import com.yt.model.BaseResult;
@@ -81,7 +81,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
             user.setPassword(Md5Utils.getMD5String(user.getPassword()));
             this.insert(user);
         } catch (Exception e) {
-            logger.info("保存用户异常!"," "+e.getMessage());
+            logger.info("保存用户异常!", " " + e.getMessage());
             return BaseResult.fail("保存参数异常!");
         }
         return result;

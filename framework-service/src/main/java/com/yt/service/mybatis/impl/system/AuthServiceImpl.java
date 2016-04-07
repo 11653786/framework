@@ -1,6 +1,6 @@
 package com.yt.service.mybatis.impl.system;
 
-import com.yt.core.dao.impl.BaseDaoImpl;
+import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.Auth;
 import com.yt.service.mybatis.system.AuthService;
 import org.springframework.stereotype.Service;

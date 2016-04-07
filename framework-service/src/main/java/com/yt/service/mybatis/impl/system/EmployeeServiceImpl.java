@@ -1,6 +1,6 @@
 package com.yt.service.mybatis.impl.system;
 
-import com.yt.core.dao.impl.BaseDaoImpl;
+import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.EmployeeExample;
 import com.yt.model.BaseResult;

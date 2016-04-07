@@ -1,4 +1,4 @@
-package com.yt.core.dao;
+package com.yt.core.dao.base;
 
 import java.util.List;
 
