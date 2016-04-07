@@ -3,13 +3,14 @@ package com.yt.service.mybatis.impl.user;
 import com.yt.core.dao.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.User;
 import com.yt.entity.mybatis.UserExample;
+import com.yt.model.BaseResult;
 import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.DateUtil;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageResultBuilder;
 import com.yt.util.dhqjr.page.utils.PageSearch;
-import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,7 +31,7 @@ import java.util.Date;
 public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
 
 
-    private Logger logger = Logger.getLogger(this.getClass());
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final static Integer pageSize = 10;
     private final static Integer page = 1;
@@ -61,6 +62,18 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         }
 
         return pr;
+    }
+
+    @Override
+    public BaseResult saveUser(User user) {
+        BaseResult result = new BaseResult(true);
+        try {
+            this.insert(user);
+        } catch (Exception e) {
+            logger.error("", e.getMessage());
+            BaseResult.fail("保存参数异常!");
+        }
+        return result;
     }
 
     /**

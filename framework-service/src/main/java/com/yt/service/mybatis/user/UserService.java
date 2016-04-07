@@ -1,10 +1,10 @@
 package com.yt.service.mybatis.user;
 
 import com.yt.entity.mybatis.User;
+import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 
-import java.net.Inet4Address;
 import java.util.Date;
 
 /**
@@ -30,4 +30,12 @@ public interface UserService {
      * @return
      */
     public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime);
+
+    /**
+     * 保存用户
+     *
+     * @param user
+     * @return
+     */
+    public BaseResult saveUser(User user);
 }

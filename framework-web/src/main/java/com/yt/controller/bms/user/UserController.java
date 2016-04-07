@@ -75,5 +75,11 @@ public class UserController extends ResourceBaseController {
         return "user/useraddoredit";
     }
 
+    @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST)
+    @ResponseBody
+    public String saveAddOrEdit(User user) {
+        return "user/useraddoredit";
+    }
+
 
 }
