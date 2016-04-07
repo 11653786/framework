@@ -13,27 +13,44 @@
 <body>
 <form id="addOrEditForm" method="post">
     <div class="mymenu">
-            <div class="two">
-                <label for="userName">用户名:</label>
-                <input class="easyui-validatebox" id="userName" type="text" name="userName"
-                       data-options="required:true"/>
-            </div>
-            <div class="two"><label for="nikeName">昵称:</label>
-                <input class="easyui-validatebox" id="nikeName" type="text" name="nikeName"/>
-            </div>
-            <div class="two">
-                <label for="password">密码:</label>
-                <input class="easyui-validatebox" id="password" type="text" name="password" data-options="required:true"/>
-            </div>
-            <div class="two">
-                <label  for="email">email:</label>
-                <input class="easyui-validatebox" id="email" type="text" name="email"
-                       data-options="required:true,validType:'email'"/>
-            </div>
-            <div class="two">
-                <label for="phone">手机啊啊啊号:</label>
-                <input class="easyui-validatebox" id="phone" type="text" name="phone" data-options="required:true"/>
-            <div>
+        <div class="two">
+            <label for="userName">用户名:</label>
+            <input class="easyui-validatebox" id="userName" type="text" name="userName"
+                   data-options="required:true"/>
+        </div>
+        <div class="two"><label for="nikeName">昵称:</label>
+            <input class="easyui-validatebox" id="nikeName" type="text" name="nikeName"/>
+        </div>
+        <div class="two">
+            <label for="password">密码:</label>
+            <input class="easyui-validatebox" id="password" type="text" name="password" data-options="required:true"/>
+        </div>
+        <div class="two">
+            <label for="email">email:</label>
+            <input class="easyui-validatebox" id="email" type="text" name="email"
+                   data-options="required:true,validType:'email'"/>
+        </div>
+        <div class="two">
+            <label for="phone">手机号:</label>
+            <input class="easyui-validatebox" id="phone" type="text" name="phone" data-options="required:true"/>
+        </div>
+        <div class="two">
+            <label for="isLogin">登录状态:</label>
+            <select id="cc" class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
+                <option value="">请选择</option>
+                <option value="1">正常</option>
+                <option value="0">限制登录</option>
+            </select>
+        </div>
+        <div class="two">
+            <label for="isEnable">启动状态:</label>
+            <select id="cc" class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
+                <option value="">请选择</option>
+                <option value="1">可用</option>
+                <option value="0">不可用</option>
+            </select>
+        </div>
+
     </div>
 </form>
 </body>

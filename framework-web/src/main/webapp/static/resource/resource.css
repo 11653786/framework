@@ -23,8 +23,10 @@
 
 .mymenu .two {
     float: left;
+    margin-top: 2%;
+    line-height: 20px;
     width: 50%;
-    height: 8%;
+    height: 14%;
 }
 
 /*label,宽度百分之30左浮动,摆正最多可以输入6个字'*/

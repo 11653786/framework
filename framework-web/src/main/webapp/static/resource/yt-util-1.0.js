@@ -114,9 +114,9 @@ util.easyui.dialog = function () {
     //当前页面的datagridId用来获取数据表格的
     this.datagridId = "#datagrid";
     //宽度
-    this.widths = 600;
+    this.widths = 550;
     //高度
-    this.heights = 400;
+    this.heights = 350;
 
     this.cache = false;
     //锁定当前窗口
