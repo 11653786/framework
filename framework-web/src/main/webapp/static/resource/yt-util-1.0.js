@@ -171,13 +171,15 @@ util.easyui.dialog = function () {
                             onSubmit: function () {
                             },
                             success: function (data) {
+                                //转json
+                                var result = eval('(' + data + ')');
                                 $(parent.dialogId).dialog("close", true);
                                 //刷新数据表格..
                                 $(parent.datagridId).datagrid("reload");
                                 //提示消息
                                 $.messager.show({
                                     title: '系统提示',
-                                    msg: data.msg,
+                                    msg: result.msg,
                                     timeout: 3000,
                                     showType: 'slide'
                                 });
