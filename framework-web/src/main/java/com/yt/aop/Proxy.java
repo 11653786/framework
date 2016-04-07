@@ -2,6 +2,7 @@ package com.yt.aop;
 
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.Log;
+import com.yt.entity.mybatis.User;
 import com.yt.service.mybatis.system.LogService;
 import com.yt.util.dhqjr.ByteUtil;
 import com.yt.util.yt.annotation.Table;
@@ -48,19 +49,19 @@ public class Proxy {
         long start = System.currentTimeMillis();
         Object[] objects = pjp.getArgs();
         for (Object object : objects) {
-            if (object instanceof Employee) {
-                Employee account = (Employee) object;
+            if (object instanceof User) {
+                User user = (User) object;
                 //判断当前实体类使用是否注解
-                Table table = account.getClass().getAnnotation(Table.class);
+                Table table = user.getClass().getAnnotation(Table.class);
                 if (!StringUtils.isEmpty(table)) {
                     //获取注解内容
                     log.setEntityName(table.name());
                 }
                 log.setCreateDate(new Date());
                 log.setActions("保存");
-                log.setClassName(account.getClass().getName());
-                log.setCreateUser(account.getCreateUser());
-                log.setLogInfo(ByteUtil.ObjectToByte(account));
+                log.setClassName(user.getClass().getName());
+                log.setCreateUser(0);
+                log.setLogInfo(ByteUtil.ObjectToByte(user));
             }
         }
 
@@ -69,8 +70,8 @@ public class Proxy {
         log.setIsSuccess(result.equals(1) ? 1 : 0);
         long end = System.currentTimeMillis();
         //耗时
-        //log.setSpendTime(Long.valueOf(end - start).intValue());
-        //logService.insertSelective(log);
+        log.setSpendTime(Long.valueOf(end - start).intValue());
+        logService.insertSelective(log);
         return result;
     }
 }

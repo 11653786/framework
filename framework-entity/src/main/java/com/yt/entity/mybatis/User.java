@@ -2,10 +2,11 @@ package com.yt.entity.mybatis;
 
 import com.yt.util.yt.annotation.Table;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "用户表")
-public class User {
+public class User implements Serializable {
     private Integer id;
 
     private String userName;
