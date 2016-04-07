@@ -23,7 +23,6 @@
 
 .mymenu .two {
     float: left;
-    display:inline;
-    margin-right: 40px;
-    margin-top: 10px;
+    width:45%;
+    height:30px;
 }
