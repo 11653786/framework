@@ -2,6 +2,7 @@ package com.yt.controller.bms.user;
 
 import com.yt.base.ResourceBaseController;
 import com.yt.entity.mybatis.User;
+import com.yt.model.BaseResult;
 import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
@@ -77,8 +78,8 @@ public class UserController extends ResourceBaseController {
 
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.POST)
     @ResponseBody
-    public String saveAddOrEdit(User user) {
-        return "user/useraddoredit";
+    public BaseResult saveAddOrEdit(User user) {
+        return userService.saveUser(user);
     }
 
 

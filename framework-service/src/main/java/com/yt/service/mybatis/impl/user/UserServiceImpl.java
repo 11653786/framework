@@ -10,6 +10,8 @@ import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageResultBuilder;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.yt.myutils.Md5Utils;
+import com.yt.util.yt.myutils.ValidUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -68,6 +70,15 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
     public BaseResult saveUser(User user) {
         BaseResult result = new BaseResult(true);
         try {
+            if (!ValidUtils.isEmail(user.getEmail())) {
+                BaseResult.fail("邮箱输入不正确!");
+            }
+
+            if (!ValidUtils.isMobile(user.getPhone())) {
+                BaseResult.fail("手机号码输入不正确!");
+            }
+            //密码设置
+            user.setPassword(Md5Utils.getMD5String(user.getPassword()));
             this.insert(user);
         } catch (Exception e) {
             logger.error("", e.getMessage());
