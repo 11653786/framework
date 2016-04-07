@@ -47,8 +47,19 @@ public class Proxy {
     @Around("saveMethod()")
     public Object aroundPointcut(ProceedingJoinPoint pjp) throws Throwable {
         long start = System.currentTimeMillis();
+        //获取传入的参数
         Object[] objects = pjp.getArgs();
         Object object = objects[0];
+        //获取方法名
+        String methodName = pjp.getSignature().getName();
+        String actions = "";
+        if (methodName.equalsIgnoreCase("save")) {
+            actions="保存";
+        } else if (methodName.equalsIgnoreCase("update")) {
+            actions="修改";
+        } else if (methodName.equalsIgnoreCase("delete")) {
+            actions="删除";
+        }
         //判断当前实体类使用是否注解
         Table table = object.getClass().getAnnotation(Table.class);
 
@@ -59,7 +70,7 @@ public class Proxy {
         Integer sendTime = Long.valueOf(System.currentTimeMillis() - start).intValue();
         if (result.isSuccess()) {
             //String className, Integer createUser, Date createDate, Integer isSuccess, String entityName, String actions, byte[] logInfo, Integer spendTime
-            Log log = new Log(object.getClass().getName(), 0, new Date(), 1, tableName, "保存", ByteUtil.ObjectToByte(object), sendTime);
+            Log log = new Log(object.getClass().getName(), 0, new Date(), 1, tableName, actions, ByteUtil.ObjectToByte(object), sendTime);
             logService.insertSelective(log);
         } else {
             //保存异常信息信息
