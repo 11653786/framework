@@ -52,14 +52,8 @@ public class Proxy {
         Object object = objects[0];
         //获取方法名
         String methodName = pjp.getSignature().getName();
-        String actions = "";
-        if (methodName.equalsIgnoreCase("save")) {
-            actions="保存";
-        } else if (methodName.equalsIgnoreCase("update")) {
-            actions="修改";
-        } else if (methodName.equalsIgnoreCase("delete")) {
-            actions="删除";
-        }
+        //保存修改删除
+        String actions = getActions(methodName);
         //判断当前实体类使用是否注解
         Table table = object.getClass().getAnnotation(Table.class);
 
@@ -77,6 +71,24 @@ public class Proxy {
         }
 
         return result;
+    }
+
+    /**
+     * 获取日志标中需要的信息
+     *
+     * @param methodName
+     * @return
+     */
+    private String getActions(String methodName) {
+        String actions = "";
+        if (methodName.equalsIgnoreCase("save")) {
+            actions = "保存";
+        } else if (methodName.equalsIgnoreCase("update")) {
+            actions = "修改";
+        } else if (methodName.equalsIgnoreCase("delete")) {
+            actions = "删除";
+        }
+        return actions;
     }
 }
 
