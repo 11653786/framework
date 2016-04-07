@@ -121,7 +121,9 @@ util.easyui.dialog = function () {
     this.cache = false;
     //锁定当前窗口
     this.modal = true;
+    //dialog上面的form的id
     //dialog标题,url和类型(add和edit)
+    this.formId = "#addOrEditForm";
     this.init = function (titles, href, dialogType) {
 
         var parent = this;
@@ -159,7 +161,31 @@ util.easyui.dialog = function () {
             buttons: [{
                 text: '保存',
                 handler: function () {
-                    $('#addOrEditForm').submit();
+                    //找到dialog中的表单
+                    var addOrEditForm = $(parent.dialogId).find(parent.formId);
+                    //验证结果true为通过
+                    var isValid = addOrEditForm.form("validate");
+                    if (isValid) {
+                        //验证
+                        addOrEditForm.form({
+                            onSubmit: function () {
+                            },
+                            success: function (data) {
+                                $(parent.dialogId).dialog("close", true);
+                                //刷新数据表格..
+                                $(parent.datagridId).datagrid("reload");
+                                //提示消息
+                                $.messager.show({
+                                    title: '系统提示',
+                                    msg: data.msg,
+                                    timeout: 3000,
+                                    showType: 'slide'
+                                });
+                            }
+                        });
+
+                        addOrEditForm.submit();
+                    }
                 }
             }, {
                 text: '关闭',

@@ -71,18 +71,18 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         BaseResult result = new BaseResult(true);
         try {
             if (!ValidUtils.isEmail(user.getEmail())) {
-                BaseResult.fail("邮箱输入不正确!");
+                return BaseResult.fail("邮箱输入不正确!");
             }
 
             if (!ValidUtils.isMobile(user.getPhone())) {
-                BaseResult.fail("手机号码输入不正确!");
+                return BaseResult.fail("手机号码输入不正确!");
             }
             //密码设置
             user.setPassword(Md5Utils.getMD5String(user.getPassword()));
             this.insert(user);
         } catch (Exception e) {
             logger.error("", e.getMessage());
-            BaseResult.fail("保存参数异常!");
+            return BaseResult.fail("保存参数异常!");
         }
         return result;
     }
