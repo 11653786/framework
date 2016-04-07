@@ -81,11 +81,11 @@ public class Proxy {
      */
     private String getActions(String methodName) {
         String actions = "";
-        if (methodName.equalsIgnoreCase("save")) {
+        if (methodName.contains("save")) {
             actions = "保存";
-        } else if (methodName.equalsIgnoreCase("update")) {
+        } else if (methodName.contains("update")) {
             actions = "修改";
-        } else if (methodName.equalsIgnoreCase("delete")) {
+        } else if (methodName.contains("delete")) {
             actions = "删除";
         }
         return actions;
