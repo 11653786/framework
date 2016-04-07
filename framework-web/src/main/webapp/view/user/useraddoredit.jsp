@@ -13,20 +13,27 @@
 <body>
 <form id="addOrEditForm" method="post">
     <div class="mymenu">
-        <ul >
-            <li class="two"><label for="name">Name:</label>
-                <input class="easyui-validatebox" type="text" name="name" data-options="required:true"/>
+        <ul>
+            <li class="two">
+                <label for="userName">用户名:</label>
+                <input class="easyui-validatebox" id="userName" type="text" name="userName"
+                       data-options="required:true"/>
+            </li>
+            <li class="two"><label for="nikeName">昵称:</label>
+                <input class="easyui-validatebox" id="nikeName" type="text" name="nikeName"/>
             </li>
             <li class="two">
-                <label for="email">Email:</label>
-                <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'"/>
-            </li>
-            <li class="two"><label for="name">Name:</label>
-                <input class="easyui-validatebox" type="text" name="name" data-options="required:true"/>
+                <label for="password">密码:</label>
+                <input class="easyui-validatebox" id="password" type="text" name="password" data-options="required:true"/>
             </li>
             <li class="two">
-                <label for="email">Email:</label>
-                <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'"/>
+                <label for="email">email:</label>
+                <input class="easyui-validatebox" id="email" type="text" name="email"
+                       data-options="required:true,validType:'email'"/>
+            </li>
+            <li class="two">
+                <label for="phone">手机号:</label>
+                <input class="easyui-validatebox" id="phone" type="text" name="phone" data-options="required:true"/>
             </li>
         </ul>
     </div>
