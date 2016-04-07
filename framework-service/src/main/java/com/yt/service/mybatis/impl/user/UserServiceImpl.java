@@ -12,6 +12,7 @@ import com.yt.util.dhqjr.page.utils.PageResultBuilder;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 import com.yt.util.yt.myutils.Md5Utils;
 import com.yt.util.yt.myutils.ValidUtils;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -33,7 +34,7 @@ import java.util.Date;
 public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
 
 
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger baseLog = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final static Integer pageSize = 10;
     private final static Integer page = 1;
@@ -59,7 +60,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
                     this.countByExample(example),
                     this.selectByExample(example)).toPageResult();
         } catch (Exception e) {
-            logger.error("", e);
+            baseLog.error("", e);
             return null;
         }
 
@@ -81,7 +82,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
             user.setPassword(Md5Utils.getMD5String(user.getPassword()));
             this.insert(user);
         } catch (Exception e) {
-            logger.error( "", " " + e.getMessage());
+            baseLog.error("保存用户信息异常!:" + user.getClass().getName());
             return BaseResult.fail("保存参数异常!");
         }
         return result;

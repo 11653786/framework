@@ -3,7 +3,6 @@ package com.yt.base;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
  */
 public class ResourceBaseController extends BaseAction implements InitializingBean {
 
-    private static final Logger baseLog = LoggerFactory.getLogger(ResourceBaseController.class);
 
     @Value("${system.initResource}")
     private String initResource;
@@ -22,7 +20,7 @@ public class ResourceBaseController extends BaseAction implements InitializingBe
      */
     public void afterPropertiesSet() throws Exception {
         if ("yes".equals(initResource)) {
-            baseLog.error("资源扫描: " + this.getClass().getSimpleName());
+            System.out.println("资源扫描: " + this.getClass().getSimpleName());
         }
 
     }

@@ -70,6 +70,9 @@ public class BaseResult implements Serializable {
     }
 
 
+
+
+
     public Object getObj() {
         return obj;
     }

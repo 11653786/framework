@@ -2,6 +2,7 @@ package com.yt.aop;
 
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.Log;
+import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.ByteUtil;
 import com.yt.util.yt.annotation.Table;
 import com.yt.service.mybatis.system.LogService;
@@ -31,7 +32,7 @@ public class Proxy {
     /**
      * 要监控的方法
      */
-    @Pointcut("execution(public * com.yt.service.mybatis.user.UserService.saveUser(..))")
+    @Pointcut("execution(public * com.yt.service.mybatis.*.save*(..))")
     private void saveMethod() {
     }
 
@@ -65,8 +66,11 @@ public class Proxy {
         }
 
         //获取监控方法得到的返回值
-        Object result = pjp.proceed();
-        log.setIsSuccess(result.equals(1) ? 1 : 0);
+        BaseResult result = (BaseResult) pjp.proceed();
+        //如果成功就记录日志,否则记录异常日志
+        if (result.isSuccess()) {
+            log.setIsSuccess(1);
+        }
         long end = System.currentTimeMillis();
         //耗时
         log.setSpendTime(Long.valueOf(end - start).intValue());
