@@ -10,6 +10,19 @@
     width: 160px;
     margin-right: 5px;
 }
+
 .searchFormRows {
     margin: 10px;
+}
+
+.mymenu {
+    text-align: center;
+    list-style-type: none;
+}
+
+
+.mymenu .two {
+    float: left;
+    margin-right: 40px;
+    margin-top: 10px;
 }

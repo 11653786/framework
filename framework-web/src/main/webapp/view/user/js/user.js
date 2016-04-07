@@ -136,7 +136,7 @@ $(function () {
 
     //添加用户
     $("#adduser").click(function () {
-        addOrEditDialog.init('添加用户', "/api/user/addOrEdit.do","add");
+        addOrEditDialog.init('添加用户', "/api/user/addOrEdit.do", "add");
     });
 
 

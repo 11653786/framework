@@ -11,6 +11,25 @@
     <title></title>
 </head>
 <body>
-hehe
+<form id="addOrEditForm" method="post">
+    <div class="mymenu">
+        <ul >
+            <li class="two"><label for="name">Name:</label>
+                <input class="easyui-validatebox" type="text" name="name" data-options="required:true"/>
+            </li>
+            <li class="two">
+                <label for="email">Email:</label>
+                <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'"/>
+            </li>
+            <li class="two"><label for="name">Name:</label>
+                <input class="easyui-validatebox" type="text" name="name" data-options="required:true"/>
+            </li>
+            <li class="two">
+                <label for="email">Email:</label>
+                <input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'"/>
+            </li>
+        </ul>
+    </div>
+</form>
 </body>
 </html>

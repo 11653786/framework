@@ -55,7 +55,8 @@
 <!-- 工具栏 -->
 <div id="toolbar">
     <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加用户</a>
-    <a id="updatePass" class="easyui-linkbutton" iconCls="icon-add">修改密码</a>
+    <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">编辑用户</a>
+    <a id="updatepass" class="easyui-linkbutton" iconCls="icon-add">修改密码</a>
     <a onclick="offline();" class="easyui-linkbutton">禁用帐号/可用帐号</a>
     <a onclick="offline();" class="easyui-linkbutton">登录/限制登录</a>
 </div>
