@@ -184,7 +184,7 @@ util.easyui.dialog = function () {
                                 });
                             }
                         });
-                        //提交
+
                         addOrEditForm.submit();
                     }
                 }

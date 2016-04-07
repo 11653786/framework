@@ -2,10 +2,9 @@ package com.yt.aop;
 
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.Log;
-import com.yt.model.BaseResult;
+import com.yt.service.mybatis.system.LogService;
 import com.yt.util.dhqjr.ByteUtil;
 import com.yt.util.yt.annotation.Table;
-import com.yt.service.mybatis.system.LogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -32,7 +31,7 @@ public class Proxy {
     /**
      * 要监控的方法
      */
-    @Pointcut("execution(public * com.yt.service.mybatis.*.save*(..))")
+    @Pointcut("execution(public * com.yt.service.mybatis.user.UserService.saveUser(..))")
     private void saveMethod() {
     }
 
@@ -66,15 +65,12 @@ public class Proxy {
         }
 
         //获取监控方法得到的返回值
-        BaseResult result = (BaseResult) pjp.proceed();
-        //如果成功就记录日志,否则记录异常日志
-        if (result.isSuccess()) {
-            log.setIsSuccess(1);
-        }
+        Object result = pjp.proceed();
+        log.setIsSuccess(result.equals(1) ? 1 : 0);
         long end = System.currentTimeMillis();
         //耗时
-        log.setSpendTime(Long.valueOf(end - start).intValue());
-        logService.insertSelective(log);
+        //log.setSpendTime(Long.valueOf(end - start).intValue());
+        //logService.insertSelective(log);
         return result;
     }
 }

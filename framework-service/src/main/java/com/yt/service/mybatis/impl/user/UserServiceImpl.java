@@ -69,7 +69,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
 
     @Override
     public BaseResult saveUser(User user) {
-        BaseResult result = new BaseResult(true);
+        BaseResult result = new BaseResult(true, "保存成功!");
         try {
             if (!ValidUtils.isEmail(user.getEmail())) {
                 return BaseResult.fail("邮箱输入不正确!");
