@@ -3,6 +3,7 @@ package com.yt.aop;
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.Log;
 import com.yt.entity.mybatis.User;
+import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.LogService;
 import com.yt.util.dhqjr.ByteUtil;
 import com.yt.util.yt.annotation.Table;
@@ -45,33 +46,24 @@ public class Proxy {
      */
     @Around("saveMethod()")
     public Object aroundPointcut(ProceedingJoinPoint pjp) throws Throwable {
-        Log log = new Log();
         long start = System.currentTimeMillis();
         Object[] objects = pjp.getArgs();
-        for (Object object : objects) {
-            if (object instanceof User) {
-                User user = (User) object;
-                //判断当前实体类使用是否注解
-                Table table = user.getClass().getAnnotation(Table.class);
-                if (!StringUtils.isEmpty(table)) {
-                    //获取注解内容
-                    log.setEntityName(table.name());
-                }
-                log.setCreateDate(new Date());
-                log.setActions("保存");
-                log.setClassName(user.getClass().getName());
-                log.setCreateUser(0);
-                log.setLogInfo(ByteUtil.ObjectToByte(user));
-            }
-        }
+        Object object = objects[0];
+        //判断当前实体类使用是否注解
+        Table table = object.getClass().getAnnotation(Table.class);
+        long end = System.currentTimeMillis();
+        //String className, Integer createUser, Date createDate, Integer isSuccess, String entityName, String actions, byte[] logInfo, Integer spendTime
+        String tableName = table != null && !StringUtils.isEmpty(table.name()) ? table.name() : object.getClass().getSimpleName();
 
         //获取监控方法得到的返回值
-        Object result = pjp.proceed();
-        log.setIsSuccess(result.equals(1) ? 1 : 0);
-        long end = System.currentTimeMillis();
-        //耗时
-        log.setSpendTime(Long.valueOf(end - start).intValue());
-        logService.insertSelective(log);
+        BaseResult result = (BaseResult) pjp.proceed();
+        if (result.isSuccess()) {
+            Log log = new Log(object.getClass().getName(), 0, new Date(), 1, tableName, "保存", ByteUtil.ObjectToByte(object), Long.valueOf(end - start).intValue());
+            logService.insertSelective(log);
+        } else {
+            //保存异常信息信息
+        }
+
         return result;
     }
 }
