@@ -31,7 +31,7 @@ public class Proxy {
     /**
      * 要监控的方法
      */
-    @Pointcut("execution(public * com.yt.core.dao.base.BaseDao.insert(..))")
+    @Pointcut("execution(public * com.yt.service.mybatis.user.UserService.saveUser(..))")
     private void saveMethod() {
     }
 

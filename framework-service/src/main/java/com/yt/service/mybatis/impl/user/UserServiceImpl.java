@@ -81,7 +81,7 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
             user.setPassword(Md5Utils.getMD5String(user.getPassword()));
             this.insert(user);
         } catch (Exception e) {
-            logger.info("保存用户异常!", " " + e.getMessage());
+            logger.error( "", " " + e.getMessage());
             return BaseResult.fail("保存参数异常!");
         }
         return result;

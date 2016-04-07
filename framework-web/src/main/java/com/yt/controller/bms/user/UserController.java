@@ -1,6 +1,8 @@
 package com.yt.controller.bms.user;
 
 import com.yt.base.ResourceBaseController;
+import com.yt.core.dao.base.BaseDao;
+import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.user.UserService;
