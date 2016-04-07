@@ -27,7 +27,7 @@
                 <input class="easyui-validatebox" id="password" type="text" name="password" data-options="required:true"/>
             </li>
             <li class="two">
-                <label for="email">email:</label>
+                <label  for="email">email:</label>
                 <input class="easyui-validatebox" id="email" type="text" name="email"
                        data-options="required:true,validType:'email'"/>
             </li>
