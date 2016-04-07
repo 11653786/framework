@@ -1,5 +1,6 @@
 package com.yt.service.mybatis.user;
 
+import com.yt.core.dao.BaseDao;
 import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.page.utils.PageResult;
@@ -14,7 +15,7 @@ import java.util.Date;
  * @date 2016/4/6 0006 11:05
  * @descption: 疯狂的王麻子团队!
  */
-public interface UserService {
+public interface UserService extends BaseDao<User>{
 
     /**
      * @param page      当前分页
