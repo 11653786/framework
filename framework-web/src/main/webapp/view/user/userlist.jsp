@@ -60,7 +60,7 @@
     <a onclick="offline();" class="easyui-linkbutton">禁用帐号/可用帐号</a>
     <a onclick="offline();" class="easyui-linkbutton">登录/限制登录</a>
 </div>
-<%--dialog--%>
+<%--添加和修改dialog--%>
 <div class="easyui-dialog" id="addOrEditDialog"></div>
 </body>
 </html>
