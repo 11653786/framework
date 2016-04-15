@@ -60,8 +60,8 @@ public class UserController extends ResourceBaseController {
      */
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
-    public PageResult<User> selectByPageList(PageSearch search, String userName, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
-        return userService.selectByPageList(search, userName, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
+    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
+        return userService.selectByPageList(search, username, email, phone, isLogin, isEnable, nikeName, startTime, endTime);
     }
 
     /**

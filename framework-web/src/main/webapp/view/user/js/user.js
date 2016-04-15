@@ -120,7 +120,7 @@ $(function () {
     //条件查询
     $("#searchButton").click(function () {
         userdatagrid.queryParams = {
-            "userName": $("#userName").val(),
+            "username": $("#userName").val(),
             "nikeName": $("#nikeName").val(),
             "phone": $("#phone").val(),
             "email": $("#email").val(),
