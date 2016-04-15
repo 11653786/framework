@@ -61,6 +61,6 @@
     <a onclick="offline();" class="easyui-linkbutton">登录/限制登录</a>
 </div>
 <%--添加和修改dialog--%>
-<div class="easyui-dialog" id="addOrEditDialog"></div>
+<div  id="addOrEditDialog"></div>
 </body>
 </html>
