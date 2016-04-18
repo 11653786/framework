@@ -2,19 +2,19 @@ var authdatagrid;
 var path;
 $(function () {
 
-    authdatagrid = new util.easyui.datagrid();
     path = $("#path").val();
+    authdatagrid = new util.easyui.datagrid();
     $('#datagrid').treegrid({
         url: path + '/api/auth/selectByPageList.do',
         idField: 'id',
         treeField: 'authName',
         fit: true,
-        method:"post",
+        method: "post",
         fitColumns: true,
         pagination: true,
-        singleSelect: parent.singleSelect,
-        pageSize: parent.pageSize,
-        pageList: parent.pageList,
+        singleSelect: true,
+        pageSize: 10,
+        pageList: [10, 15, 20, 25, 30],
         pagePosition: 'bottom',
         toolbar: "#toolbar",
         columns: [[

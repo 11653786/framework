@@ -9,7 +9,7 @@ public class Auth {
 
     private String authType;
 
-    private Integer parentId;
+    private Integer _parentId;
 
     private String isEnable;
 
@@ -24,6 +24,7 @@ public class Auth {
     private Date updateTime;
 
     private String authDesc;
+
 
     public Integer getId() {
         return id;
@@ -49,12 +50,12 @@ public class Auth {
         this.authType = authType == null ? null : authType.trim();
     }
 
-    public Integer getParentId() {
-        return parentId;
+    public Integer get_parentId() {
+        return _parentId;
     }
 
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
+    public void set_parentId(Integer _parentId) {
+        this._parentId = _parentId;
     }
 
     public String getIsEnable() {
