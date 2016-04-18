@@ -1,4 +1,4 @@
-package com.yt.service.mybatis.impl.system;
+package com.yt.service.mybatis.system.impl;
 
 import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.Log;

@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * @author zhangsan
  * @version 1.0
- * @package com.yt.service.mybatis.impl.user
+ * @package com.yt.service.mybatis.user.impl.user
  * @date 2016/4/6 0006 11:05
  * @descption: 疯狂的王麻子团队!
  */

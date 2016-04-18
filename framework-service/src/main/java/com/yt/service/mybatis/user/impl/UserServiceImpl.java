@@ -1,4 +1,4 @@
-package com.yt.service.mybatis.impl.user;
+package com.yt.service.mybatis.user.impl;
 
 import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.User;
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author zhangsan
  * @version 1.0
- * @package com.yt.service.mybatis.impl.user
+ * @package com.yt.service.mybatis.user.impl.user
  * @date 2016/4/6 0006 11:06
  * @descption: 疯狂的王麻子团队!
  */
