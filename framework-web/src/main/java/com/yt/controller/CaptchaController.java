@@ -25,7 +25,7 @@ import com.google.code.kaptcha.Producer;
 */
 @Controller
 @RequestMapping("/kaptcha/*")
-public class CaptchaController extends BaseAction implements InitializingBean{
+public class CaptchaController extends BaseAction{
 
     @Autowired
     private Producer captchaProducer = null;
@@ -61,8 +61,4 @@ public class CaptchaController extends BaseAction implements InitializingBean{
         return null;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-
-    }
 }
