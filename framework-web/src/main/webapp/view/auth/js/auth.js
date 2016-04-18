@@ -14,7 +14,7 @@ $(function () {
             field: 'authType', title: '权限类型', width: 60, align: 'right', formatter: function (value, row, index) {
             switch (value) {
                 case "1":
-                    return "按钮"
+                    return "按钮";
                     break;
                 case "2":
                     return "页面";
