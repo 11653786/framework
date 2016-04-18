@@ -116,7 +116,7 @@
       create_user, create_date, update_user, 
       update_time, auth_desc)
     values (#{id,jdbcType=INTEGER}, #{authName,jdbcType=VARCHAR}, #{authType,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=INTEGER}, #{isEnable,jdbcType=VARCHAR}, #{authUrl,jdbcType=VARCHAR}, 
+      #{_parentId,jdbcType=INTEGER}, #{isEnable,jdbcType=VARCHAR}, #{authUrl,jdbcType=VARCHAR},
       #{createUser,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{authDesc,jdbcType=VARCHAR})
   </insert>
@@ -266,8 +266,8 @@
       <if test="authType != null" >
         auth_type = #{authType,jdbcType=VARCHAR},
       </if>
-      <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=INTEGER},
+      <if test="_parentId != null" >
+        _parent_id = #{parentId,jdbcType=INTEGER},
       </if>
       <if test="isEnable != null" >
         is_enable = #{isEnable,jdbcType=VARCHAR},
@@ -297,7 +297,7 @@
     update t_auth
     set auth_name = #{authName,jdbcType=VARCHAR},
       auth_type = #{authType,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=INTEGER},
+      _parent_id = #{_parentId,jdbcType=INTEGER},
       is_enable = #{isEnable,jdbcType=VARCHAR},
       auth_url = #{authUrl,jdbcType=VARCHAR},
       create_user = #{createUser,jdbcType=INTEGER},
