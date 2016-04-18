@@ -139,6 +139,10 @@ $(function () {
         addOrEditDialog.init('添加用户', "/api/user/addOrEdit.do", "add");
     });
 
+    $("#updateuser").click(function () {
+        addOrEditDialog.init('编辑用户', "/api/user/addOrEdit.do", "update");
+    });
+
 
 });
 

@@ -135,9 +135,7 @@ util.easyui.dialog = function () {
         //编辑做判断
         if (dialogType != 'add') {
             var rows = $(parent.datagridId).datagrid("getChecked");
-            //主键固定id把
-            var id = rows[0].id;
-            href = href + "?id=" + id;
+
             if (rows == null || rows == '' || rows == undefined) {
                 alert("没有数据表格");
                 return false;
@@ -147,6 +145,12 @@ util.easyui.dialog = function () {
                 alert("一次只能编辑一条数据");
                 return false;
             }
+
+            //主键固定id把
+            var id = rows[0].id;
+            href = href + "?id=" + id;
+
+
         }
         //dialog激活
         $(parent.dialogId).dialog({

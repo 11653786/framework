@@ -6,12 +6,14 @@ import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.user.UserService;
+import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,7 +71,17 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
-    public String addOrEdit(Integer id) {
+    public String addOrEdit(Integer id, Model model) {
+        //不为空修改为空保存
+        if (!EmptyUtil.isEmpty(id)) {
+            User user = userService.selectByPrimaryKey(id);
+            if (!EmptyUtil.isEmpty(user)) {
+                model.addAttribute("user", user);
+                model.addAttribute("isUpdate", true);
+            }
+        } else {
+            model.addAttribute("isUpdate", false);
+        }
         return "user/useraddoredit";
     }
 
