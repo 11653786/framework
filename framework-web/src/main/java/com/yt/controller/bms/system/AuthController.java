@@ -87,9 +87,9 @@ public class AuthController extends ResourceBaseController {
      */
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult saveAddOrEdit(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
-        if (auth.getParentId() != null) {
-            auth.setParentId(auth.getParentId());
+    public BaseResult saveAddOrEdit(Auth auth, Integer parentId, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+        if(parentId!=null){
+            auth.set_parentId(parentId);
         }
         if (isUpdate) {
             return authService.updateAuth(auth);
@@ -106,7 +106,7 @@ public class AuthController extends ResourceBaseController {
      */
     @RequestMapping(value = "/getAllTree", method = RequestMethod.POST)
     @ResponseBody
-    public List<Auth> getAllTree(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+    public List<Auth> getAllTree() {
         AuthExample example = new AuthExample();
         return authService.selectByExample(example);
     }

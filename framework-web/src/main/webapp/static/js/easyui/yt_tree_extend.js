@@ -1,6 +1,6 @@
 $(function () {
     //easyui的tree扩展,combotree和tree都扩展了
-    $.fn.tree.defaults.loadFilter = function (data, parent) {
+    $.fn.combotree.defaults.loadFilter = function (data, parent) {
         var opt = $(this).data().tree.options;
         var idFiled, textFiled, parentField;
         if (opt.parentField) {
