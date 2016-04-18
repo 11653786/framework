@@ -9,6 +9,9 @@ public class Auth {
 
     private String authType;
 
+    /**
+     * 这个pid是固定的,因为easyui默认的pid就是这个
+     */
     private Integer _parentId;
 
     private String isEnable;
