@@ -10,7 +10,7 @@
 <%@ include file="/top.jsp" %>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>权限管理</title>
     <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
                    hasBootStrapModal="false"></simple:Script>
     <simple:angular hasAngularTree="false"></simple:angular>

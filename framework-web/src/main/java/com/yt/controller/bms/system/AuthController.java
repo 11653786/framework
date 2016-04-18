@@ -12,13 +12,13 @@ import com.yt.util.dhqjr.page.utils.PageSearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -88,11 +88,12 @@ public class AuthController extends ResourceBaseController {
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
-        return null;
-    /*    if (isUpdate) {
-            return authService.updateUserInfo(user);
+        if (isUpdate) {
+
         } else {
-            return userService.saveUser(user);
-        }*/
+
+        }
+        return null;
     }
+
 }

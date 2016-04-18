@@ -12,50 +12,40 @@
     <title></title>
 </head>
 <body>
-<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/saveAddOrEdit.do">
+<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/auth/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
-    <input type="hidden" name="id" value="${user.id}"/>
-    <input type="hidden" name="createDate" value="${user.createDate}"/>
-    <input type="hidden" name="createUser" value="${user.createUser}"/>
-    <input type="hidden" name="lastLoginTime" value="${user.lastLoginTime}"/>
-    <input type="hidden" name="loginTotal" value="${user.loginTotal}"/>
-    <input type="hidden" name="password" value="${user.password}"/>
+    <input type="hidden" name="id" value="${auth.id}"/>
+    <input type="hidden" name="createDate" value="${auth.createDate}"/>
+    <input type="hidden" name="createUser" value="${auth.createUser}"/>
+    <input type="hidden" name="updateTime" value="${auth.updateTime}"/>
+    <input type="hidden" name="updateUser" value="${auth.updateUser}"/>
+    <input type="hidden" name="_parentId" value="${auth._parentId}"/>
 
     <div class="mymenu">
         <div class="two">
-            <label for="userName">用户名:</label>
-            <input class="easyui-validatebox" value="${user.userName}" id="userName" type="text" name="userName"
+            <label for="authName">权限名称:</label>
+            <input class="easyui-validatebox" value="${auth.authName}" id="authName" type="text" name="authName"
                    data-options="required:true"/>
         </div>
-        <div class="two"><label for="nikeName">昵称:</label>
-            <input class="easyui-validatebox" value="${user.nikeName}" id="nikeName" type="text" name="nikeName"/>
+        <div class="two"><label for="authUrl">权限url:</label>
+            <input class="easyui-validatebox" value="${auth.authUrl}" id="authUrl" type="text" name="authUrl"/>
         </div>
         <div class="two">
-            <label for="email">email:</label>
-            <input class="easyui-validatebox" value="${user.email}" id="email" type="text" name="email"
-                   data-options="required:true,validType:'email'"/>
-        </div>
-        <div class="two">
-            <label for="phone">手机号:</label>
-            <input class="easyui-validatebox" id="phone" value="${user.phone}" type="text" name="phone"
-                   data-options="required:true"/>
-        </div>
-        <div class="two">
-            <label for="isLogin">登录状态:</label>
-            <select class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
+            <label for="isEnable">启用状态:</label>
+            <select class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
-                    <c:when test="${user.isLogin==1}">
-                        <option value="1" selected="selected">正常</option>
-                        <option value="0">限制登录</option>
+                    <c:when test="${auth.isEnable==1}">
+                        <option value="1" selected="selected">可用</option>
+                        <option value="0">不可用</option>
                     </c:when>
-                    <c:when test="${user.isLogin==0}">
-                        <option value="1">正常</option>
-                        <option value="0" selected="selected">限制登录</option>
+                    <c:when test="${auth.isEnable==0}">
+                        <option value="1">可用</option>
+                        <option value="0" selected="selected">不可用</option>
                     </c:when>
-                    <c:when test="${user.isLogin=='' ||user.isLogin==null}">
-                        <option value="1" selected="selected">正常</option>
-                        <option value="0">限制登录</option>
+                    <c:when test="${auth.isEnable=='' ||auth.isEnable==null}">
+                        <option value="1" selected="selected">可用</option>
+                        <option value="0">不可用</option>
                     </c:when>
                 </c:choose>
             </select>
@@ -63,22 +53,29 @@
 
         </div>
         <div class="two">
-            <label for="isEnable">启动状态:</label>
-            <select class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
+            <label for="authType">权限类型:</label>
+            <select class="easyui-combobox" id="authType" name="authType" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
-                    <c:when test="${user.isEnable==1}">
-                        <option value="1" selected="selected">可用</option>
-                        <option value="0">不可用</option>
+                    <c:when test="${auth.authType==1}">
+                        <option value="1" selected="selected">按钮</option>
+                        <option value="2">页面</option>
+                        <option value="3">菜单</option>
                     </c:when>
-                    <c:when test="${user.isEnable==0}">
-                        <option value="1">可用</option>
-                        <option value="0" selected="selected">不可用</option>
+                    <c:when test="${auth.authType==2}">
+                        <option value="1">按钮</option>
+                        <option value="2" selected="selected">页面</option>
+                        <option value="3">菜单</option>
                     </c:when>
-                    <c:when test="${user.isEnable=='' ||user.isEnable==null}">
-
-                        <option value="1" selected="selected">可用</option>
-                        <option value="0">不可用</option>
+                    <c:when test="${auth.authType==3}">
+                        <option value="1">按钮</option>
+                        <option value="2">页面</option>
+                        <option value="3" selected="selected">菜单</option>
+                    </c:when>
+                    <c:when test="${auth.authType=='' ||auth.authType==null}">
+                        <option value="1">按钮</option>
+                        <option value="2">页面</option>
+                        <option value="3">菜单</option>
                     </c:when>
                 </c:choose>
             </select>
