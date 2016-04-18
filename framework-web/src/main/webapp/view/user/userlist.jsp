@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resource/resource.css">
 </head>
 <body>
+<input id="path" value="${pageContext.request.contextPath}"/>
+
 <div class="searchForm">
     <form id="searchForm" method="post">
         <div class="searchFormRows">
@@ -57,10 +59,8 @@
     <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加用户</a>
     <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">编辑用户</a>
     <a id="updatepass" class="easyui-linkbutton" iconCls="icon-add">修改密码</a>
-    <a onclick="offline();" class="easyui-linkbutton">禁用帐号/可用帐号</a>
-    <a onclick="offline();" class="easyui-linkbutton">登录/限制登录</a>
 </div>
 <%--添加和修改dialog--%>
-<div  id="addOrEditDialog"></div>
+<div id="addOrEditDialog"></div>
 </body>
 </html>
