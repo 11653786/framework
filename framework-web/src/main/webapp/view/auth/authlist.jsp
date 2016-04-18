@@ -24,8 +24,8 @@
 <div id="datagrid"></div>
 <!-- 工具栏 -->
 <div id="toolbar">
-    <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加用户</a>
-    <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">编辑用户</a>
+    <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加</a>
+    <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">修改</a>
 </div>
 <%--添加和修改dialog--%>
 <div id="addOrEditDialog"></div>
