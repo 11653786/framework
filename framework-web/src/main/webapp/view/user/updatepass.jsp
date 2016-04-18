@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/top.jsp" %>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/updatepass.do">
-    <input type="hidden" name="id" value="${user.id}"/>
+    <input type="hidden" name="id" value="${id}"/>
 
     <div class="mymenu">
         <div class="one">
@@ -17,12 +17,12 @@
                    data-options="required:true"/>
         </div>
         <div class="one"><label for="newPassword">新密码:</label>
-            <input class="easyui-validatebox" id="newPassword" type="password" name="newPassword"/>
+            <input class="easyui-validatebox" id="newPassword" type="password" name="newPassword" data-options="required:true" />
         </div>
         <div class="one">
             <label for="rePassword">确认密码:</label>
             <input class="easyui-validatebox" id="rePassword" type="password" name="rePassword"
-                   data-options="required:true,validType:'email'"/>
+                   data-options="required:true"/>
         </div>
     </div>
 </form>

@@ -126,12 +126,12 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
             criteria.andIdEqualTo(id).andPasswordEqualTo(Md5Utils.getMD5String(password));
             List<User> users = this.selectByExample(example);
             if (users.isEmpty()) {
-                return BaseResult.fail("当前用户不存在!");
+                return BaseResult.fail("当前用户不存在或密码错误!");
             }
             //修改用户
             User user = users.get(0);
             user.setPassword(Md5Utils.getMD5String(newPassword));
-
+            this.updateByPrimaryKey(user);
         } catch (Exception e) {
             baseLog.error("修改密码错误: ", "" + e.getMessage());
             return BaseResult.fail("操作异常!");
