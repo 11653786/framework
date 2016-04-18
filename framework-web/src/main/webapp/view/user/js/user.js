@@ -8,7 +8,7 @@ $(function () {
     userdatagrid.columns = [[{
         field: 'id',
         checkbox: true
-    },
+         },
         {
             field: 'userName',
             title: '帐号',
