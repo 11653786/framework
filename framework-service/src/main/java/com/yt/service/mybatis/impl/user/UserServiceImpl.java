@@ -88,6 +88,27 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         return result;
     }
 
+    @Override
+    public BaseResult updateUserInfo(User user) {
+        BaseResult result = new BaseResult(true, "保存成功!");
+        try {
+            if (!ValidUtils.isEmail(user.getEmail())) {
+                return BaseResult.fail("邮箱输入不正确!");
+            }
+
+            if (!ValidUtils.isMobile(user.getPhone())) {
+                return BaseResult.fail("手机号码输入不正确!");
+            }
+            //密码设置
+            this.updateByPrimaryKey(user);
+        } catch (Exception e) {
+            baseLog.error("保存用户信息异常!:" + user.getClass().getName());
+            return BaseResult.fail("保存参数异常!");
+        }
+        return result;
+    }
+
+
     /**
      * 专门用来查询时间
      *

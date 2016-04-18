@@ -15,7 +15,7 @@ import java.util.Date;
  * @date 2016/4/6 0006 11:05
  * @descption: 疯狂的王麻子团队!
  */
-public interface UserService extends BaseDao<User>{
+public interface UserService extends BaseDao<User> {
 
     /**
      * @param page      当前分页
@@ -39,4 +39,12 @@ public interface UserService extends BaseDao<User>{
      * @return
      */
     public BaseResult saveUser(User user);
+
+    /**
+     * 修改用户信息
+     *
+     * @param user
+     * @return
+     */
+    public BaseResult updateUserInfo(User user);
 }
