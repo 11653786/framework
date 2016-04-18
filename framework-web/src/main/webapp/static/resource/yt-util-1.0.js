@@ -155,6 +155,8 @@ util.easyui.dialog = function () {
     //dialog上面的form的id
     //dialog标题,url和类型(add和edit)
     this.formId = "#addOrEditForm";
+    //用来区分树表格和普通表格
+    this.datagridType = "datagrid";
     this.init = function (titles, href, dialogType) {
 
         var parent = this;
@@ -165,7 +167,12 @@ util.easyui.dialog = function () {
 
         //编辑做判断
         if (dialogType != 'add') {
-            var rows = $(parent.datagridId).datagrid("getChecked");
+            var rows = null;
+            if (parent.datagridType == "datagrid") {
+                rows = $(parent.datagridId).datagrid("getChecked");
+            } else {
+                rows = $(parent.datagridId).treegrid("getChecked");
+            }
 
             if (rows == null || rows == '' || rows == undefined) {
                 alert("没有数据表格");
@@ -209,7 +216,11 @@ util.easyui.dialog = function () {
                                 var result = eval('(' + data + ')');
                                 $(parent.dialogId).dialog("close", true);
                                 //刷新数据表格..
-                                $(parent.datagridId).datagrid("reload");
+                                if (parent.datagridType == "datagrid") {
+                                    $(parent.datagridId).datagrid("reload");
+                                } else {
+                                    $(parent.datagridId).treegrid("reload");
+                                }
                                 //提示消息
                                 $.messager.show({
                                     title: '系统提示',

@@ -3,8 +3,7 @@ var path;
 $(function () {
 
     path = $("#path").val();
-    authdatagrid = new util.easyui.datagrid();
-    $('#datagrid').treegrid({
+    authdatagrid = $('#datagrid').treegrid({
         url: path + '/api/auth/selectByPageList.do',
         idField: 'id',
         treeField: 'authName',
@@ -18,6 +17,7 @@ $(function () {
         pagePosition: 'bottom',
         toolbar: "#toolbar",
         columns: [[
+            {field: 'id', checkbox: true},
             {field: 'authName', title: '权限名称', width: 180},
             {field: 'authUrl', title: '权限url', width: 80},
             {field: 'authType', title: '权限类型', width: 60, align: 'right'},
