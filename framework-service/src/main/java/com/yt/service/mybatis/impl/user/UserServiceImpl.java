@@ -139,6 +139,52 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         return result;
     }
 
+    @Override
+    public BaseResult isLogin(Integer id) {
+        BaseResult result = new BaseResult(true, "修改成功!");
+        try {
+            if (EmptyUtil.isEmpty(id)) {
+                return BaseResult.fail("传入参数异常!");
+            }
+            User user = this.selectByPrimaryKey(id);
+
+            if (EmptyUtil.isEmpty(user)) {
+                return BaseResult.fail("当前用户不存在或密码错误!");
+            }
+
+            user.setIsLogin((byte) (user.getIsLogin() == 1 ? 0 : 1));
+            updateByPrimaryKey(user);
+        } catch (Exception e) {
+            baseLog.error("修改登录状态: ", "" + e.getMessage());
+            return BaseResult.fail("操作异常!");
+        }
+
+        return result;
+    }
+
+    @Override
+    public BaseResult isEnable(Integer id) {
+        BaseResult result = new BaseResult(true, "修改成功!");
+        try {
+            if (EmptyUtil.isEmpty(id)) {
+                return BaseResult.fail("传入参数异常!");
+            }
+            User user = this.selectByPrimaryKey(id);
+
+            if (EmptyUtil.isEmpty(user)) {
+                return BaseResult.fail("当前用户不存在或密码错误!");
+            }
+
+            user.setIsEnable((byte) (user.getIsEnable() == 1 ? 0 : 1));
+            updateByPrimaryKey(user);
+        } catch (Exception e) {
+            baseLog.error("修改可用状态: ", "" + e.getMessage());
+            return BaseResult.fail("操作异常!");
+        }
+
+        return result;
+    }
+
 
     /**
      * 专门用来查询时间

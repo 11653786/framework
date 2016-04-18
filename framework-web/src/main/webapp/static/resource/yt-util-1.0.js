@@ -103,6 +103,37 @@ util.easyui.datagrid = function () {
 }
 
 /**
+ *
+ * @param url   ajaxurl和参数
+ * @param datagridId    datagrid的id
+ */
+function ajaxUrl(url, datagridId) {
+    $.ajax({
+        url: url,
+        //data: params,
+        type: "post",
+        dataType: 'json',
+        success: function (data) {
+            //发送ajax请求
+            $.messager.show({
+                title: '系统提示',
+                msg: data['msg'],
+                timeout: 5000,
+                showType: 'slide'
+            });
+            //刷新datagrid
+            if (data.success) {
+                $("#" + datagridId).datagrid('reload');
+
+
+            }
+
+        },
+        error: function () {
+        }
+    });
+}
+/**
  * easyui dialog
  * @param datagridObj   数据表格对象
  * @param title dialog的标题,添加和修改用的

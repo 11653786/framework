@@ -57,4 +57,18 @@ public interface UserService extends BaseDao<User> {
      * @return
      */
     public BaseResult updatePass(Integer id, String password, String newPassword, String rePassword);
+
+    /**
+     * 修改登录状态
+     * @param id
+     * @return
+     */
+    public BaseResult isLogin(Integer id);
+
+    /**
+     * 修改可用状态
+     * @param id
+     * @return
+     */
+    public BaseResult isEnable(Integer id);
 }

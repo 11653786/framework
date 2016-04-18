@@ -3,7 +3,7 @@ var path;
 $(function () {
 
     userdatagrid = new util.easyui.datagrid();
-    path=$("#path").val();
+    path = $("#path").val();
     userdatagrid.urls = "/api/user/selectByPageList.do";
     userdatagrid.columns = [[{
         field: 'id',
@@ -112,7 +112,11 @@ $(function () {
             align: 'center',
             width: 100,
             formatter: function (value, row, index) {
-                return "<a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + path + "\',\'" + row.id + "\')\">编辑</a>";
+                var loginurl = path + "/api/user/isLogin.do?id=" + row.id;
+                var login = row.isLogin == 1 ? "可登录" : "不可登录";
+                var enable = row.isEnable == 1 ? "可使用" : "不可使用";
+                var enableurl = path + "/api/user/isLogin.do?id=" + row.id;
+                return "<a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + loginurl + "\',\'" + 'datagrid' + "\')\">" + login + "</a> <a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + enableurl + "\',\'" + 'datagrid' + "\')\">" + enable + "</a>";
             }
         }
     ]];

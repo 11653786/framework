@@ -126,4 +126,29 @@ public class UserController extends ResourceBaseController {
     }
 
 
+    /**
+     * 修改登录状态
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/isLogin", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult isLogin(Integer id) {
+        return userService.isLogin(id);
+    }
+
+    /**
+     * 修改登录状态
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/isEnable", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult isEnable(Integer id) {
+        return userService.isEnable(id);
+    }
+
+
 }
