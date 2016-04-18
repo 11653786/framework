@@ -112,7 +112,7 @@ $(function () {
             align: 'center',
             width: 100,
             formatter: function (value, row, index) {
-                return "<a href='javascript:void(0)' onclick=\"editBanner(\'" + row.id + "\')\">编辑</a>";
+                return "<a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + row.id + "\')\">编辑</a>";
             }
         }
     ]];
