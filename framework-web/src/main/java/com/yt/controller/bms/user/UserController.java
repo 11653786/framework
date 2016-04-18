@@ -104,5 +104,26 @@ public class UserController extends ResourceBaseController {
         }
     }
 
+    @RequestMapping(value = "/updatepass", method = RequestMethod.GET)
+    public String updatePass(String id, Model model) {
+        model.addAttribute("id", id);
+        return "user/updatepass";
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param id
+     * @param password
+     * @param newPassword
+     * @param rePassword
+     * @return
+     */
+    @RequestMapping(value = "/updatepass", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult saveUpdatePass(Integer id, String password, String newPassword, String rePassword) {
+        return userService.updatePass(id, password, newPassword, rePassword);
+    }
+
 
 }

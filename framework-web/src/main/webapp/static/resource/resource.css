@@ -29,6 +29,15 @@
     height: 14%;
 }
 
+
+.mymenu .one {
+    float: left;
+    margin-top: 2%;
+    line-height: 20px;
+    width: 70%;
+    height: 14%;
+}
+
 /*label,宽度百分之30左浮动,摆正最多可以输入6个字'*/
 .mymenu label {
     display: inline-block;

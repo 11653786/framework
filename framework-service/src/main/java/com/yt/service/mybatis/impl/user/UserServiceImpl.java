@@ -21,6 +21,7 @@ import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhangsan
@@ -104,6 +105,36 @@ public class UserServiceImpl extends BaseDaoImpl<User> implements UserService {
         } catch (Exception e) {
             baseLog.error("保存用户信息异常!:" + user.getClass().getName());
             return BaseResult.fail("保存参数异常!");
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult updatePass(Integer id, String password, String newPassword, String rePassword) {
+        BaseResult result = new BaseResult(true, "修改成功!");
+        try {
+            if (EmptyUtil.isEmpty(id) || StringUtils.isEmpty(password) || StringUtils.isEmpty(newPassword) || StringUtils.isEmpty(rePassword)) {
+                return BaseResult.fail("传入参数异常!");
+            }
+
+            if (!newPassword.equals(rePassword)) {
+                return BaseResult.fail("两次密码不一致!");
+            }
+
+            UserExample example = new UserExample();
+            UserExample.Criteria criteria = example.createCriteria();
+            criteria.andIdEqualTo(id).andPasswordEqualTo(Md5Utils.getMD5String(password));
+            List<User> users = this.selectByExample(example);
+            if (users.isEmpty()) {
+                return BaseResult.fail("当前用户不存在!");
+            }
+            //修改用户
+            User user = users.get(0);
+            user.setPassword(Md5Utils.getMD5String(newPassword));
+
+        } catch (Exception e) {
+            baseLog.error("修改密码错误: ", "" + e.getMessage());
+            return BaseResult.fail("操作异常!");
         }
         return result;
     }

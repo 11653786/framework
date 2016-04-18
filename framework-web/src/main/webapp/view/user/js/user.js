@@ -143,6 +143,10 @@ $(function () {
         addOrEditDialog.init('编辑用户', "/api/user/addOrEdit.do", "update");
     });
 
+    $("#updatepass").click(function () {
+        addOrEditDialog.init('修改密码', "/api/user/updatepass.do", "update");
+    });
+
 
 });
 
