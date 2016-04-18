@@ -42,7 +42,7 @@
         </div>
         <div class="two">
             <label for="isLogin">登录状态:</label>
-            <select  class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
+            <select class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
                     <c:when test="${user.isLogin==1}">
@@ -54,7 +54,6 @@
                         <option value="0" selected="selected">限制登录</option>
                     </c:when>
                     <c:when test="${user.isLogin=='' ||user.isLogin==null}">
-
                         <option value="1" selected="selected">正常</option>
                         <option value="0">限制登录</option>
                     </c:when>
@@ -65,18 +64,18 @@
         </div>
         <div class="two">
             <label for="isEnable">启动状态:</label>
-            <select  class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
+            <select class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
-                    <c:when test="${user.isLogin==1}">
+                    <c:when test="${user.isEnable==1}">
                         <option value="1" selected="selected">可用</option>
                         <option value="0">不可用</option>
                     </c:when>
-                    <c:when test="${user.isLogin==0}">
+                    <c:when test="${user.isEnable==0}">
                         <option value="1">可用</option>
                         <option value="0" selected="selected">不可用</option>
                     </c:when>
-                    <c:when test="${user.isLogin=='' ||user.isLogin==null}">
+                    <c:when test="${user.isEnable=='' ||user.isEnable==null}">
 
                         <option value="1" selected="selected">可用</option>
                         <option value="0">不可用</option>
