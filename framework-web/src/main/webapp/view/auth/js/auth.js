@@ -1,11 +1,11 @@
-var userdatagrid;
+var authdatagrid;
 var path;
 $(function () {
 
-    userdatagrid = new util.easyui.datagrid();
+    authdatagrid = new util.easyui.datagrid();
     path = $("#path").val();
-    userdatagrid.urls = "/api/user/selectByPageList.do";
-    userdatagrid.columns = [[{
+    authdatagrid.urls = "/api/auth/selectByPageList.do";
+    authdatagrid.columns = [[{
         field: 'id',
         checkbox: true
     },
@@ -121,36 +121,19 @@ $(function () {
         }
     ]];
     //初始化数据表格
-    userdatagrid.init();
-    //条件查询
-    $("#searchButton").click(function () {
-        userdatagrid.queryParams = {
-            "username": $("#userName").val(),
-            "nikeName": $("#nikeName").val(),
-            "phone": $("#phone").val(),
-            "email": $("#email").val(),
-            "isLogin": $("#isLogin").combobox('getValue'),
-            "startTime": $("#startTime").datetimebox('getValue'),
-            "endTime": $("#endTime").datetimebox('getValue')
-        };
-        //查询
-        userdatagrid.searchInit();
-    });
+    authdatagrid.init();
+
+
     //dialog,默认是添加
     var addOrEditDialog = new util.easyui.dialog();
 
     //添加用户
     $("#adduser").click(function () {
-        addOrEditDialog.init('添加用户', "/api/user/addOrEdit.do", "add");
+        addOrEditDialog.init('添加', "/api/auth/addOrEdit.do", "add");
     });
 
     $("#updateuser").click(function () {
-        addOrEditDialog.init('编辑用户', "/api/user/addOrEdit.do", "update");
-    });
-
-    $("#updatepass").click(function () {
-        addOrEditDialog.init('修改密码', "/api/user/updatepass.do", "update");
+        addOrEditDialog.init('修改', "/api/auth/addOrEdit.do", "update");
     });
 
 });
-
