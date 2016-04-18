@@ -42,7 +42,7 @@
         </div>
         <div class="two">
             <label for="isLogin">登录状态:</label>
-            <select id="cc" class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
+            <select  class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
                     <c:when test="${user.isLogin==1}">
@@ -65,7 +65,7 @@
         </div>
         <div class="two">
             <label for="isEnable">启动状态:</label>
-            <select id="cc" class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
+            <select  class="easyui-combobox" id="isEnable" name="isEnable" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
                     <c:when test="${user.isLogin==1}">
