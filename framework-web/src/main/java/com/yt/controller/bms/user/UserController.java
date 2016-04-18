@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -85,10 +86,21 @@ public class UserController extends ResourceBaseController {
         return "user/useraddoredit";
     }
 
+    /**
+     * 保存或者修改
+     *
+     * @param user
+     * @param isUpdate
+     * @return
+     */
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult saveAddOrEdit(User user) {
-        return userService.saveUser(user);
+    public BaseResult saveAddOrEdit(User user, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+        if (isUpdate) {
+            return userService.updateUserInfo(user);
+        } else {
+            return userService.saveUser(user);
+        }
     }
 
 
