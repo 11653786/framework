@@ -102,6 +102,73 @@ util.easyui.datagrid = function () {
     }
 }
 
+
+util.easyui.treegrid = function () {
+    //easyui数据表格的id
+    this.id = "#datagrid";
+    //是否填充满
+    this.fit = true;
+    //url,显示
+    this.urls = "";
+    //横向填充满
+    this.fitColumns = true;
+    //请求方法
+    this.method = "post";
+    //边框
+    this.border = false;
+    //id
+    this.idField = 'id';
+    //底部工具栏
+    this.paginations = true;
+    //行选中功能是否开启
+    this.checkOnSelect = false;
+    //点击框选择行
+    this.selectOnCheck = false;
+    //一次选择1行?
+    this.singleSelect = true;
+    //每页显示数量
+    this.pageSize = 10;
+    //显示列表
+    this.pageList = [10, 15, 20, 25, 30];
+    //数据表格
+    this.columns;
+    //工具条
+    this.toolbar = '#toolbar';
+    //条件查询的参数
+    this.queryParams;
+    //排序字段
+    this.sortName = "id";
+    //升序降序
+    this.sortOrder = "desc";
+
+    this.treeField = "name";
+    //加载数据表格的方法
+    this.init = function () {
+        //作用域问题
+        var parent = this;
+        $(parent.id).treegrid({
+            url: parent.urls,
+            fit: parent.fit,
+            method: parent.method,
+            treeField: parent.treeField,
+            fitColumns: parent.fitColumns,
+            border: parent.border,
+            idField: parent.idField,
+            pagination: parent.paginations,
+            checkOnSelect: parent.checkOnSelect,
+            selectOnCheck: parent.selectOnCheck,
+            singleSelect: parent.singleSelect,
+            pageSize: parent.pageSize,
+            pageList: parent.pageList,
+            pagePosition: 'bottom',
+            columns: parent.columns,
+            toolbar: parent.toolbar,
+            sortName: parent.sortName,
+            sortOrder: parent.sortOrder
+        });
+    };
+}
+
 /**
  *
  * @param url   ajaxurl和参数
