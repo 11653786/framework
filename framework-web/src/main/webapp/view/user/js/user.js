@@ -1,8 +1,9 @@
 var userdatagrid;
-
+var path;
 $(function () {
 
     userdatagrid = new util.easyui.datagrid();
+    path=$("#path").val();
     userdatagrid.urls = "/api/user/selectByPageList.do";
     userdatagrid.columns = [[{
         field: 'id',
