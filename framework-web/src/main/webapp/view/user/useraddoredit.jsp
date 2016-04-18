@@ -12,6 +12,13 @@
 </head>
 <body>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/saveAddOrEdit.do">
+    <input type="hidden" name="isUpdate" value="${isUpdate}"/>
+    <input type="hidden" name="id" value="${user.id}"/>
+    <input type="hidden" name="createDate" value="${user.createDate}"/>
+    <input type="hidden" name="createUser" value="${user.createUser}"/>
+    <input type="hidden" name="lastLoginTime" value="${user.lastLoginTime}"/>
+    <input type="hidden" name="loginTotal" value="${user.loginTotal}"/>
+    <input type="hidden" name="password" value="${user.password}"/>
     <div class="mymenu">
         <div class="two">
             <label for="userName">用户名:</label>
@@ -20,10 +27,6 @@
         </div>
         <div class="two"><label for="nikeName">昵称:</label>
             <input class="easyui-validatebox" id="nikeName" type="text" name="nikeName"/>
-        </div>
-        <div class="two">
-            <label for="password">密码:</label>
-            <input class="easyui-validatebox" id="password" type="text" name="password" data-options="required:true"/>
         </div>
         <div class="two">
             <label for="email">email:</label>
