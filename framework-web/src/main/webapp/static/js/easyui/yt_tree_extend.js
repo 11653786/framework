@@ -28,7 +28,7 @@ $(function () {
         return data;
     };
 
-    $.fn.combotree.defaults.loadFilter = function (data, parent) {
+    $.fn.tree.defaults.loadFilter = function (data, parent) {
         var opt = $(this).data().tree.options;
         var idFiled, textFiled, parentField;
         if (opt.parentField) {

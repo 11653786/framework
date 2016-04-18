@@ -5,7 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="auth_name" property="authName" jdbcType="VARCHAR" />
     <result column="auth_type" property="authType" jdbcType="VARCHAR" />
-    <result column="parent_id" property="_parentId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
     <result column="is_enable" property="isEnable" jdbcType="VARCHAR" />
     <result column="auth_url" property="authUrl" jdbcType="VARCHAR" />
     <result column="create_user" property="createUser" jdbcType="INTEGER" />

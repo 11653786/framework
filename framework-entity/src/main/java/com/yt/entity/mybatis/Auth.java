@@ -12,7 +12,7 @@ public class Auth {
     /**
      * 这个pid是固定的,因为easyui默认的pid就是这个
      */
-    private Integer _parentId;
+    private Integer parentId;
 
     private String isEnable;
 
@@ -53,12 +53,12 @@ public class Auth {
         this.authType = authType == null ? null : authType.trim();
     }
 
-    public Integer get_parentId() {
-        return _parentId;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void set_parentId(Integer _parentId) {
-        this._parentId = _parentId;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
     public String getIsEnable() {
