@@ -90,8 +90,12 @@ public class AuthController extends ResourceBaseController {
      */
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult saveAddOrEdit(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+    public BaseResult saveAddOrEdit(Auth auth, Integer parentId, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
         if (isUpdate) {
+            if (parentId != null) {
+                auth.set_parentId(parentId);
+            }
+
             return authService.saveAuth(auth);
         } else {
             return authService.updateAuth(auth);
@@ -111,7 +115,18 @@ public class AuthController extends ResourceBaseController {
         return authService.selectByExample(example);
     }
 
-
+    /**
+     * 用来格式化提交时间 form表单提交 Date类型数据绑定 <功能详细描述> 这个方法应该放到baseController中
+     *
+     * @param binder
+     * @see [类、类#方法、类#成员]
+     */
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
 
 
 }

@@ -10,11 +10,10 @@
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/auth/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${auth.id}"/>
-    <input type="hidden" name="createDate" value="${auth.createDate}"/>
+<%--    <input type="hidden" name="createDate" value="${auth.createDate}"/>--%>
     <input type="hidden" name="createUser" value="${auth.createUser}"/>
     <input type="hidden" name="updateTime" value="${auth.updateTime}"/>
     <input type="hidden" name="updateUser" value="${auth.updateUser}"/>
-    <input type="hidden" name="_parentId" value="${auth._parentId}"/>
 
     <div class="mymenu">
         <div class="two">
@@ -74,21 +73,22 @@
             </select>
         </div>
         <div class="two">
-            <label for="_parentId">上级菜单:</label>
-            <input id="_parentId" name="_parentId" value="${auth._parentId}" >
+            <label for="parentId">上级菜单:</label>
+            <input id="parentId" name="parentId" value="${auth._parentId}" >
         </div>
-
     </div>
 </form>
 <script type="text/javascript">
     $(function () {
-
-        $('#_parentId').combotree({
+        $('#parentId').combotree({
             checkbox: true,
             url: '/api/auth/getAllTree.do',
             parentField: "_parentId",
             textFiled: "authName",
-            idFiled: "id"
+            idFiled: "id",
+            //选中事件
+            onSelect:function(node){
+            }
         });
     });
 </script>
