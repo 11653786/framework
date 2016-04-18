@@ -5,10 +5,13 @@ import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.AuthExample;
 import com.yt.entity.mybatis.User;
 import com.yt.entity.mybatis.UserExample;
+import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthService;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageResultBuilder;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.yt.myutils.Md5Utils;
+import com.yt.util.yt.myutils.ValidUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,5 +47,34 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
         }
 
         return pr;
+    }
+
+    @Override
+    public BaseResult saveAuth(Auth auth) {
+        BaseResult result = new BaseResult(true, "保存成功!");
+        try {
+            if (StringUtils.isEmpty(auth.getIsEnable()) || StringUtils.isEmpty(auth.getAuthType()) || StringUtils.isEmpty(auth.getAuthName()) || StringUtils.isEmpty(auth.getAuthUrl())) {
+                return BaseResult.fail("传入参数不正确!");
+            }
+            //密码设置
+            this.insert(auth);
+        } catch (Exception e) {
+            return BaseResult.fail("保存参数异常!");
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult updateAuth(Auth auth) {
+        BaseResult result = new BaseResult(true, "保存成功!");
+        try {
+            if (StringUtils.isEmpty(auth.getIsEnable()) || StringUtils.isEmpty(auth.getAuthType()) || StringUtils.isEmpty(auth.getAuthName()) || StringUtils.isEmpty(auth.getAuthUrl())) {
+                return BaseResult.fail("传入参数不正确!");
+            }
+            this.updateByPrimaryKey(auth);
+        } catch (Exception e) {
+            return BaseResult.fail("保存参数异常!");
+        }
+        return result;
     }
 }

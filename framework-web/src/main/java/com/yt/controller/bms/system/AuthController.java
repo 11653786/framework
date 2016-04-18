@@ -89,9 +89,9 @@ public class AuthController extends ResourceBaseController {
     @ResponseBody
     public BaseResult saveAddOrEdit(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
         if (isUpdate) {
-
+            authService.saveAuth(auth);
         } else {
-
+            authService.updateAuth(auth);
         }
         return null;
     }
