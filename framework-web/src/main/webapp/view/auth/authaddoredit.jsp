@@ -7,11 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/top.jsp" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/auth/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${auth.id}"/>
@@ -49,8 +44,6 @@
                     </c:when>
                 </c:choose>
             </select>
-
-
         </div>
         <div class="two">
             <label for="authType">权限类型:</label>
@@ -80,8 +73,18 @@
                 </c:choose>
             </select>
         </div>
+        <div class="two">
+            <label for="_parentId">上级菜单:</label>
+            <input id="_parentId" name="_parentId" value="${auth._parentId}">
+        </div>
 
     </div>
 </form>
-</body>
-</html>
+<script type="text/javascript">
+    $(function () {
+        $('#_parentId').combotree({
+            url: 'get_data.php',
+            required: true
+        });
+    });
+</script>

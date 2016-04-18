@@ -7,11 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/top.jsp" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${user.id}"/>
@@ -85,8 +80,5 @@
                 </c:choose>
             </select>
         </div>
-
     </div>
 </form>
-</body>
-</html>
