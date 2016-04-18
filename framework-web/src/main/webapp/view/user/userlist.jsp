@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resource/resource.css">
 </head>
 <body>
-<input id="path" value="${pageContext.request.contextPath}"/>
+<input type="hidden" id="path" value="${pageContext.request.contextPath}"/>
 
 <div class="searchForm">
     <form id="searchForm" method="post">
