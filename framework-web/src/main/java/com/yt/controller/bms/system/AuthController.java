@@ -3,24 +3,21 @@ package com.yt.controller.bms.system;
 import com.yt.base.ResourceBaseController;
 import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.AuthExample;
-import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthService;
-import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,14 +88,13 @@ public class AuthController extends ResourceBaseController {
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(Auth auth, Integer parentId, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+        if (parentId != null) {
+            auth.set_parentId(parentId);
+        }
         if (isUpdate) {
-            if (parentId != null) {
-                auth.set_parentId(parentId);
-            }
-
-            return authService.saveAuth(auth);
-        } else {
             return authService.updateAuth(auth);
+        } else {
+            return authService.saveAuth(auth);
         }
     }
 

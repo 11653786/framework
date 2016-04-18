@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/top.jsp" %>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/auth/saveAddOrEdit.do">
-    <input type="hidden" name="isUpdate" value="${isUpdate}"/>
+    <input type="text" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${auth.id}"/>
 <%--    <input type="hidden" name="createDate" value="${auth.createDate}"/>--%>
     <input type="hidden" name="createUser" value="${auth.createUser}"/>
