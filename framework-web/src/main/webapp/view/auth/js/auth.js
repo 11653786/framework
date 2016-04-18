@@ -13,12 +13,12 @@ $(function () {
         {
             field: 'authType', title: '权限类型', width: 60, align: 'right', formatter: function (value, row, index) {
             switch (value) {
-                case 1:
+                case "1":
                     return "按钮"
                     break;
-                case 2:
+                case "2":
                     return "页面";
-                case 3:
+                case "3":
                     return "菜单";
                     break;
             }
@@ -27,10 +27,10 @@ $(function () {
         {
             field: 'isEnable', title: '是否启用', width: 80, formatter: function (value, row, index) {
             switch (value) {
-                case 0:
+                case "0":
                     return "不可用"
                     break;
-                case 1:
+                case "1":
                     return "可用";
                     break;
             }
