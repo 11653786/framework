@@ -2,6 +2,7 @@ package com.yt.controller.bms.system;
 
 import com.yt.base.ResourceBaseController;
 import com.yt.entity.mybatis.Auth;
+import com.yt.entity.mybatis.AuthExample;
 import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author zhangsan
@@ -79,6 +81,7 @@ public class AuthController extends ResourceBaseController {
         return "auth/authaddoredit";
     }
 
+
     /**
      * 保存或者修改
      *
@@ -89,11 +92,26 @@ public class AuthController extends ResourceBaseController {
     @ResponseBody
     public BaseResult saveAddOrEdit(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
         if (isUpdate) {
-            authService.saveAuth(auth);
+            return authService.saveAuth(auth);
         } else {
-            authService.updateAuth(auth);
+            return authService.updateAuth(auth);
         }
-        return null;
     }
+
+    /**
+     * 保存或者修改
+     *
+     * @param isUpdate
+     * @return
+     */
+    @RequestMapping(value = "/getAllTree", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Auth> getAllTree(Auth auth, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+        AuthExample example = new AuthExample();
+        return authService.selectByExample(example);
+    }
+
+
+
 
 }

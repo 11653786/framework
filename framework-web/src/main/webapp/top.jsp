@@ -9,3 +9,5 @@
 <%@ taglib prefix="simple" uri="/WEB-INF/tag/taglib.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%--easyui tree的扩展--%>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/easyui/yt_tree_extend.js"></script>

@@ -75,16 +75,20 @@
         </div>
         <div class="two">
             <label for="_parentId">上级菜单:</label>
-            <input id="_parentId" name="_parentId" value="${auth._parentId}">
+            <input id="_parentId" name="_parentId" value="${auth._parentId}" >
         </div>
 
     </div>
 </form>
 <script type="text/javascript">
     $(function () {
+
         $('#_parentId').combotree({
-            url: 'get_data.php',
-            required: true
+            checkbox: true,
+            url: '/api/auth/getAllTree.do',
+            parentField: "_parentId",
+            textFiled: "authName",
+            idFiled: "id"
         });
     });
 </script>
