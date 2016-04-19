@@ -1,12 +1,13 @@
 package com.yt.service.mybatis.system.impl;
 
 import com.yt.core.dao.base.impl.BaseDaoImpl;
-import com.yt.entity.mybatis.*;
+import com.yt.entity.mybatis.AuthGroup;
+import com.yt.entity.mybatis.AuthGroupRelationShip;
+import com.yt.entity.mybatis.AuthGroupRelationShipExample;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthGroupRelationShipService;
 import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.util.dhqjr.EmptyUtil;
-import com.yt.util.yt.myutils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -61,10 +62,10 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
 
     @Override
     public String getAuthGroupAuth(Integer authGroupId) {
-        String ids = "";
+        String authIds = "";
         try {
-            if (isValid(authGroupId, ids)) {
-                return ids;
+            if (isValid(authGroupId, authIds)) {
+                return authIds;
             }
 
             AuthGroupRelationShipExample example = new AuthGroupRelationShipExample();
@@ -74,14 +75,14 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
             List<AuthGroupRelationShip> list = this.selectByExample(example);
             //之前的都删除
             for (AuthGroupRelationShip entity : list) {
-                ids = entity.getId() + "," + ids;
+                authIds = entity.getAuthId() + "," + authIds;
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return ids;
+            return authIds;
         }
-        return ids;
+        return authIds;
     }
 
     private List<Integer> getIntList(String ids) {
