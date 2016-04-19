@@ -17,6 +17,8 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-util-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/authgroup/js/authgroup.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resource/resource.css">
+    <%--easyui对tree和comboxTree的重写--%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/easyui/yt_tree_extend.js"></script>
 </head>
 <body>
 <input type="hidden" id="path" value="${pageContext.request.contextPath}"/>
@@ -27,6 +29,7 @@
 <div id="toolbar">
     <a id="addauthgroup" class="easyui-linkbutton" iconCls="icon-add">添加</a>
     <a id="updateauthgroup" class="easyui-linkbutton" iconCls="icon-add">编辑</a>
+    <a id="shouquan" class="easyui-linkbutton" iconCls="icon-add">授权</a>
 </div>
 <%--添加和修改dialog--%>
 <div id="addOrEditDialog"></div>

@@ -91,10 +91,35 @@ public class AuthGroupController {
         }
     }
 
+    /**
+     * 删除
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult delete(Integer id) {
         return authGroupService.deleteAuthGroup(id);
+    }
+
+    /**
+     * 授权页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/shouquan", method = RequestMethod.GET)
+    public String shouquan(Integer id, Model model) {
+        AuthGroup authGroup = authGroupService.selectByPrimaryKey(id);
+        model.addAttribute("authgroup", authGroup);
+        return "authgroup/shouquan";
+    }
+
+
+    @RequestMapping(value = "/shouquan", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult saveShouQuan() {
+        return null;
     }
 
 }

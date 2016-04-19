@@ -41,6 +41,11 @@ $(function () {
         addOrEditDialog.init('编辑', "/api/authGroup/addOrEdit.do", "update");
     });
 
+    $("#shouquan").click(function () {
+        addOrEditDialog.init('授权', "/api/authGroup/shouquan.do", "update");
+    });
+
+
 
 });
 
