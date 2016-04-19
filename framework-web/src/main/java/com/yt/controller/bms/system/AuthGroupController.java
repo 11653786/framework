@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * 权限组
+ *
  * @author zhangsan
  * @version 1.0
  * @package com.yt.controller.bms.system
@@ -92,7 +94,7 @@ public class AuthGroupController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult delete(Integer id) {
-       return  authGroupService.deleteAuthGroup(id);
+        return authGroupService.deleteAuthGroup(id);
     }
 
 }
