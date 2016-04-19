@@ -1,12 +1,16 @@
 package com.yt.entity.mybatis;
 
-public class AuthGroupRelationShip {
+import java.io.Serializable;
+
+public class AuthGroupRelationShip implements Serializable {
     private Integer id;
 
     private Integer authId;
 
     private Integer authGroupId;
 
+    public AuthGroupRelationShip() {
+    }
 
     public AuthGroupRelationShip(Integer authId, Integer authGroupId) {
         this.authId = authId;

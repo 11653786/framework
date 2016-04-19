@@ -1,13 +1,12 @@
 package com.yt.service.mybatis.system.impl;
 
 import com.yt.core.dao.base.impl.BaseDaoImpl;
-import com.yt.entity.mybatis.AuthGroup;
-import com.yt.entity.mybatis.AuthGroupRelationShip;
-import com.yt.entity.mybatis.AuthGroupRelationShipExample;
+import com.yt.entity.mybatis.*;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthGroupRelationShipService;
 import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.util.dhqjr.EmptyUtil;
+import com.yt.util.yt.myutils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,6 +39,7 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
             if (isValid(authGroupId, ids)) {
                 return BaseResult.fail("传入参数异常!");
             }
+
 
             AuthGroupRelationShipExample example = new AuthGroupRelationShipExample();
             AuthGroupRelationShipExample.Criteria criteria = example.createCriteria();
@@ -74,7 +74,7 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
             List<AuthGroupRelationShip> list = this.selectByExample(example);
             //之前的都删除
             for (AuthGroupRelationShip entity : list) {
-                ids = entity.getId() + "" + ids;
+                ids = entity.getId() + "," + ids;
             }
 
         } catch (Exception e) {
