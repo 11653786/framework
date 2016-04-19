@@ -18,8 +18,6 @@ import java.util.Date;
 public interface UserService extends BaseDao<User> {
 
     /**
-     * @param page      当前分页
-     * @param rows      每页显示数量
      * @param username  用户名
      * @param email     email
      * @param phone     手机

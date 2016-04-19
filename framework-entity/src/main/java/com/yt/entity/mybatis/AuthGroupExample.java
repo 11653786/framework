@@ -1,5 +1,7 @@
 package com.yt.entity.mybatis;
 
+import com.yt.util.dhqjr.page.utils.PageSearch;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +13,18 @@ public class AuthGroupExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected PageSearch pageSearch;
+
     public AuthGroupExample() {
         oredCriteria = new ArrayList<Criteria>();
+    }
+
+    public PageSearch getPageSearch() {
+        return pageSearch;
+    }
+
+    public void setPageSearch(PageSearch pageSearch) {
+        this.pageSearch = pageSearch;
     }
 
     public void setOrderByClause(String orderByClause) {
