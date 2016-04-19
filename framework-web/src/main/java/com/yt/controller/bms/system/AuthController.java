@@ -89,7 +89,7 @@ public class AuthController extends ResourceBaseController {
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(Auth auth, Integer parentId, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
-        if(parentId!=null){
+        if (parentId != null) {
             auth.set_parentId(parentId);
         }
         if (isUpdate) {
@@ -109,6 +109,18 @@ public class AuthController extends ResourceBaseController {
     public List<Auth> getAllTree() {
         AuthExample example = new AuthExample();
         return authService.selectByExample(example);
+    }
+
+    /**
+     * 删除权限
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult delete(Integer id) {
+        return authService.deleteAuth(id);
     }
 
     @InitBinder

@@ -5,6 +5,7 @@ import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.AuthExample;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthService;
+import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageResultBuilder;
 import com.yt.util.dhqjr.page.utils.PageSearch;
@@ -55,7 +56,7 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
             //密码设置
             this.insert(auth);
         } catch (Exception e) {
-            return BaseResult.fail("保存参数异常!"+e.getMessage());
+            return BaseResult.fail("保存参数异常!" + e.getMessage());
         }
         return result;
     }
@@ -72,5 +73,18 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
             return BaseResult.fail("保存参数异常!");
         }
         return result;
+    }
+
+    @Override
+    public BaseResult deleteAuth(Integer id) {
+        BaseResult result = new BaseResult(true, "删除成功!");
+        try {
+            if (EmptyUtil.isEmpty(id)) {
+                return BaseResult.fail("传入参数不正确!");
+            }
+            return this.deleteByPrimaryKey(id) != 0 ? result : BaseResult.fail("删除失败!");
+        } catch (Exception e) {
+            return BaseResult.fail("操作异常!");
+        }
     }
 }

@@ -29,4 +29,11 @@ public interface AuthService extends BaseDao<Auth> {
      * @return
      */
     public BaseResult updateAuth(Auth auth);
+
+    /**
+     * 删除权限
+     * @param auth
+     * @return
+     */
+    public BaseResult deleteAuth(Integer id);
 }

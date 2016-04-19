@@ -35,6 +35,15 @@ $(function () {
                     break;
             }
         }
+        }, {
+            field: 'update',
+            title: '操作',
+            align: 'center',
+            width: 100,
+            formatter: function (value, row, index) {
+                var loginurl = path + "/api/auth/delete.do?id=" + row.id;
+                return "<a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + loginurl + "\',\'" + 'datagrid' + "\')\">删除</a>";
+            }
         }
     ]];
     //初始化树表格
