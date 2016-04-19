@@ -9,7 +9,7 @@
 <%@ include file="/top.jsp" %>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/authGroup/shouquan.do">
     <input type="hidden" name="id" value="${authgroup.id}"/>
-    <input type="text" name="ids" id="ids" value="${ids}"/>
+    <input type="hidden" name="ids" id="ids" value="${ids}"/>
     <ul id="ztree"></ul>
 </form>
 <script type="text/javascript">

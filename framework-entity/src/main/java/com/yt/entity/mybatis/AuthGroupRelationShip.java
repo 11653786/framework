@@ -7,6 +7,12 @@ public class AuthGroupRelationShip {
 
     private Integer authGroupId;
 
+
+    public AuthGroupRelationShip(Integer authId, Integer authGroupId) {
+        this.authId = authId;
+        this.authGroupId = authGroupId;
+    }
+
     public Integer getId() {
         return id;
     }

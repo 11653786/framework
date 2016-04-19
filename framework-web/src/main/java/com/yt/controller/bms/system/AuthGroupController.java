@@ -1,7 +1,9 @@
 package com.yt.controller.bms.system;
 
+import com.yt.base.ResourceBaseController;
 import com.yt.entity.mybatis.AuthGroup;
 import com.yt.model.BaseResult;
+import com.yt.service.mybatis.system.AuthGroupRelationShipService;
 import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
@@ -27,12 +29,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping(value = "/api/authGroup")
-public class AuthGroupController {
+public class AuthGroupController extends ResourceBaseController {
 
     private static final Logger logger = LoggerFactory.getLogger(AuthGroupController.class);
 
     @Autowired
     private AuthGroupService authGroupService;
+    @Autowired
+    private AuthGroupRelationShipService relationShipService;
 
     /**
      * 数据表格页面
@@ -112,16 +116,17 @@ public class AuthGroupController {
     public String shouquan(Integer id, Model model) {
         AuthGroup authGroup = authGroupService.selectByPrimaryKey(id);
         model.addAttribute("authgroup", authGroup);
-        model.addAttribute("ids", 9 + ",");
+        //获取当前权限组的权限
+        String ids = relationShipService.getAuthGroupAuth(id);
+        model.addAttribute("ids", ids);
         return "authgroup/shouquan";
     }
 
 
     @RequestMapping(value = "/shouquan", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult saveShouQuan(@RequestParam(value = "id", defaultValue = "") String id, @RequestParam(value = "ids", defaultValue = "") String ids) {
-
-        return null;
+    public BaseResult saveShouQuan(@RequestParam(value = "id", defaultValue = "") Integer id, @RequestParam(value = "ids", defaultValue = "") String ids) {
+        return relationShipService.grantAuthorization(id, ids);
     }
 
 }
