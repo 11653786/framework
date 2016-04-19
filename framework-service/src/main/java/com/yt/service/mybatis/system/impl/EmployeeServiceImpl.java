@@ -3,8 +3,11 @@ package com.yt.service.mybatis.system.impl;
 import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.Employee;
 import com.yt.entity.mybatis.EmployeeExample;
+import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.EmployeeService;
+import com.yt.util.dhqjr.page.utils.PageResult;
+import com.yt.util.dhqjr.page.utils.PageSearch;
 import com.yt.util.yt.myutils.Md5Utils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -40,6 +43,36 @@ public class EmployeeServiceImpl extends BaseDaoImpl<Employee> implements Employ
             }
             return BaseResult.success("登录成功", employees.get(0));
         }
+    }
+
+    @Override
+    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName) {
+        return null;
+    }
+
+    @Override
+    public BaseResult saveUser(User user) {
+        return null;
+    }
+
+    @Override
+    public BaseResult updateUserInfo(User user) {
+        return null;
+    }
+
+    @Override
+    public BaseResult updatePass(Integer id, String password, String newPassword, String rePassword) {
+        return null;
+    }
+
+    @Override
+    public BaseResult isLogin(Integer id) {
+        return null;
+    }
+
+    @Override
+    public BaseResult isEnable(Integer id) {
+        return null;
     }
 
 
