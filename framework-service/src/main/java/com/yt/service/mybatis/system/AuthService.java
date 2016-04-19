@@ -7,6 +7,7 @@ import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 
 /**
+ * 权限
  * Created by Administrator on 2016/2/29 0029.
  */
 public interface AuthService extends BaseDao<Auth> {

@@ -10,6 +10,8 @@ import com.yt.util.dhqjr.page.utils.PageSearch;
 import java.util.Date;
 
 /**
+ *
+ * 权限组
  * @author zhangsan
  * @version 1.0
  * @package com.yt.service.mybatis.system
