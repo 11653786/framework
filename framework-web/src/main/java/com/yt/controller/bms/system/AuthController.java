@@ -11,13 +11,14 @@ import com.yt.util.dhqjr.page.utils.PageSearch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -101,7 +102,6 @@ public class AuthController extends ResourceBaseController {
     /**
      * 保存或者修改
      *
-     * @param isUpdate
      * @return
      */
     @RequestMapping(value = "/getAllTree", method = RequestMethod.POST)
@@ -109,5 +109,12 @@ public class AuthController extends ResourceBaseController {
     public List<Auth> getAllTree() {
         AuthExample example = new AuthExample();
         return authService.selectByExample(example);
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }
