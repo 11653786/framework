@@ -112,6 +112,7 @@ public class AuthGroupController {
     public String shouquan(Integer id, Model model) {
         AuthGroup authGroup = authGroupService.selectByPrimaryKey(id);
         model.addAttribute("authgroup", authGroup);
+        model.addAttribute("ids",9+",");
         return "authgroup/shouquan";
     }
 
