@@ -7,8 +7,6 @@ import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 
-import java.util.Date;
-
 /**
  * 后台用户
  * Created by Administrator on 2016/2/26 0026.
@@ -34,23 +32,23 @@ public interface EmployeeService extends BaseDao<Employee> {
      * @param nikeName 昵称
      * @return
      */
-    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName);
+    public PageResult<Employee> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName);
 
     /**
      * 保存用户
      *
-     * @param user
+     * @param employee
      * @return
      */
-    public BaseResult saveUser(User user);
+    public BaseResult saveUser(Employee employee);
 
     /**
      * 修改用户信息
      *
-     * @param user
+     * @param employee
      * @return
      */
-    public BaseResult updateUserInfo(User user);
+    public BaseResult updateUserInfo(Employee employee);
 
     /**
      * 修改密码

@@ -93,6 +93,9 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+      <if test="pageSearch != null">
+          limit #{pageSearch.currentResult} , #{pageSearch.rows}
+      </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

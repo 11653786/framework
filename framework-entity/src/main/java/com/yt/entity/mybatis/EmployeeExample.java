@@ -1,5 +1,7 @@
 package com.yt.entity.mybatis;
 
+import com.yt.util.dhqjr.page.utils.PageSearch;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,17 @@ public class EmployeeExample {
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+
+    protected PageSearch pageSearch;
+
+
+    public PageSearch getPageSearch() {
+        return pageSearch;
+    }
+
+    public void setPageSearch(PageSearch pageSearch) {
+        this.pageSearch = pageSearch;
+    }
 
     public EmployeeExample() {
         oredCriteria = new ArrayList<Criteria>();
