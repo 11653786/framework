@@ -10,7 +10,7 @@
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/authGroup/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${authgroup.id}"/>
-    <input type="hidden" name="isEnable" value="${authgroup.isEnable}"/>
+    <input type="hidden" name="isEnable"  value="1"/>
     <input type="hidden" name="createUser" value="${authgroup.createUser}"/>
     <input type="hidden" name="updateUser" value="${authgroup.updateUser}"/>
 

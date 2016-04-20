@@ -7,28 +7,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/top.jsp" %>
-<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/employee/saveAddOrEdit.do">
+<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/employee/auth.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
-    <input type="hidden" name="employeeId" value="${employee.id}"/>
+    <input type="hidden" name="employeeId" value="${employeeId}"/>
+
     <div class="mymenu">
         <div class="two">
             <label for="isLogin">权限组:</label>
-            <select class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
+            <select class="easyui-combobox" id="authGroupId" name="authGroupId" style="width:160px;">
                 <option value="">请选择</option>
-                <c:choose>
-                    <c:when test="${employee.isLogin==1}">
-                        <option value="1" selected="selected">正常</option>
-                        <option value="0">限制登录</option>
-                    </c:when>
-                    <c:when test="${employee.isLogin==0}">
-                        <option value="1">正常</option>
-                        <option value="0" selected="selected">限制登录</option>
-                    </c:when>
-                    <c:when test="${employee.isLogin=='' ||employee.isLogin==null}">
-                        <option value="1" selected="selected">正常</option>
-                        <option value="0">限制登录</option>
-                    </c:when>
-                </c:choose>
+                <c:forEach items="${authGroups}" var="authGroup">
+                    <c:if test="${authGroup.id==mygroup.authGroupId}" var="isTrue">
+                        <option selected="selected" value="${authGroup.id}">${authGroup.authGroupName}</option>
+                    </c:if>
+                    <c:if test="${!isTrue}">
+                        <option value="${authGroup.id}">${authGroup.authGroupName}</option>
+                    </c:if>
+
+                </c:forEach>
             </select>
         </div>
     </div>

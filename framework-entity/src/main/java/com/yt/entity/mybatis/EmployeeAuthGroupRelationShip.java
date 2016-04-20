@@ -1,6 +1,8 @@
 package com.yt.entity.mybatis;
 
-public class EmployeeAuthGroupRelationShip {
+import java.io.Serializable;
+
+public class EmployeeAuthGroupRelationShip implements Serializable {
     private Integer id;
 
     private Integer employeeId;

@@ -1,9 +1,9 @@
 package com.yt.controller.bms.system;
 
-import com.yt.entity.mybatis.Employee;
-import com.yt.entity.mybatis.EmployeeAuthGroupRelationShip;
-import com.yt.entity.mybatis.User;
+import com.yt.entity.mybatis.*;
 import com.yt.model.BaseResult;
+import com.yt.service.mybatis.system.AuthGroupService;
+import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.service.mybatis.system.EmployeeService;
 import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.EmptyUtil;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 后台帐号
@@ -39,6 +40,10 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private EmployeeAuthGroupRelationShipService employeeAuthGroupRelationShipService;
+    @Autowired
+    private AuthGroupService authGroupService;
 
     /**
      * 数据表格页面
@@ -91,7 +96,7 @@ public class EmployeeController {
     /**
      * 保存或者修改
      *
-     * @param user
+     * @param employee
      * @param isUpdate
      * @return
      */
@@ -162,27 +167,36 @@ public class EmployeeController {
     public String auth(Integer id, Model model) {
         //不为空修改为空保存
         if (!EmptyUtil.isEmpty(id)) {
-            Employee employee = employeeService.selectByPrimaryKey(id);
-            if (!EmptyUtil.isEmpty(employee)) {
-                model.addAttribute("employee", employee);
+            EmployeeAuthGroupRelationShipExample employeeExample = new EmployeeAuthGroupRelationShipExample();
+            //用户id传过去
+            model.addAttribute("employeeId", id);
+            List<EmployeeAuthGroupRelationShip> mygroups = employeeAuthGroupRelationShipService.selectByExample(employeeExample);
+            if (!mygroups.isEmpty()) {
+                model.addAttribute("mygroup", mygroups.get(0));
                 model.addAttribute("isUpdate", true);
             }
         } else {
             model.addAttribute("isUpdate", false);
         }
+        AuthExample example = new AuthExample();
+        AuthExample.Criteria criteria = example.createCriteria();
+        criteria.andIsEnableEqualTo("1");
+        //全部的权限组
+        List<AuthGroup> authGroups = authGroupService.selectByExample(example);
+        model.addAttribute("authGroups", authGroups);
         return "employee/addauth";
     }
 
     /**
      * 分配权限
      *
-     * @param id
+     * @param employeeAuthGroupRelationShip
      * @return
      */
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult addAuth(EmployeeAuthGroupRelationShip employeeAuthGroupRelationShip) {
-        return  null;
+        return employeeAuthGroupRelationShipService.saveOrUpdateAuthGroup(employeeAuthGroupRelationShip);
     }
 
 
