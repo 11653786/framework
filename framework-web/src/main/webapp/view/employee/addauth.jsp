@@ -13,7 +13,7 @@
 
     <div class="mymenu">
         <div class="two">
-            <label for="isLogin">权限组:</label>
+            <label for="authGroupId">权限组:</label>
             <select class="easyui-combobox" id="authGroupId" name="authGroupId" style="width:160px;">
                 <option value="">请选择</option>
                 <c:forEach items="${authGroups}" var="authGroup">

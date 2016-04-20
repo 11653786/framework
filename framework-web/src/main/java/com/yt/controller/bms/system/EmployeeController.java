@@ -168,9 +168,11 @@ public class EmployeeController {
         //不为空修改为空保存
         if (!EmptyUtil.isEmpty(id)) {
             EmployeeAuthGroupRelationShipExample employeeExample = new EmployeeAuthGroupRelationShipExample();
+            EmployeeAuthGroupRelationShipExample.Criteria criteria = employeeExample.createCriteria();
+            criteria.andEmployeeIdEqualTo(id);
             //用户id传过去
-            model.addAttribute("employeeId", id);
             List<EmployeeAuthGroupRelationShip> mygroups = employeeAuthGroupRelationShipService.selectByExample(employeeExample);
+            model.addAttribute("employeeId", id);
             if (!mygroups.isEmpty()) {
                 model.addAttribute("mygroup", mygroups.get(0));
                 model.addAttribute("isUpdate", true);

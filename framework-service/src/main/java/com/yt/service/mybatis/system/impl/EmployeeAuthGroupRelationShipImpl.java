@@ -53,7 +53,7 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
             EmployeeAuthGroupRelationShipExample example = new EmployeeAuthGroupRelationShipExample();
             EmployeeAuthGroupRelationShipExample.Criteria criteria = example.createCriteria();
             criteria.andEmployeeIdEqualTo(employeeAuthGroupRelationShip.getEmployeeId());
-            this.deleteByExample(example);
+            int int1=this.deleteByExample(example);
 
 
             employeeAuthGroupRelationShip.setEmployeeName(employee.getUserName());
