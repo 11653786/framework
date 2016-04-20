@@ -9,32 +9,30 @@
 <%@ include file="/top.jsp" %>
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/employee/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
-    <input type="hidden" name="id" value="${user.id}"/>
+    <input type="hidden" name="id" value="${employee.id}"/>
   <%--  <input type="hidden" name="createDate" value="${user.createDate}"/>--%>
     <input type="hidden" name="createUser" value="${user.createUser}"/>
     <%--<input type="hidden" name="updateDate" value="${user.updateDate}"/>--%>
     <input type="hidden" name="updateUser" value="${user.updateUser}"/>
-    <input type="hidden" name="lastLoginTime" value="${user.lastLoginTime}"/>
-    <input type="hidden" name="loginTotal" value="${user.loginTotal}"/>
-    <input type="hidden" name="password" value="${user.password}"/>
+    <input type="hidden" name="password" value="${employee.password}"/>
 
     <div class="mymenu">
         <div class="two">
             <label for="userName">用户名:</label>
-            <input class="easyui-validatebox" value="${user.userName}" id="userName" type="text" name="userName"
+            <input class="easyui-validatebox" value="${employee.userName}" id="userName" type="text" name="userName"
                    data-options="required:true"/>
         </div>
         <div class="two"><label for="nikeName">昵称:</label>
-            <input class="easyui-validatebox" value="${user.nikeName}" id="nikeName" type="text" name="nikeName"/>
+            <input class="easyui-validatebox" value="${employee.nikeName}" id="nikeName" type="text" name="nikeName"/>
         </div>
         <div class="two">
             <label for="email">email:</label>
-            <input class="easyui-validatebox" value="${user.email}" id="email" type="text" name="email"
+            <input class="easyui-validatebox" value="${employee.email}" id="email" type="text" name="email"
                    data-options="required:true,validType:'email'"/>
         </div>
         <div class="two">
-            <label for="phone">手机号:</label>
-            <input class="easyui-validatebox" id="phone" value="${user.phone}" type="text" name="phone"
+            <label for="mobile">手机号:</label>
+            <input class="easyui-validatebox" id="mobile" value="${employee.mobile}" type="text" name="mobile"
                    data-options="required:true"/>
         </div>
         <div class="two">
@@ -42,15 +40,15 @@
             <select class="easyui-combobox" id="isLogin" name="isLogin" style="width:160px;">
                 <option value="">请选择</option>
                 <c:choose>
-                    <c:when test="${user.isLogin==1}">
+                    <c:when test="${employee.isLogin==1}">
                         <option value="1" selected="selected">正常</option>
                         <option value="0">限制登录</option>
                     </c:when>
-                    <c:when test="${user.isLogin==0}">
+                    <c:when test="${employee.isLogin==0}">
                         <option value="1">正常</option>
                         <option value="0" selected="selected">限制登录</option>
                     </c:when>
-                    <c:when test="${user.isLogin=='' ||user.isLogin==null}">
+                    <c:when test="${employee.isLogin=='' ||employee.isLogin==null}">
                         <option value="1" selected="selected">正常</option>
                         <option value="0">限制登录</option>
                     </c:when>
