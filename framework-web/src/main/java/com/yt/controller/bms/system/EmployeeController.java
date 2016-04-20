@@ -160,7 +160,7 @@ public class EmployeeController {
     /**
      * 分配权限
      *
-     * @param id
+     * @param id 员工id
      * @return
      */
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
