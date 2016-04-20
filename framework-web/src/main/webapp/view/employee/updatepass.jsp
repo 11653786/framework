@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/top.jsp" %>
-<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/updatepass.do">
+<form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/employee/updatepass.do">
     <input type="hidden" name="id" value="${id}"/>
 
     <div class="mymenu">
