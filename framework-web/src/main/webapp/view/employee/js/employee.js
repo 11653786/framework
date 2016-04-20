@@ -25,7 +25,7 @@ $(function () {
             align: 'center',
             width: 100
         }, {
-            field: 'phone',
+            field: 'mobile',
             title: '手机号',
             align: 'center',
             width: 100
@@ -83,39 +83,15 @@ $(function () {
             }
         },
         {
-            field: 'loginTotal',
-            title: '登录次数',
-            align: 'left',
-            width: 100,
-            formatter: function (value, row, index) {
-                var url = row['bannerUrl'];
-                if (url != null && url != "") {
-                    return "<a href=" + url + " target=_blank >" + value + "</a>"
-                } else {
-                    return value;
-                }
-            }
-        },
-        {
-            field: 'lastLoginTime',
-            title: '最后登录时间',
-            align: 'center',
-            width: 100,
-            formatter: function (value, row, index) {
-                //easyui返回的date类型为时间戳这里转换下
-                return new Date(value).Format("yyyy-MM-dd hh:mm:ss");
-            }
-        },
-        {
             field: 'update',
             title: '操作',
             align: 'center',
             width: 100,
             formatter: function (value, row, index) {
-                var loginurl = path + "/api/user/isLogin.do?id=" + row.id;
+                var loginurl = path + "/api/employee/isLogin.do?id=" + row.id;
                 var login = row.isLogin == 1 ? "可登录" : "不可登录";
                 var enable = row.isEnable == 1 ? "可使用" : "不可使用";
-                var enableurl = path + "/api/user/isEnable.do?id=" + row.id;
+                var enableurl = path + "/api/employee/isEnable.do?id=" + row.id;
                 return "<a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + loginurl + "\',\'" + 'datagrid' + "\')\">" + login + "</a> <a href='javascript:void(0)' onclick=\"ajaxUrl(\'" + enableurl + "\',\'" + 'datagrid' + "\')\">" + enable + "</a>";
             }
         }
@@ -129,9 +105,7 @@ $(function () {
             "nikeName": $("#nikeName").val(),
             "phone": $("#phone").val(),
             "email": $("#email").val(),
-            "isLogin": $("#isLogin").combobox('getValue'),
-            "startTime": $("#startTime").datetimebox('getValue'),
-            "endTime": $("#endTime").datetimebox('getValue')
+            "isLogin": $("#isLogin").combobox('getValue')
         };
         //查询
         userdatagrid.searchInit();
@@ -141,15 +115,15 @@ $(function () {
 
     //添加用户
     $("#adduser").click(function () {
-        addOrEditDialog.init('添加用户', "/api/user/addOrEdit.do", "add");
+        addOrEditDialog.init('添加员工', "/api/employee/addOrEdit.do", "add");
     });
 
     $("#updateuser").click(function () {
-        addOrEditDialog.init('编辑用户', "/api/user/addOrEdit.do", "update");
+        addOrEditDialog.init('编辑员工', "/api/employee/addOrEdit.do", "update");
     });
 
     $("#updatepass").click(function () {
-        addOrEditDialog.init('修改密码', "/api/user/updatepass.do", "update");
+        addOrEditDialog.init('修改密码', "/api/employee/updatepass.do", "update");
     });
 
 });

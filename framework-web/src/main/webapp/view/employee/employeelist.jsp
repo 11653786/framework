@@ -32,20 +32,12 @@
             <input id="email" class="searchinput"/>
             手机：
             <input id="phone" class="searchinput"/>
-            最后一次登录时间：
-            <input
-                    class="easyui-datetimebox" type="text" id="startTime" name="startTime">
-            至
-            <input
-                    class="easyui-datetimebox" type="text" name="endTime" id="endTime">
-        </div>
-        <div class="searchFormRows">
             登录状态：
             <%--这里注意不要专门去写样式,因为easyui的样式已经定义了样式,加载顺序会导致每次加载页面长度不同,用style优先级最高固定住--%>
             <select id="isLogin" data-options="editable:false" class="easyui-combobox" style="width: 100px;">
                 <option value="">请选择</option>
-                <option value="0">正常</option>
-                <option value="1">限制登录</option>
+                <option value="0">限制登录</option>
+                <option value="1">正常</option>
             </select>
             <a id="searchButton" class="easyui-linkbutton" iconCls="icon-search">查询</a>
         </div>
@@ -56,8 +48,8 @@
 <div id="datagrid"></div>
 <!-- 工具栏 -->
 <div id="toolbar">
-    <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加用户</a>
-    <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">编辑用户</a>
+    <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加员工</a>
+    <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">编辑员工</a>
     <a id="updatepass" class="easyui-linkbutton" iconCls="icon-add">修改密码</a>
 </div>
 <%--添加和修改dialog--%>
