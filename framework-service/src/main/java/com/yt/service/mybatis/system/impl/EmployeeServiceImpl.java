@@ -152,7 +152,7 @@ public class EmployeeServiceImpl extends BaseDaoImpl<Employee> implements Employ
             Employee employee = this.selectByPrimaryKey(id);
 
             if (EmptyUtil.isEmpty(employee)) {
-                return BaseResult.fail("当前用户不存在或密码错误!");
+                return BaseResult.fail("密码错误!");
             }
 
             employee.setIsLogin((employee.getIsLogin() == 1 ? 0 : 1));
