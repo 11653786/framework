@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Date;
 
 /**
+ * 用户管理
  * @author zhangsan
  * @version 1.0
  * @package com.yt.controller.bms.user

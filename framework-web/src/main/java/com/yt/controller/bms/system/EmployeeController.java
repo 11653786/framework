@@ -64,7 +64,7 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
-    public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName) {
+    public PageResult<Employee> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName) {
         return employeeService.selectByPageList(search, username, email, phone, isLogin, isEnable, nikeName);
     }
 
@@ -96,11 +96,11 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
-    public BaseResult saveAddOrEdit(User user, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
+    public BaseResult saveAddOrEdit(Employee employee, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
         if (isUpdate) {
-            return employeeService.updateUserInfo(user);
+            return employeeService.updateUserInfo(employee);
         } else {
-            return employeeService.saveUser(user);
+            return employeeService.saveUser(employee);
         }
     }
 
