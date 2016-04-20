@@ -10,7 +10,7 @@
 <%@ include file="/top.jsp" %>
 <html>
 <head>
-    <title>用户管理</title>
+    <title>员工管理</title>
     <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
                    hasBootStrapModal="false"></simple:Script>
     <simple:angular hasAngularTree="false"></simple:angular>
@@ -51,6 +51,7 @@
     <a id="adduser" class="easyui-linkbutton" iconCls="icon-add">添加员工</a>
     <a id="updateuser" class="easyui-linkbutton" iconCls="icon-add">编辑员工</a>
     <a id="updatepass" class="easyui-linkbutton" iconCls="icon-add">修改密码</a>
+    <a id="addauth" class="easyui-linkbutton" iconCls="icon-add">分配权限</a>
 </div>
 <%--添加和修改dialog--%>
 <div id="addOrEditDialog"></div>

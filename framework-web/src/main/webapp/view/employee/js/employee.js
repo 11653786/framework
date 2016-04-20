@@ -126,5 +126,9 @@ $(function () {
         addOrEditDialog.init('修改密码', "/api/employee/updatepass.do", "update");
     });
 
+    $("#addauth").click(function () {
+        addOrEditDialog.init('分配权限', "/api/employee/auth.do", "update");
+    });
+
 });
 

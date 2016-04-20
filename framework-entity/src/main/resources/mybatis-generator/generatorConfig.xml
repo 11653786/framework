@@ -49,7 +49,11 @@
         <table tableName="t_user" domainObjectName="User" enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
        <table tableName="t_auth_group_relationship" domainObjectName="AuthGroupRelationShip" enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>
+        <table tableName="t_employee_authgroup_relationship" domainObjectName="EmployeeAuthGroupRelationShip" enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true"/>-->
+
+
 
     </context>
 </generatorConfiguration>

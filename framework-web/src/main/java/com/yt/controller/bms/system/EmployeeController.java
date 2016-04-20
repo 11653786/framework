@@ -1,6 +1,7 @@
 package com.yt.controller.bms.system;
 
 import com.yt.entity.mybatis.Employee;
+import com.yt.entity.mybatis.EmployeeAuthGroupRelationShip;
 import com.yt.entity.mybatis.User;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.EmployeeService;
@@ -148,6 +149,40 @@ public class EmployeeController {
     @ResponseBody
     public BaseResult isEnable(Integer id) {
         return employeeService.isEnable(id);
+    }
+
+
+    /**
+     * 分配权限
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    public String auth(Integer id, Model model) {
+        //不为空修改为空保存
+        if (!EmptyUtil.isEmpty(id)) {
+            Employee employee = employeeService.selectByPrimaryKey(id);
+            if (!EmptyUtil.isEmpty(employee)) {
+                model.addAttribute("employee", employee);
+                model.addAttribute("isUpdate", true);
+            }
+        } else {
+            model.addAttribute("isUpdate", false);
+        }
+        return "employee/addauth";
+    }
+
+    /**
+     * 分配权限
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    @ResponseBody
+    public BaseResult addAuth(EmployeeAuthGroupRelationShip employeeAuthGroupRelationShip) {
+        return  null;
     }
 
 
