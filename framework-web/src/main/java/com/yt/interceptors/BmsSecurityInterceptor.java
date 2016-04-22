@@ -7,6 +7,8 @@ import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
 import com.yt.util.yt.annotation.system.UnSecurity;
 import com.yt.util.yt.annotation.system.UnSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -24,6 +26,7 @@ import java.util.List;
  */
 public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
 
+    private static final Logger logger = LoggerFactory.getLogger(BmsSecurityInterceptor.class);
 
     @Autowired
     private EmployeeAuthGroupRelationShipService employeeAuthGroupRelationShipService;
@@ -33,6 +36,7 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
                              HttpServletResponse response, Object handler) throws Exception {
         String url = this.getRequestUrl(request);
         HandlerMethod handlerMethod = (HandlerMethod) handler;
+        logger.info("拦截方法名称: "+((HandlerMethod) handler).getMethod().getName());
         UnSession unSession = handlerMethod
                 .getMethodAnnotation(UnSession.class);
         HttpSession session = request.getSession();

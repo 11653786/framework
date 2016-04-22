@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.yt.base.BaseAction;
+import com.yt.util.yt.annotation.system.UnSession;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,13 +25,14 @@ import com.google.code.kaptcha.Producer;
 * @author yt
 */
 @Controller
-@RequestMapping("/kaptcha/*")
+@RequestMapping("/kaptcha")
 public class CaptchaController extends BaseAction{
 
     @Autowired
     private Producer captchaProducer = null;
 
-    @RequestMapping
+    @RequestMapping(value = "/code")
+    @UnSession
     public ModelAndView getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         String code = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);

@@ -6,6 +6,7 @@ import com.yt.entity.mybatis.Employee;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.EmployeeService;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
+import com.yt.util.yt.annotation.system.UnSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class IndexController extends BaseAction {
 
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-
+    @UnSession
     @RequestMapping(value = {"index"})
     public ModelAndView index(HttpSession session) {
         Employee employee = EmployeeSessionUtil.getSessionEmployee(session);
@@ -60,6 +61,7 @@ public class IndexController extends BaseAction {
      * @throws IllegalAccessException
      * @throws InvocationTargetException
      */
+    @UnSession
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("loginName") String loginName, @RequestParam("password") String password,
                         HttpSession session, @RequestParam(value = "isRememberMe", defaultValue = "false") boolean isRememberMe, @RequestParam(value = "code") String code, Model model) {
