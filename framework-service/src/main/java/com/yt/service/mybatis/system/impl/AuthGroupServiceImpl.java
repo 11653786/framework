@@ -18,6 +18,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 /**
  * @author zhangsan
  * @version 1.0
@@ -86,6 +88,19 @@ public class AuthGroupServiceImpl extends BaseDaoImpl<AuthGroup> implements Auth
             return this.deleteByPrimaryKey(id) == 1 ? result : BaseResult.fail("修改失败!");
         } catch (Exception e) {
             return BaseResult.fail("修改异常!");
+        }
+    }
+
+    @Override
+    public AuthGroup selectByName(String authGroupName) {
+        AuthGroupExample authGroupExample = new AuthGroupExample();
+        AuthGroupExample.Criteria criteria = authGroupExample.createCriteria();
+        criteria.andAuthGroupNameEqualTo(authGroupName);
+        List<AuthGroup> list = selectByExample(authGroupExample);
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list.get(0);
         }
     }
 }

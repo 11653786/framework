@@ -24,7 +24,7 @@ public @interface ResourceAnnotation {
 	/**
 	 * 资源的类型，默认是菜单，
 	 */
-	int resourceType() default 1;
+	String resourceType() default "";
 
 	/**
 	 * 资源组名称，默认是系统管理

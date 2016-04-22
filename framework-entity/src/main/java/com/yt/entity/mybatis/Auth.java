@@ -29,6 +29,16 @@ public class Auth {
     private String authDesc;
 
 
+    public Auth() {
+    }
+
+    public Auth(String authUrl, String authName, String authType, String authDesc) {
+        this.authUrl = authUrl;
+        this.authName = authName;
+        this.authType = authType;
+        this.authDesc = authDesc;
+    }
+
     public Integer getId() {
         return id;
     }

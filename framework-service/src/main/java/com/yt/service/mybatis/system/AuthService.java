@@ -2,6 +2,8 @@ package com.yt.service.mybatis.system;
 
 import com.yt.core.dao.base.BaseDao;
 import com.yt.entity.mybatis.Auth;
+import com.yt.entity.mybatis.AuthGroup;
+import com.yt.entity.mybatis.AuthGroupExample;
 import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
@@ -48,4 +50,7 @@ public interface AuthService extends BaseDao<Auth> {
      * @return
      */
     public List<Auth> getEmployeeAuths(Integer employeeId);
+
+
+    public Auth selectByName(String authGroupName);
 }

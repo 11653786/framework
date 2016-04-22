@@ -56,7 +56,7 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
                 return BaseResult.fail("传入参数不正确!");
             }
             //密码设置
-            this.insert(auth);
+            result.setObj(this.insert(auth));
         } catch (Exception e) {
             return BaseResult.fail("保存参数异常!" + e.getMessage());
         }
@@ -93,5 +93,18 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
     @Override
     public List<Auth> getEmployeeAuths(Integer employeeId) {
         return session.selectList(setNameSpace() + ".getEmployeeAuths", employeeId);
+    }
+
+    @Override
+    public Auth selectByName(String authGroupName) {
+        AuthExample authExample = new AuthExample();
+        AuthExample.Criteria criteria = authExample.createCriteria();
+        criteria.andAuthNameEqualTo(authGroupName);
+        List<Auth> list = selectByExample(authExample);
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list.get(0);
+        }
     }
 }
