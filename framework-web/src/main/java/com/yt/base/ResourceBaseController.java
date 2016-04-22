@@ -1,8 +1,10 @@
 package com.yt.base;
 
+import com.yt.service.mybatis.system.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -14,6 +16,8 @@ public class ResourceBaseController extends BaseAction implements InitializingBe
 
     @Value("${system.initResource}")
     private String initResource;
+    @Autowired
+    private AuthService authService;
 
     /**
      * 处理resource资源信息
