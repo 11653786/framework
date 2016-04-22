@@ -56,7 +56,7 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
                 return BaseResult.fail("传入参数不正确!");
             }
             //密码设置
-            result.setObj(this.insert(auth));
+            this.insert(auth);
         } catch (Exception e) {
             return BaseResult.fail("保存参数异常!" + e.getMessage());
         }

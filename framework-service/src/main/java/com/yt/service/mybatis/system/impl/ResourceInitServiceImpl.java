@@ -61,7 +61,6 @@ public class ResourceInitServiceImpl implements ResourceInitService {
             if (EmptyUtil.isNotEmpty(requestMapping) && EmptyUtil.isNotEmpty(resourceAnnotation)) {
                 //先判断是否存在了再做操作,根据名称查询权限
                 Auth existsAuth = this.authService.selectByName(resourceAnnotation.name());
-                Integer pid = -1;
                 if (EmptyUtil.isEmpty(existsAuth)) {
                     existsAuth = new Auth(resourceAnnotation.url(), resourceAnnotation.name(), resourceAnnotation.resourceType(), resourceAnnotation.remark());
                     existsAuth.setIsEnable("1");
@@ -75,8 +74,9 @@ public class ResourceInitServiceImpl implements ResourceInitService {
                             //菜单类型
                             parentAuth.setAuthType("3");
                             parentAuth.setIsEnable("1");
-                            pid = (Integer) this.authService.saveAuth(parentAuth).getObj();
-                            System.out.println(pid);
+                            //不知道mybatis保存返回主键就是不成功啊！
+                            this.authService.saveAuth(parentAuth);
+                            existsAuth.set_parentId(authService.selectByName(parentAuth.getAuthName()).getId());
                         } else {
                             needRetryMethods.add(method);
                             continue;
