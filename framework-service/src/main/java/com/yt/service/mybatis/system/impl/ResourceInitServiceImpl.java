@@ -63,8 +63,8 @@ public class ResourceInitServiceImpl implements ResourceInitService {
                 Auth existsAuth = this.authService.selectByName(resourceAnnotation.name());
                 Integer pid = -1;
                 if (EmptyUtil.isEmpty(existsAuth)) {
-                    Auth auth = new Auth(resourceAnnotation.url(), resourceAnnotation.name(), resourceAnnotation.resourceType(), resourceAnnotation.remark());
-                    auth.setIsEnable("1");
+                    existsAuth = new Auth(resourceAnnotation.url(), resourceAnnotation.name(), resourceAnnotation.resourceType(), resourceAnnotation.remark());
+                    existsAuth.setIsEnable("1");
                     //父级
                     Auth parentAuth = this.authService.selectByName(resourceAnnotation.pName());
                     if (EmptyUtil.isEmpty(parentAuth)) {
@@ -80,11 +80,20 @@ public class ResourceInitServiceImpl implements ResourceInitService {
                             needRetryMethods.add(method);
                             continue;
                         }
+                    } else {
+                        existsAuth.set_parentId(parentAuth.getId());
                     }
 
-                    auth.set_parentId(pid);
-                    this.authService.saveAuth(auth);
+                    try {
+                        this.authService.saveAuth(existsAuth);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+
                 }
+
+
+
             }
         }
         return needRetryMethods;

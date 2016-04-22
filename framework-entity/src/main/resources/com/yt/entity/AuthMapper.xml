@@ -112,7 +112,7 @@
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.yt.entity.mybatis.Auth">
+    <insert useGeneratedKeys="true" keyProperty="id" id="insert" parameterType="com.yt.entity.mybatis.Auth">
     insert into t_auth (id, auth_name, auth_type, 
       parent_id, is_enable, auth_url, 
       create_user, create_date, update_user, 

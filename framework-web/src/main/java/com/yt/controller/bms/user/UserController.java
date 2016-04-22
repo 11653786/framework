@@ -46,7 +46,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResourceAnnotation(name = "用户管理", pName = "业务管理", url = "/user/list", remark = "用户管理", parentIsRoot = true)
+    @ResourceAnnotation(name = "用户管理", pName = "业务管理", url = "/user/list", remark = "用户管理",resourceType = "2", parentIsRoot = true)
     public String list() {
         return "user/userlist";
     }
