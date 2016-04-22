@@ -3,15 +3,18 @@ package com.yt.service.mybatis.system.impl;
 import com.yt.core.dao.base.impl.BaseDaoImpl;
 import com.yt.entity.mybatis.*;
 import com.yt.model.BaseResult;
+import com.yt.service.mybatis.system.AuthGroupRelationShipService;
 import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.service.mybatis.system.EmployeeService;
 import com.yt.util.dhqjr.EmptyUtil;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +32,7 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
     private EmployeeService employeeService;
     @Autowired
     private AuthGroupService authGroupService;
+
 
     @Override
     public BaseResult saveOrUpdateAuthGroup(EmployeeAuthGroupRelationShip employeeAuthGroupRelationShip) {
@@ -52,7 +56,7 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
             EmployeeAuthGroupRelationShipExample example = new EmployeeAuthGroupRelationShipExample();
             EmployeeAuthGroupRelationShipExample.Criteria criteria = example.createCriteria();
             criteria.andEmployeeIdEqualTo(employeeAuthGroupRelationShip.getEmployeeId());
-            int int1=this.deleteByExample(example);
+            int int1 = this.deleteByExample(example);
 
 
             employeeAuthGroupRelationShip.setEmployeeName(employee.getUserName());
@@ -67,6 +71,6 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
 
     @Override
     public List<Auth> getEmployeeAuths(Integer employeeId) {
-        return null;
+        return session.selectList(setNameSpace() + ".getEmployeeAuths", employeeId);
     }
 }

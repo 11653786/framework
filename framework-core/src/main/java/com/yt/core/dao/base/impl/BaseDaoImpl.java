@@ -22,7 +22,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 
     @Resource
-    private SqlSession session;
+    protected SqlSession session;
 
 
     private Class<T> entityClass;
@@ -91,4 +91,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     public int updateByExample(Object example) {
         return session.update(setNameSpace() + ".updateByExample", example);
     }
+
+
+
 }
