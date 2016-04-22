@@ -1,10 +1,7 @@
 package com.yt.service.mybatis.system.impl;
 
 import com.yt.core.dao.base.impl.BaseDaoImpl;
-import com.yt.entity.mybatis.AuthGroup;
-import com.yt.entity.mybatis.Employee;
-import com.yt.entity.mybatis.EmployeeAuthGroupRelationShip;
-import com.yt.entity.mybatis.EmployeeAuthGroupRelationShipExample;
+import com.yt.entity.mybatis.*;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
@@ -14,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author zhangsan
@@ -64,5 +63,10 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
         }
 
         return result;
+    }
+
+    @Override
+    public List<Auth> getEmployeeAuths(Integer employeeId) {
+        return null;
     }
 }

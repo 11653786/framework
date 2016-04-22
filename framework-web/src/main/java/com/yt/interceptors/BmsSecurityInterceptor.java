@@ -1,16 +1,20 @@
 package com.yt.interceptors;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import com.yt.entity.mybatis.Auth;
+import com.yt.entity.mybatis.Employee;
+import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
 import com.yt.util.yt.annotation.system.UnSecurity;
 import com.yt.util.yt.annotation.system.UnSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 /**
@@ -21,6 +25,9 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
 
 
+    @Autowired
+    private EmployeeAuthGroupRelationShipService employeeAuthGroupRelationShipService;
+
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
@@ -28,38 +35,39 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         UnSession unSession = handlerMethod
                 .getMethodAnnotation(UnSession.class);
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         if (unSession != null) {
             return true;
         } else {
-            EmployeeSessionUtil eSession = EmployeeSessionUtil.getEmployeeSession(session);
-            if (eSession == null || eSession.getIntId() == null) {
+            Employee employee = EmployeeSessionUtil.getSessionEmployee(session);
+            if (employee == null || employee.getId() == null) {
                 request.setAttribute("msg", "您还没有登录或登录已超时，请重新登录！");
                 request.getRequestDispatcher("/error/noSession.jsp").forward(
                         request, response);
                 return false;
             } else {
-				ParentSecurity parent = handlerMethod
-						.getMethodAnnotation(ParentSecurity.class);
-				if (parent != null) {
-					String[] parentUrls = parent.value();
-					for (String parentUrl : parentUrls) {
-						if (UserAuthFilter.isPass(url, parentUrl)) {
-							return true;
-						}
-					}
+                ParentSecurity parent = handlerMethod
+                        .getMethodAnnotation(ParentSecurity.class);
+                List<Auth> auths = employeeAuthGroupRelationShipService.getEmployeeAuths(employee.getId());
+                if (parent != null) {
+                    String[] parentUrls = parent.value();
+                    for (String parentUrl : parentUrls) {
+                        if (UserAuthFilter.isPass(session, url, auths, parentUrl)) {
+                            return true;
+                        }
+                    }
 
-				} else {
-					UnSecurity security = handlerMethod
-							.getMethodAnnotation(UnSecurity.class);
-					if (security != null) {
-						return true;
-					} else {
-						if (UserAuthFilter.isPass(url)) {
-							return true;
-						}
-					}
-				}
+                } else {
+                    UnSecurity security = handlerMethod
+                            .getMethodAnnotation(UnSecurity.class);
+                    if (security != null) {
+                        return true;
+                    } else {
+                        if (UserAuthFilter.isPass(session, url, auths)) {
+                            return true;
+                        }
+                    }
+                }
             }
         }
         request.setAttribute("msg", "您没有[" + url + "]资源的权限！");
