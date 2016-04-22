@@ -6,6 +6,8 @@ import com.yt.model.BaseResult;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 
+import java.util.List;
+
 /**
  * 权限
  * Created by Administrator on 2016/2/29 0029.
@@ -33,8 +35,17 @@ public interface AuthService extends BaseDao<Auth> {
 
     /**
      * 删除权限
-     * @param auth
+     * @param id
      * @return
      */
     public BaseResult deleteAuth(Integer id);
+
+
+    /**
+     * 获取当前用户的权限
+     *
+     * @param employeeId
+     * @return
+     */
+    public List<Auth> getEmployeeAuths(Integer employeeId);
 }

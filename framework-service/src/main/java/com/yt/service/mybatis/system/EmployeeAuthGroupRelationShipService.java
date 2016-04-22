@@ -24,11 +24,4 @@ public interface EmployeeAuthGroupRelationShipService extends BaseDao<EmployeeAu
      */
     public BaseResult saveOrUpdateAuthGroup(EmployeeAuthGroupRelationShip employeeAuthGroupRelationShip);
 
-    /**
-     * 获取当前用户的权限
-     *
-     * @param employeeId
-     * @return
-     */
-    public List<Auth> getEmployeeAuths(Integer employeeId);
 }

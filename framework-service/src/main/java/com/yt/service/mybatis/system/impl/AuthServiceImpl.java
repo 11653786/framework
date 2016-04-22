@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2016/2/29 0029.
  */
@@ -86,5 +88,10 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
         } catch (Exception e) {
             return BaseResult.fail("操作异常!");
         }
+    }
+
+    @Override
+    public List<Auth> getEmployeeAuths(Integer employeeId) {
+        return session.selectList(setNameSpace() + ".getEmployeeAuths", employeeId);
     }
 }

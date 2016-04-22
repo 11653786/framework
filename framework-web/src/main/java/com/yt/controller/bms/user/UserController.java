@@ -7,6 +7,8 @@ import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.yt.annotation.system.ParentSecurity;
+import com.yt.util.yt.annotation.system.ResourceAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.util.Date;
 
 /**
  * 用户管理
+ *
  * @author zhangsan
  * @version 1.0
  * @package com.yt.controller.bms.user
@@ -29,6 +32,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "/api/user")
+@ResourceAnnotation(resourceGroup = "业务管理")
 public class UserController extends ResourceBaseController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -42,8 +46,8 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "用户管理", pName = "业务管理", url = "/user/list", remark = "用户管理", parentIsRoot = true)
     public String list() {
-
         return "user/userlist";
     }
 
@@ -61,6 +65,7 @@ public class UserController extends ResourceBaseController {
      * @param endTime
      * @return
      */
+    @ParentSecurity("/api/user/list.do")
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
     public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {

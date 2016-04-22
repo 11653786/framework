@@ -36,7 +36,7 @@
     </servlet-mapping>
 
 
-    <!--shiro登录的配置-->
+    <!--shiro登录的配置,登录没有用shiro-->
     <filter>
         <filter-name>shiroFilter</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

@@ -69,8 +69,5 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
         return result;
     }
 
-    @Override
-    public List<Auth> getEmployeeAuths(Integer employeeId) {
-        return session.selectList(setNameSpace() + ".getEmployeeAuths", employeeId);
-    }
+
 }

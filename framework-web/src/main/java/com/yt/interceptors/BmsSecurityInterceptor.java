@@ -1,7 +1,9 @@
 package com.yt.interceptors;
 
 import com.yt.entity.mybatis.Auth;
+import com.yt.entity.mybatis.AuthGroup;
 import com.yt.entity.mybatis.Employee;
+import com.yt.service.mybatis.system.AuthService;
 import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
@@ -29,14 +31,14 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
     private static final Logger logger = LoggerFactory.getLogger(BmsSecurityInterceptor.class);
 
     @Autowired
-    private EmployeeAuthGroupRelationShipService employeeAuthGroupRelationShipService;
+    private AuthService authService;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         String url = this.getRequestUrl(request);
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        logger.info("拦截方法名称: "+((HandlerMethod) handler).getMethod().getName());
+        logger.info("拦截方法名称: " + ((HandlerMethod) handler).getMethod().getName());
         UnSession unSession = handlerMethod
                 .getMethodAnnotation(UnSession.class);
         HttpSession session = request.getSession();
@@ -52,7 +54,7 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
             } else {
                 ParentSecurity parent = handlerMethod
                         .getMethodAnnotation(ParentSecurity.class);
-                List<Auth> auths = employeeAuthGroupRelationShipService.getEmployeeAuths(employee.getId());
+                List<Auth> auths = authService.getEmployeeAuths(employee.getId());
                 if (parent != null) {
                     String[] parentUrls = parent.value();
                     for (String parentUrl : parentUrls) {
