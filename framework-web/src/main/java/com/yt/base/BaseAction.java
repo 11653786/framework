@@ -20,8 +20,6 @@ import java.util.*;
  */
 public class BaseAction {
 
-    protected static String loginEmployee = "loginEmployee";
-    protected static String loginUser = "loginUser";
     protected static String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     @InitBinder
@@ -30,32 +28,6 @@ public class BaseAction {
         //true:允许输入空值，false:不能为空值
         CustomDateEditor editor = new CustomDateEditor(df, true);
         binder.registerCustomEditor(Date.class, editor);
-
-
-    }
-
-
-    protected void setSessionEmployee(HttpSession session, Employee employee) {
-        session.setAttribute(loginEmployee, employee);
-    }
-
-    protected void setSessionUser(HttpSession session, Employee employee) {
-        session.setAttribute(loginUser, employee);
-    }
-
-    protected static Employee getSessionUser(HttpSession session) {
-        if (EmptyUtil.isEmpty(session.getAttribute(loginUser))) {
-            return null;
-        }
-        return (Employee) session.getAttribute(loginUser);
-    }
-
-
-    protected static Employee getSessionEmployee(HttpSession session) {
-        if (EmptyUtil.isEmpty(session.getAttribute(loginEmployee))) {
-            return null;
-        }
-        return (Employee) session.getAttribute(loginEmployee);
     }
 
 

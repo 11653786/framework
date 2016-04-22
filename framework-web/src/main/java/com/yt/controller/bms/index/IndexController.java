@@ -5,6 +5,7 @@ import com.yt.base.BaseAction;
 import com.yt.entity.mybatis.Employee;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.EmployeeService;
+import com.yt.util.sessionutil.EmployeeSessionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class IndexController extends BaseAction {
 
     @RequestMapping(value = {"index"})
     public ModelAndView index(HttpSession session) {
-        Employee employee = getSessionEmployee(session);
+        Employee employee = EmployeeSessionUtil.getSessionEmployee(session);
         ModelAndView mv = new ModelAndView();
         if (employee == null) {
             mv.setViewName("login");
@@ -69,7 +70,7 @@ public class IndexController extends BaseAction {
         if (baseResult.isSuccess()) {
             //保存session用户
             Employee employee = (Employee) baseResult.getObj();
-            setSessionEmployee(session, employee);
+            EmployeeSessionUtil.setSessionEmployee(session, employee);
         }
         return "redirect:/index.do";
     }

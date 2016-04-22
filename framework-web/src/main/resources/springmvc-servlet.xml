@@ -53,4 +53,15 @@
     <!--静态资源处理-->
     <mvc:resources location="/static" mapping="/static"/>
 
+
+    <!-- 权限拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean
+                    class="com.yt.interceptors.BmsSecurityInterceptor">
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
