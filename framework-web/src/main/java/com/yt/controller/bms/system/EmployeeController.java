@@ -1,14 +1,16 @@
 package com.yt.controller.bms.system;
 
+import com.yt.base.ResourceBaseController;
 import com.yt.entity.mybatis.*;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.service.mybatis.system.EmployeeService;
-import com.yt.service.mybatis.user.UserService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.yt.annotation.system.ParentSecurity;
+import com.yt.util.yt.annotation.system.ResourceAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +34,8 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/api/employee")
-public class EmployeeController {
+@ResourceAnnotation(resourceGroup = "系统管理")
+public class EmployeeController extends ResourceBaseController {
 
 
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -51,8 +53,8 @@ public class EmployeeController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "员工管理", pName = "系统管理", url = "/api/employee/list", remark = "员工管理", resourceType = "2", parentIsRoot = true)
     public String list() {
-
         return "employee/employeelist";
     }
 
@@ -68,6 +70,7 @@ public class EmployeeController {
      * @param nikeName
      * @return
      */
+    @ParentSecurity("/api/employee/list")
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
     public PageResult<Employee> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName) {
@@ -79,6 +82,7 @@ public class EmployeeController {
      * @return
      */
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "员工添加", pName = "员工管理", url = "/api/employee/addOrEdit", remark = "员工添加", resourceType = "2")
     public String addOrEdit(Integer id, Model model) {
         //不为空修改为空保存
         if (!EmptyUtil.isEmpty(id)) {
@@ -100,6 +104,7 @@ public class EmployeeController {
      * @param isUpdate
      * @return
      */
+    @ParentSecurity("/api/employee/addOrEdit")
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(Employee employee, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
@@ -111,6 +116,7 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "/updatepass", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "员工修改密码", pName = "员工管理", url = "/api/employee/updatepass", remark = "员工修改密码", resourceType = "2")
     public String updatePass(String id, Model model) {
         model.addAttribute("id", id);
         return "employee/updatepass";
@@ -125,6 +131,7 @@ public class EmployeeController {
      * @param rePassword
      * @return
      */
+    @ParentSecurity("/api/employee/updatepass")
     @RequestMapping(value = "/updatepass", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveUpdatePass(Integer id, String password, String newPassword, String rePassword) {
@@ -139,6 +146,7 @@ public class EmployeeController {
      * @return
      */
     @RequestMapping(value = "/isLogin", method = RequestMethod.POST)
+    @ResourceAnnotation(name = "员工登录状态修改", pName = "员工管理", url = "/api/employee/isLogin", remark = "员工登录状态修改", resourceType = "2")
     @ResponseBody
     public BaseResult isLogin(Integer id) {
         return employeeService.isLogin(id);
@@ -150,6 +158,7 @@ public class EmployeeController {
      * @param id
      * @return
      */
+    @ResourceAnnotation(name = "员工使用状态修改", pName = "员工管理", url = "/api/employee/isEnable", remark = "员工使用状态修改", resourceType = "2")
     @RequestMapping(value = "/isEnable", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult isEnable(Integer id) {
@@ -164,6 +173,7 @@ public class EmployeeController {
      * @return
      */
     @RequestMapping(value = "/auth", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "分配权限", pName = "员工管理", url = "/api/employee/auth", remark = "分配权限", resourceType = "2")
     public String auth(Integer id, Model model) {
         //不为空修改为空保存
         if (!EmptyUtil.isEmpty(id)) {
@@ -195,6 +205,7 @@ public class EmployeeController {
      * @param employeeAuthGroupRelationShip
      * @return
      */
+    @ParentSecurity("/api/employee/auth")
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult addAuth(EmployeeAuthGroupRelationShip employeeAuthGroupRelationShip) {

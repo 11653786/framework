@@ -8,6 +8,8 @@ import com.yt.service.mybatis.system.AuthGroupService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.yt.annotation.system.ParentSecurity;
+import com.yt.util.yt.annotation.system.ResourceAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @descption: 疯狂的王麻子团队!
  */
 @Controller
+@ResourceAnnotation(resourceGroup = "系统管理")
 @RequestMapping(value = "/api/authGroup")
 public class AuthGroupController extends ResourceBaseController {
 
@@ -44,6 +47,7 @@ public class AuthGroupController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "权限组管理", pName = "系统管理", url = "/api/authGroup/list", remark = "权限组管理", resourceType = "2")
     public String list() {
         return "authgroup/authgrouplist";
     }
@@ -54,6 +58,7 @@ public class AuthGroupController extends ResourceBaseController {
      * @param search
      * @return
      */
+    @ParentSecurity("/api/authGroup/list")
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
     public PageResult<AuthGroup> selectByPageList(PageSearch search) {
@@ -64,6 +69,7 @@ public class AuthGroupController extends ResourceBaseController {
      * @param id 用户列表主键,如果没有主键就是添加页面
      * @return
      */
+    @ResourceAnnotation(name = "权限组添加", pName = "权限组管理", url = "/api/authGroup/addOrEdit", remark = "权限组添加", resourceType = "2")
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
     public String addOrEdit(Integer id, Model model) {
         //不为空修改为空保存
@@ -85,6 +91,7 @@ public class AuthGroupController extends ResourceBaseController {
      * @param isUpdate
      * @return
      */
+    @ParentSecurity("/api/authGroup/addOrEdit")
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(AuthGroup authGroup, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
@@ -102,6 +109,7 @@ public class AuthGroupController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResourceAnnotation(name = "权限组删除", pName = "权限组管理", url = "/api/authGroup/delete", remark = "权限组删除", resourceType = "2")
     @ResponseBody
     public BaseResult delete(Integer id) {
         return authGroupService.deleteAuthGroup(id);
@@ -113,6 +121,7 @@ public class AuthGroupController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/shouquan", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "授权", pName = "权限组管理", url = "/api/authGroup/shouquan", remark = "授权", resourceType = "2")
     public String shouquan(Integer id, Model model) {
         AuthGroup authGroup = authGroupService.selectByPrimaryKey(id);
         model.addAttribute("authgroup", authGroup);
@@ -125,6 +134,7 @@ public class AuthGroupController extends ResourceBaseController {
 
     @RequestMapping(value = "/shouquan", method = RequestMethod.POST)
     @ResponseBody
+    @ParentSecurity("/api/authGroup/shouquan")
     public BaseResult saveShouQuan(@RequestParam(value = "id", defaultValue = "") Integer id, @RequestParam(value = "ids", defaultValue = "") String ids) {
         return relationShipService.grantAuthorization(id, ids);
     }

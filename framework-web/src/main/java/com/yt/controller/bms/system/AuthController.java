@@ -8,17 +8,19 @@ import com.yt.service.mybatis.system.AuthService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.yt.annotation.system.ParentSecurity;
+import com.yt.util.yt.annotation.system.ResourceAnnotation;
+import com.yt.util.yt.annotation.system.UnSecurity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +32,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/api/auth")
+@ResourceAnnotation(resourceGroup = "系统管理")
 public class AuthController extends ResourceBaseController {
 
 
@@ -44,6 +47,7 @@ public class AuthController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "权限管理", pName = "系统管理", url = "/api/auth/list", remark = "权限管理", resourceType = "2", parentIsRoot = true)
     public String list() {
         return "auth/authlist";
     }
@@ -54,6 +58,7 @@ public class AuthController extends ResourceBaseController {
      * @param search
      * @return
      */
+    @ParentSecurity("/api/auth/list")
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
     public PageResult<Auth> selectByPageList(PageSearch search) {
@@ -65,6 +70,7 @@ public class AuthController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "添加权限", pName = "权限管理", url = "/api/auth/addOrEdit", remark = "添加权限", resourceType = "2")
     public String addOrEdit(Integer id, Model model) {
         //不为空修改为空保存
         if (!EmptyUtil.isEmpty(id)) {
@@ -87,6 +93,7 @@ public class AuthController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
+    @ParentSecurity("/api/auth/saveAddOrEdit")
     @ResponseBody
     public BaseResult saveAddOrEdit(Auth auth, Integer parentId, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
         if (parentId != null) {
@@ -105,6 +112,7 @@ public class AuthController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/getAllTree", method = RequestMethod.POST)
+    @UnSecurity
     @ResponseBody
     public List<Auth> getAllTree() {
         AuthExample example = new AuthExample();
@@ -118,15 +126,10 @@ public class AuthController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @ResourceAnnotation(name = "删除权限", pName = "权限管理", url = "/api/auth/delete", remark = "删除权限", resourceType = "2")
     @ResponseBody
     public BaseResult delete(Integer id) {
         return authService.deleteAuth(id);
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
 }

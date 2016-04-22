@@ -23,9 +23,7 @@ public class ResourceBaseController extends BaseAction implements InitializingBe
      */
     public void afterPropertiesSet() throws Exception {
         if ("yes".equals(initResource)) {
-            if(this.getClass().getSimpleName().equalsIgnoreCase("UserController")){
-                resourceInitService.registResourceByClass(this.getClass());
-            }
+            resourceInitService.registResourceByClass(this.getClass());
         }
 
     }
