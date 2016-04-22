@@ -46,7 +46,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    @ResourceAnnotation(name = "用户管理", pName = "业务管理", url = "/api/user/list", remark = "用户管理",resourceType = "2", parentIsRoot = true)
+    @ResourceAnnotation(name = "用户管理", pName = "业务管理", url = "/api/user/list", remark = "用户管理", resourceType = "2", parentIsRoot = true)
     public String list() {
         return "user/userlist";
     }
@@ -77,6 +77,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/addOrEdit", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "添加用户", pName = "用户管理", url = "/api/user/addOrEdit", remark = "添加管理", resourceType = "2")
     public String addOrEdit(Integer id, Model model) {
         //不为空修改为空保存
         if (!EmptyUtil.isEmpty(id)) {
@@ -98,6 +99,7 @@ public class UserController extends ResourceBaseController {
      * @param isUpdate
      * @return
      */
+    @ParentSecurity("/api/user/saveAddOrEdit.do")
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(User user, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
@@ -109,6 +111,7 @@ public class UserController extends ResourceBaseController {
     }
 
     @RequestMapping(value = "/updatepass", method = RequestMethod.GET)
+    @ResourceAnnotation(name = "修改密码", pName = "用户管理", url = "/api/user/addOrEdit", remark = "修改密码", resourceType = "2")
     public String updatePass(String id, Model model) {
         model.addAttribute("id", id);
         return "user/updatepass";
@@ -124,6 +127,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/updatepass", method = RequestMethod.POST)
+    @ParentSecurity("/api/user/updatepass.do")
     @ResponseBody
     public BaseResult saveUpdatePass(Integer id, String password, String newPassword, String rePassword) {
         return userService.updatePass(id, password, newPassword, rePassword);
@@ -137,6 +141,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/isLogin", method = RequestMethod.POST)
+    @ResourceAnnotation(name = "修改用户登录状态", pName = "用户管理", url = "/api/user/isLogin", remark = "修改用户登录状态", resourceType = "2")
     @ResponseBody
     public BaseResult isLogin(Integer id) {
         return userService.isLogin(id);
@@ -149,6 +154,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/isEnable", method = RequestMethod.POST)
+    @ResourceAnnotation(name = "修改用户可用状态", pName = "用户管理", url = "/api/user/isEnable", remark = "修改用户可用状态", resourceType = "2")
     @ResponseBody
     public BaseResult isEnable(Integer id) {
         return userService.isEnable(id);
