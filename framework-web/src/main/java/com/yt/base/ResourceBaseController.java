@@ -25,7 +25,6 @@ public class ResourceBaseController extends BaseAction implements InitializingBe
         if ("yes".equals(initResource)) {
             if(this.getClass().getSimpleName().equalsIgnoreCase("UserController")){
                 resourceInitService.registResourceByClass(this.getClass());
-                System.out.println("资源扫描: " + this.getClass().getSimpleName());
             }
         }
 

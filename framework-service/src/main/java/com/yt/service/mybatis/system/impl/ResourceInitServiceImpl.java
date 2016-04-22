@@ -76,6 +76,7 @@ public class ResourceInitServiceImpl implements ResourceInitService {
                             parentAuth.setAuthType("3");
                             parentAuth.setIsEnable("1");
                             pid = (Integer) this.authService.saveAuth(parentAuth).getObj();
+                            System.out.println(pid);
                         } else {
                             needRetryMethods.add(method);
                             continue;
@@ -83,15 +84,8 @@ public class ResourceInitServiceImpl implements ResourceInitService {
                     } else {
                         existsAuth.set_parentId(parentAuth.getId());
                     }
-
-                    try {
-                        this.authService.saveAuth(existsAuth);
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-
+                    this.authService.saveAuth(existsAuth);
                 }
-
 
 
             }
