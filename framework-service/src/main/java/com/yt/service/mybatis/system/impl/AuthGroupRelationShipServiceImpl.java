@@ -37,7 +37,7 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
     public BaseResult grantAuthorization(Integer authGroupId, String ids) {
         BaseResult result = new BaseResult(true, "保存成功!");
         try {
-            if (isValid(authGroupId, ids)) {
+            if (!isValid(authGroupId, ids)) {
                 return BaseResult.fail("传入参数异常!");
             }
 

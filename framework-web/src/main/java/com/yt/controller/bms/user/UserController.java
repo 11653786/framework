@@ -65,7 +65,7 @@ public class UserController extends ResourceBaseController {
      * @param endTime
      * @return
      */
-    @ParentSecurity("/api/user/list.do")
+    @ParentSecurity("/api/user/list")
     @RequestMapping(value = "/selectByPageList", method = RequestMethod.POST)
     @ResponseBody
     public PageResult<User> selectByPageList(PageSearch search, String username, String email, String phone, Integer isLogin, Integer isEnable, String nikeName, Date startTime, Date endTime) {
@@ -99,7 +99,7 @@ public class UserController extends ResourceBaseController {
      * @param isUpdate
      * @return
      */
-    @ParentSecurity("/api/user/saveAddOrEdit.do")
+    @ParentSecurity("/api/user/saveAddOrEdit")
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(User user, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
@@ -127,7 +127,7 @@ public class UserController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/updatepass", method = RequestMethod.POST)
-    @ParentSecurity("/api/user/updatepass.do")
+    @ParentSecurity("/api/user/updatepass")
     @ResponseBody
     public BaseResult saveUpdatePass(Integer id, String password, String newPassword, String rePassword) {
         return userService.updatePass(id, password, newPassword, rePassword);

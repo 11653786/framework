@@ -9,6 +9,7 @@ import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
 import com.yt.util.yt.annotation.system.UnSecurity;
 import com.yt.util.yt.annotation.system.UnSession;
+import com.yt.util.yt.myutils.ValidUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,10 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         String url = this.getRequestUrl(request);
+        if (url.contains(".do")) {
+            int position = url.lastIndexOf(".do");
+            url = url.substring(0, position);
+        }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         logger.info("拦截方法名称: " + ((HandlerMethod) handler).getMethod().getName());
         UnSession unSession = handlerMethod
