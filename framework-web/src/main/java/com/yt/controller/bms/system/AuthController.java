@@ -120,6 +120,14 @@ public class AuthController extends ResourceBaseController {
         AuthExample example = new AuthExample();
         return authService.selectByExample(example);
     }
+    @RequestMapping(value = "/getLoginTree", method = RequestMethod.POST)
+    @ResponseBody
+    public List<Auth> getLoginTree(HttpSession session, @RequestParam(value = "authName", defaultValue = "系统管理") String authName) {
+        //获取登录用户的全部权限
+        List<Auth> auths = EmployeeSessionUtil.getEmployeeAuth(session);
+        return auths;
+    }
+
 
     /**
      * 删除权限

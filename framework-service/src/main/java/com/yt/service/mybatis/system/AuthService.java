@@ -52,5 +52,7 @@ public interface AuthService extends BaseDao<Auth> {
     public List<Auth> getEmployeeAuths(Integer employeeId);
 
 
-    public Auth selectByName(String authGroupName);
+    public Auth selectByAuthGroupName(String authGroupName);
+
+
 }
