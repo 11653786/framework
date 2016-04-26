@@ -9,21 +9,7 @@
 
 </div>
 <script type="text/javascript" charset="utf-8">
-
     initTree("tree", "/api/auth/getLoginTree.do?authName=1");
     initTree("tree1", "/api/auth/getLoginTree.do?authName=2");
-    function initTree(treeId, treeUrl) {
-        $('#' + treeId).tree({
-            checkbox: false,
-            url: treeUrl,
-            parentField: "_parentId",
-            idFiled: "id",
-            lines: true,
-            textFiled: "authName",
-            //选中事件
-            onClick: function (node) {
-            }
-        });
-    }
 </script>
 
