@@ -10,8 +10,8 @@
 </div>
 <script type="text/javascript" charset="utf-8">
 
-    initTree("tree", "/api/auth/getLoginTree.do?authName=业务管理");
-    initTree("tree1", "/api/auth/getLoginTree.do?authName=系统管理");
+    initTree("tree", "/api/auth/getLoginTree.do?authName=1");
+    initTree("tree1", "/api/auth/getLoginTree.do?authName=2");
     function initTree(treeId, treeUrl) {
         $('#' + treeId).tree({
             checkbox: false,

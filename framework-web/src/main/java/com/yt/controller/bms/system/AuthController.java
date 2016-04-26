@@ -123,8 +123,10 @@ public class AuthController extends ResourceBaseController {
     }
 
     @RequestMapping(value = "/getLoginTree", method = RequestMethod.POST)
+    @UnSecurity
     @ResponseBody
-    public List<Auth> getLoginTree(HttpSession session, @RequestParam(value = "authName", defaultValue = "系统管理") String authName) {
+    public List<Auth> getLoginTree(HttpSession session, @RequestParam(value = "authName", defaultValue = "1") String authName) {
+        authName = authName.equals("1") ? "业务管理" : "系统管理";
         //获取登录用户的全部权限
         List<Auth> auths = EmployeeSessionUtil.getEmployeeAuth(session);
         return getLoginTrees(auths, authName);
@@ -170,7 +172,7 @@ public class AuthController extends ResourceBaseController {
             //业务管理和系统管理
             parentAuth = authService.selectByName(parentAuthName);
         }
-
+        menuAuths.add(parentAuth);
         //如果有就添加权限
         if (parentAuth != null) {
             for (Auth auth : sessionAuth) {
