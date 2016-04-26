@@ -52,7 +52,7 @@ public interface AuthService extends BaseDao<Auth> {
     public List<Auth> getEmployeeAuths(Integer employeeId);
 
 
-    public Auth selectByAuthGroupName(String authGroupName);
+    public Auth selectByName(String authGroupName);
 
 
 }

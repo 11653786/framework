@@ -96,7 +96,7 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
     }
 
     @Override
-    public Auth selectByAuthGroupName(String authGroupName) {
+    public Auth selectByName(String authGroupName) {
         AuthExample authExample = new AuthExample();
         AuthExample.Criteria criteria = authExample.createCriteria();
         criteria.andAuthNameEqualTo(authGroupName);
