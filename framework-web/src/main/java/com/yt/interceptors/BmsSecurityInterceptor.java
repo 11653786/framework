@@ -43,7 +43,11 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
             url = url.substring(0, position);
         }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        logger.info("拦截方法名称: " + ((HandlerMethod) handler).getMethod().getName());
+        //拦截的类名称
+        String className = handlerMethod.getBeanType().getName();
+        //拦截的类名称.和方法
+        String logInfo = className + "." + handlerMethod.getMethod().getName();
+        logger.info("拦截方法名称: " + logInfo);
         UnSession unSession = handlerMethod
                 .getMethodAnnotation(UnSession.class);
         HttpSession session = request.getSession();
