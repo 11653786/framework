@@ -53,6 +53,7 @@ public class BmsSessionFilter implements Filter {
                     chain.doFilter(request, response);
                 }
             } else {
+                //其他的通过
                 chain.doFilter(request, response);
             }
         }
