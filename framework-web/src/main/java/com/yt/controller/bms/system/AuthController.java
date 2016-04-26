@@ -8,6 +8,7 @@ import com.yt.service.mybatis.system.AuthService;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
+import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
 import com.yt.util.yt.annotation.system.ResourceAnnotation;
 import com.yt.util.yt.annotation.system.UnSecurity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -130,6 +132,19 @@ public class AuthController extends ResourceBaseController {
     @ResponseBody
     public BaseResult delete(Integer id) {
         return authService.deleteAuth(id);
+    }
+
+
+    /**
+     * 获取登录用户的session
+     *
+     * @param session
+     * @return
+     */
+    @RequestMapping(value = "/getLoginAuth")
+    public List<Auth> getLoginAuth(HttpSession session) {
+        List<Auth> list = EmployeeSessionUtil.getEmployeeAuth(session);
+        return list;
     }
 
 }

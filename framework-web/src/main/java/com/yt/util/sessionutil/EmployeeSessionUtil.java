@@ -32,6 +32,14 @@ public class EmployeeSessionUtil {
         session.setAttribute(loginAuth, auths);
     }
 
+    public static List<Auth> getEmployeeAuth(HttpSession session) {
+        List<Auth> auths = null;
+        if (!EmptyUtil.isEmpty(session.getAttribute(loginAuth))) {
+            auths = (List<Auth>) session.getAttribute(loginAuth);
+        }
+        return auths;
+    }
+
     /**
      * 后台登录保存用户
      *
