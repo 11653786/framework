@@ -1,9 +1,11 @@
 package com.yt.util.sessionutil;
 
+import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.Employee;
 import com.yt.util.dhqjr.EmptyUtil;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * @author zhangsan
@@ -14,10 +16,28 @@ import javax.servlet.http.HttpSession;
  */
 public class EmployeeSessionUtil {
 
-    protected static String loginEmployee = "loginEmployee";
-    protected static String loginUser = "loginUser";
+    //后台登录帐号
+    public static String loginEmployee = "loginEmployee";
+    public static String loginUser = "loginUser";
+    //后台登录帐号权限
+    public static String loginAuth = "loginAuth";
 
+    /**
+     * 后台保存登录权限
+     *
+     * @param session
+     * @param auths
+     */
+    public static void setEmployeeAuth(HttpSession session, List<Auth> auths) {
+        session.setAttribute(loginAuth, auths);
+    }
 
+    /**
+     * 后台登录保存用户
+     *
+     * @param session
+     * @param employee
+     */
     public static void setSessionEmployee(HttpSession session, Employee employee) {
         session.setAttribute(loginEmployee, employee);
     }

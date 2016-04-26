@@ -29,8 +29,9 @@ public interface EmployeeAuthGroupRelationShipService extends BaseDao<EmployeeAu
      * 登录以后获取登录员工的权限，并且保存
      *
      * @param session
-     * @param employeeId
+     * @param employeeId 后台帐号id
+     * @param sessionAuthKey    用来保存权限的session的key
      */
-    public void saveSessionUserAuth(HttpSession session, Integer employeeId);
+    public void saveSessionUserAuth(HttpSession session, Integer employeeId, String sessionAuthKey);
 
 }

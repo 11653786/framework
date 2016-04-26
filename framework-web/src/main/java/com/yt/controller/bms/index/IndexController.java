@@ -78,7 +78,7 @@ public class IndexController extends BaseAction {
             Employee employee = (Employee) baseResult.getObj();
             EmployeeSessionUtil.setSessionEmployee(session, employee);
             //获取session权限
-            employeeAuthGroupRelationShipService.saveSessionUserAuth(session,employee.getId());
+            employeeAuthGroupRelationShipService.saveSessionUserAuth(session, employee.getId(), EmployeeSessionUtil.loginAuth);
 
         }
         return "redirect:/index.do";

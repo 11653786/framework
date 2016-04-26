@@ -73,13 +73,11 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
     }
 
     @Override
-    public void saveSessionUserAuth(HttpSession session, Integer employeeId) {
+    public void saveSessionUserAuth(HttpSession session, Integer employeeId, String sessionAuthKey) {
         //查询当前用户的所有权限组,一般只有一个组,除非是bug了
         EmployeeAuthGroupRelationShipExample example = new EmployeeAuthGroupRelationShipExample();
         EmployeeAuthGroupRelationShipExample.Criteria criteria = example.createCriteria();
         List<EmployeeAuthGroupRelationShip> ships = this.selectByExample(example);
-        //循环查询权限
-        List<Auth> auths = new ArrayList<Auth>();
         String authIds = "";
         for (EmployeeAuthGroupRelationShip ship : ships) {
             //根据权限组id获取当前权限组内的权限id
@@ -89,12 +87,19 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
         //获取所有的权限id
         List<Integer> listAuthids = intArrayToStrArray(authIds);
 
+        //循环查询权限
+        List<Auth> auths = new ArrayList<Auth>();
         //授权
         if (!StringUtils.isEmpty(authIds)) {
             AuthExample authExample = new AuthExample();
             AuthExample.Criteria authCriteria = authExample.createCriteria();
             authCriteria.andIdIn(listAuthids);
-            authService.selectByExample(authExample);
+            auths = authService.selectByExample(authExample);
+        }
+
+        //保存登录session
+        if (!auths.isEmpty()) {
+            session.setAttribute(sessionAuthKey, auths);
         }
     }
 
