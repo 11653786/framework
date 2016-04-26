@@ -641,7 +641,6 @@ public class RedisHelper2 {
         } finally {
             pw.close();
         }
-        System.out.println(System.currentTimeMillis() - begin);
     }
 
     /**
@@ -670,7 +669,6 @@ public class RedisHelper2 {
             RedisHelper2.set("a2", String.valueOf(i));
             RedisHelper2.set("a3", String.valueOf(i));
         }
-        System.out.println(System.currentTimeMillis() - begin);
     }
 
     public static void main(String[] argvs) {

@@ -394,10 +394,7 @@ public class ObjectId implements Comparable<ObjectId>, java.io.Serializable {
 
     public static void main(String[] args) {
         ObjectId o = new ObjectId("541f89437852a0228ff131ad");
-        System.out.println(o.getInc());
 
-        System.out.println(o.getMachine());
-        System.out.println(o.getInc());
 
     }
 }

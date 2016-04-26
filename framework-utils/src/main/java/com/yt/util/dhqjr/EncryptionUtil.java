@@ -148,7 +148,5 @@ private static final String PASSWORD_CRYPT_KEY = "dronline";//"lkdkjgs;adfjg";
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(EncryptionUtil.encrypt("54"));
-		System.out.println(EncryptionUtil.decrypt("9D1EFA0C8C2787F0"));
 	}
 }

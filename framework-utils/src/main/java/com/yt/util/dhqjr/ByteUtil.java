@@ -201,7 +201,6 @@ public class ByteUtil {
             bi.close();
             oi.close();
         } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
             e.printStackTrace();
         }
         return obj;
@@ -219,7 +218,6 @@ public class ByteUtil {
             bo.close();
             oo.close();
         } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
             e.printStackTrace();
         }
         return bytes;

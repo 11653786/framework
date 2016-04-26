@@ -75,7 +75,6 @@ public class Md5Utils {
     }
 
     public static void main(String[] args) {
-        System.out.println(getMD5String("123456"));
     }
 }
 
