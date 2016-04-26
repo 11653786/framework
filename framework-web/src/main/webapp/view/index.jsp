@@ -29,8 +29,9 @@
                 textFiled: "authName",
                 //选中事件
                 onClick: function (node) {
+                    //连接的内容
                     var iframe = "<iframe width=100% height=100% frameborder=0 scrolling=auto src=" + "${pageContext.request.contextPath}" + node.authUrl + ".do" + "></iframe>";
-                    $('#tt').tabs('add', {
+                    $('#tabs').tabs('add', {
                         title: node.authName,
                         content: iframe,
                         closable: true
@@ -45,8 +46,8 @@
      style="height: 80px; overflow: hidden;" class=""></div>
 <div data-options="region:'west',title:'菜单',split:true,
                     href:'${pageContext.request.contextPath}/layout/menu.jsp'" style="width:200px;"></div>
-<div data-options="region:'center',title:'欢迎东融影业综合业务管理系统'" style="padding:5px;">
-    <div id="tt" class="easyui-tabs" data-options="fit:true">
+<div data-options="region:'center',title:'欢迎东融影业综合业务管理系统'" >
+    <div id="tabs" class="easyui-tabs" data-options="fit:true">
     </div>
 </div>
 </body>
