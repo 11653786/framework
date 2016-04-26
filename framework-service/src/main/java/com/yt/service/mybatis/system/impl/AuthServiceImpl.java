@@ -96,10 +96,10 @@ public class AuthServiceImpl extends BaseDaoImpl<Auth> implements AuthService {
     }
 
     @Override
-    public Auth selectByName(String authGroupName) {
+    public Auth selectByName(String authName) {
         AuthExample authExample = new AuthExample();
         AuthExample.Criteria criteria = authExample.createCriteria();
-        criteria.andAuthNameEqualTo(authGroupName);
+        criteria.andAuthNameEqualTo(authName);
         List<Auth> list = selectByExample(authExample);
         if (list.isEmpty()) {
             return null;

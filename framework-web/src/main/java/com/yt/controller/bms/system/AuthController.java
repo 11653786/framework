@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -120,12 +121,13 @@ public class AuthController extends ResourceBaseController {
         AuthExample example = new AuthExample();
         return authService.selectByExample(example);
     }
+
     @RequestMapping(value = "/getLoginTree", method = RequestMethod.POST)
     @ResponseBody
     public List<Auth> getLoginTree(HttpSession session, @RequestParam(value = "authName", defaultValue = "系统管理") String authName) {
         //获取登录用户的全部权限
         List<Auth> auths = EmployeeSessionUtil.getEmployeeAuth(session);
-        return auths;
+        return getLoginTrees(auths, authName);
     }
 
 
@@ -153,6 +155,31 @@ public class AuthController extends ResourceBaseController {
     public List<Auth> getLoginAuth(HttpSession session) {
         List<Auth> list = EmployeeSessionUtil.getEmployeeAuth(session);
         return list;
+    }
+
+    /**
+     * @param sessionAuth    当前登录用户的所有权限
+     * @param parentAuthName 当前树的顶级权限名称
+     * @return
+     */
+    private List<Auth> getLoginTrees(List<Auth> sessionAuth, String parentAuthName) {
+        //区分的权限
+        List<Auth> menuAuths = new ArrayList<Auth>();
+        Auth parentAuth = null;
+        if (sessionAuth != null) {
+            //业务管理和系统管理
+            parentAuth = authService.selectByName(parentAuthName);
+        }
+
+        //如果有就添加权限
+        if (parentAuth != null) {
+            for (Auth auth : sessionAuth) {
+                if (auth.get_parentId() == parentAuth.getId()) {
+                    menuAuths.add(auth);
+                }
+            }
+        }
+        return menuAuths;
     }
 
 }
