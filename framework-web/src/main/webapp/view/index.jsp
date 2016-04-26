@@ -47,6 +47,7 @@
 <div data-options="region:'center',title:'欢迎东融影业综合业务管理系统'" style="padding:5px;">
     <div id="tt" class="easyui-tabs" data-options="fit:true">
     </div>
+</div>
 </body>
 </html>
 
