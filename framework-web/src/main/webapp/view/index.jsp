@@ -29,9 +29,10 @@
                 textFiled: "authName",
                 //选中事件
                 onClick: function (node) {
+                    var iframe = "<iframe width=100% height=100% frameborder=0 scrolling=auto src=" + "${pageContext.request.contextPath}" + node.authUrl + ".do" + "></iframe>";
                     $('#tt').tabs('add', {
                         title: node.authName,
-                        href: "${pageContext.request.contextPath}" + node.authUrl + ".do",
+                        content: iframe,
                         closable: true
                     });
                 }
