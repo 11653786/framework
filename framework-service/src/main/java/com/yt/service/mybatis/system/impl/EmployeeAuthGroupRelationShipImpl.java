@@ -113,7 +113,6 @@ public class EmployeeAuthGroupRelationShipImpl extends BaseDaoImpl<EmployeeAuthG
         List<Integer> integerList = new ArrayList<Integer>();
         for (int i = 0; i < authIdsArray.length; i++) {
             integerList.add(Integer.valueOf(authIdsArray[i]));
-            System.out.println("ok: " + authIdsArray[i]);
         }
         return integerList;
     }

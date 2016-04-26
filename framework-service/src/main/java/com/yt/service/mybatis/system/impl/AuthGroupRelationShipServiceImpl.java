@@ -79,7 +79,6 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return authIds;
         }
         return authIds;
