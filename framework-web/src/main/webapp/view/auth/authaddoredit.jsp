@@ -76,9 +76,6 @@
             <label for="parentId">上级菜单:</label>
             <input id="parentId" name="parentId" value="${auth._parentId}" >
         </div>
-        <div class="two">
-            <ul id="tt"></ul>
-        </div>
     </div>
 </form>
 <script type="text/javascript">
@@ -95,19 +92,5 @@
             onSelect:function(node){
             }
         });
-
-
-        $('#tt').tree({
-            checkbox: true,
-            url: '/api/auth/getAllTree.do',
-            parentField: "_parentId",
-            idFiled: "id",
-            textFiled: "authName",
-            //选中事件
-            onSelect:function(node){
-            }
-        });
-
-
     });
 </script>

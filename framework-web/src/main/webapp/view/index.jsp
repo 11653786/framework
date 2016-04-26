@@ -16,11 +16,14 @@
     <simple:angular hasAngularTree="false"></simple:angular>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-util-1.0.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resource/resource.css">
+    <%--easyui tree的扩展--%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/easyui/yt_tree_extend.js"></script>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',href:'${pageContext.request.contextPath}/layout/north.jsp',border:false"
      style="height: 80px; overflow: hidden;" class=""></div>
-<div data-options="region:'west',title:'菜单',split:true" style="width:200px;"></div>
+<div data-options="region:'west',title:'菜单',split:true,
+                    href:'${pageContext.request.contextPath}/layout/menu.jsp'" style="width:200px;"></div>
 <div data-options="region:'center',title:'欢迎东融影业综合业务管理系统'" style="padding:5px;"></div>
 </body>
 </html>
