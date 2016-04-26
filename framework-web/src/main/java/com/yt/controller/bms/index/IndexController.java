@@ -3,7 +3,9 @@ package com.yt.controller.bms.index;
 import com.google.code.kaptcha.Constants;
 import com.yt.base.BaseAction;
 import com.yt.entity.mybatis.Employee;
+import com.yt.entity.mybatis.EmployeeAuthGroupRelationShip;
 import com.yt.model.BaseResult;
+import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.service.mybatis.system.EmployeeService;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.UnSession;
@@ -35,6 +37,8 @@ public class IndexController extends BaseAction {
 
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private EmployeeAuthGroupRelationShipService employeeAuthGroupRelationShipService;
 
     private static final Logger logger = LoggerFactory.getLogger(IndexController.class);
 
@@ -73,6 +77,9 @@ public class IndexController extends BaseAction {
             //保存session用户
             Employee employee = (Employee) baseResult.getObj();
             EmployeeSessionUtil.setSessionEmployee(session, employee);
+            //获取session权限
+            employeeAuthGroupRelationShipService.saveSessionUserAuth(session,employee.getId());
+
         }
         return "redirect:/index.do";
     }

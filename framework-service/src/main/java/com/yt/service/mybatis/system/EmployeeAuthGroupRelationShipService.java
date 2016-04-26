@@ -5,6 +5,7 @@ import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.EmployeeAuthGroupRelationShip;
 import com.yt.model.BaseResult;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -23,5 +24,13 @@ public interface EmployeeAuthGroupRelationShipService extends BaseDao<EmployeeAu
      * @return
      */
     public BaseResult saveOrUpdateAuthGroup(EmployeeAuthGroupRelationShip employeeAuthGroupRelationShip);
+
+    /**
+     * 登录以后获取登录员工的权限，并且保存
+     *
+     * @param session
+     * @param employeeId
+     */
+    public void saveSessionUserAuth(HttpSession session, Integer employeeId);
 
 }
