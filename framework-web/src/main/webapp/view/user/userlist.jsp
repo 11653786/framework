@@ -14,8 +14,10 @@
     <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
                    hasBootStrapModal="false"></simple:Script>
     <simple:angular hasAngularTree="false"></simple:angular>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-resource-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-util-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/user/js/user.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/easyui.formvalid.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/resource/resource.css">
 </head>
 <body>

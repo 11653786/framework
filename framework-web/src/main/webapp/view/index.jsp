@@ -29,13 +29,16 @@
                 textFiled: "authName",
                 //选中事件
                 onClick: function (node) {
-                    //连接的内容
-                    var iframe = "<iframe width=100% height=100% frameborder=0 scrolling=auto src=" + "${pageContext.request.contextPath}" + node.authUrl + ".do" + "></iframe>";
-                    $('#tabs').tabs('add', {
-                        title: node.authName,
-                        content: iframe,
-                        closable: true
-                    });
+                    if(node.authUrl!=null){
+                        //连接的内容
+                        var iframe = "<iframe width=100% height=100% frameborder=0 scrolling=auto src=" + "${pageContext.request.contextPath}" + node.authUrl + ".do" + "></iframe>";
+                        $('#tabs').tabs('add', {
+                            title: node.authName,
+                            content: iframe,
+                            closable: true
+                        });
+                    }
+
                 }
             });
         }

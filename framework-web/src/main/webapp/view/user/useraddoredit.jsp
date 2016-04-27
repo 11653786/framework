@@ -10,7 +10,7 @@
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/user/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${user.id}"/>
-  <%--  <input type="hidden" name="createDate" value="${user.createDate}"/>--%>
+    <%--  <input type="hidden" name="createDate" value="${user.createDate}"/>--%>
     <input type="hidden" name="createUser" value="${user.createUser}"/>
     <%--<input type="hidden" name="updateDate" value="${user.updateDate}"/>--%>
     <input type="hidden" name="updateUser" value="${user.updateUser}"/>
@@ -24,7 +24,7 @@
             <input class="easyui-validatebox" value="${user.userName}" id="userName" type="text" name="userName"
                    data-options="required:true"/>
         </div>
-        <div class="two"><label for="nikeName">昵称:</label>
+        <div class="two"><label for="nikeName">昵称1:</label>
             <input class="easyui-validatebox" value="${user.nikeName}" id="nikeName" type="text" name="nikeName"/>
         </div>
         <div class="two">
@@ -35,7 +35,7 @@
         <div class="two">
             <label for="phone">手机号:</label>
             <input class="easyui-validatebox" id="phone" value="${user.phone}" type="text" name="phone"
-                   data-options="required:true"/>
+                   data-options="required:true,validType:'isPhone[5]'"/>
         </div>
         <div class="two">
             <label for="isLogin">登录状态:</label>

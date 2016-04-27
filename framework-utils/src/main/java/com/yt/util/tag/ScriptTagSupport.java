@@ -27,6 +27,11 @@ public class ScriptTagSupport extends TagSupport {
 
     private boolean hasBootStrapModal;
 
+    /***
+     * 我自己的工具类js
+     */
+    private boolean hasYtUtil;
+
     String jsPath = "/static/js/";
 
     String cssPath = "/static/css/";
@@ -141,5 +146,13 @@ public class ScriptTagSupport extends TagSupport {
 
     public void setHasBootStrapModal(boolean hasBootStrapModal) {
         this.hasBootStrapModal = hasBootStrapModal;
+    }
+
+    public boolean isHasYtUtil() {
+        return hasYtUtil;
+    }
+
+    public void setHasYtUtil(boolean hasYtUtil) {
+        this.hasYtUtil = hasYtUtil;
     }
 }
