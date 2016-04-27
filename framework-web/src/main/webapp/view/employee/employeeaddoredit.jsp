@@ -10,10 +10,10 @@
 <form id="addOrEditForm" method="post" action="${pageContext.request.contextPath}/api/employee/saveAddOrEdit.do">
     <input type="hidden" name="isUpdate" value="${isUpdate}"/>
     <input type="hidden" name="id" value="${employee.id}"/>
-  <%--  <input type="hidden" name="createDate" value="${user.createDate}"/>--%>
-    <input type="hidden" name="createUser" value="${user.createUser}"/>
+    <%--  <input type="hidden" name="createDate" value="${user.createDate}"/>--%>
+    <input type="hidden" name="createUser" value="${employee.createUser}"/>
     <%--<input type="hidden" name="updateDate" value="${user.updateDate}"/>--%>
-    <input type="hidden" name="updateUser" value="${user.updateUser}"/>
+    <input type="hidden" name="updateUser" value="${employee.updateUser}"/>
     <input type="hidden" name="password" value="${employee.password}"/>
 
     <div class="mymenu">
