@@ -35,7 +35,7 @@
         <div class="two">
             <label for="phone">手机号:</label>
             <input class="easyui-validatebox" id="phone" value="${user.phone}" type="text" name="phone"
-                   data-options="required:true,validType:'isPhone[5]'"/>
+                   data-options="required:true,validType:'isPhone[11]'"/>
         </div>
         <div class="two">
             <label for="isLogin">登录状态:</label>

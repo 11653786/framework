@@ -18,6 +18,6 @@ $.extend($.fn.validatebox.defaults.rules, {
         validator: function (value, param) {
             return value.length >= param[0];
         },
-        message: 'Please enter at least {0} characters.'
+        message: resource.validForm.phoneMsg
     }
 });

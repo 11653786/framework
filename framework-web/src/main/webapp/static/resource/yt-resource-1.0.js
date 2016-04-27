@@ -5,8 +5,13 @@ var resource = function () {
 };
 
 resource.validForm = function () {
-    this.phoneMsg="Please enter at least {0} characters.";
-
 };
+
+/**
+ * 手机号验证
+ * @type {string}
+ */
+resource.validForm.phoneMsg = "请输入{0}的电话号码";
+
 
 
