@@ -99,7 +99,7 @@ public class UserController extends ResourceBaseController {
      * @param isUpdate
      * @return
      */
-    @ParentSecurity("/api/user/saveAddOrEdit")
+    @ParentSecurity("/api/user/addOrEdit")
     @RequestMapping(value = "/saveAddOrEdit", method = RequestMethod.POST)
     @ResponseBody
     public BaseResult saveAddOrEdit(User user, @RequestParam(value = "isUpdate", defaultValue = "false") boolean isUpdate) {
