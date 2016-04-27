@@ -44,10 +44,10 @@ public class AuthGroupRelationShipServiceImpl extends BaseDaoImpl<AuthGroupRelat
 
             AuthGroupRelationShipExample example = new AuthGroupRelationShipExample();
             AuthGroupRelationShipExample.Criteria criteria = example.createCriteria();
+            criteria.andAuthGroupIdEqualTo(authGroupId);
+            this.deleteByExample(example);
             //in 查询
             List<Integer> intList = getIntList(ids);
-            criteria.andAuthIdIn(intList);
-            this.deleteByExample(example);
             //之前的都删除
             for (Integer authId : intList) {
                 AuthGroupRelationShip relationShip = new AuthGroupRelationShip(authId, authGroupId);
