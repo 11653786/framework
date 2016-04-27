@@ -19,13 +19,16 @@ public class ScriptTagSupport extends TagSupport {
 
     private boolean hasAngularjs;
 
-    private boolean hasZtree;
 
+    /**
+     * easyui
+     */
     private boolean hasEasyUi;
 
+    /**
+     * bootstrap
+     */
     private boolean hasBootStrap;
-
-    private boolean hasBootStrapModal;
 
     /***
      * 我自己的工具类js
@@ -62,10 +65,7 @@ public class ScriptTagSupport extends TagSupport {
             sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "angularjs/angular.1.2.29.js></script>");
         }
 
-        if (!StringUtils.isEmpty(hasZtree) && hasZtree) {
-            sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "ztree/jquery.ztree.all.js></script>");
-            sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "ztree/zTreeStyle/zTreeStyle.css></link>");
-        }
+
         if (!StringUtils.isEmpty(hasEasyUi) && hasEasyUi) {
             sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "easyui/jquery.easyui.min.js></script>");
             sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "easyui/easyui-lang-zh_CN.js></script>");
@@ -76,11 +76,7 @@ public class ScriptTagSupport extends TagSupport {
             sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "bootstrap/css/bootstrap.min.css></link>");
         }
 
-        if (!StringUtils.isEmpty(hasBootStrapModal) && hasBootStrapModal) {
-            sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "bootstrap_modal/bootstrap-modal.css></link>");
-            sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "angular_modal/bootstrap-modalmanager.js></script>");
-            sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "angular_modal/bootstrap-modal.js></script>");
-        }
+
         return sw;
     }
 
@@ -115,13 +111,6 @@ public class ScriptTagSupport extends TagSupport {
         this.hasAngularjs = hasAngularjs;
     }
 
-    public boolean isHasZtree() {
-        return hasZtree;
-    }
-
-    public void setHasZtree(boolean hasZtree) {
-        this.hasZtree = hasZtree;
-    }
 
     public boolean isHasEasyUi() {
         return hasEasyUi;
@@ -140,13 +129,6 @@ public class ScriptTagSupport extends TagSupport {
     }
 
 
-    public boolean getHasBootStrapModal() {
-        return hasBootStrapModal;
-    }
-
-    public void setHasBootStrapModal(boolean hasBootStrapModal) {
-        this.hasBootStrapModal = hasBootStrapModal;
-    }
 
     public boolean isHasYtUtil() {
         return hasYtUtil;

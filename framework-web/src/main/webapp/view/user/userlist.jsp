@@ -12,7 +12,7 @@
 <head>
     <title>用户管理</title>
     <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
-                   hasBootStrapModal="false"></simple:Script>
+                   ></simple:Script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-resource-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/resource/yt-util-1.0.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/view/user/js/user.js"></script>
