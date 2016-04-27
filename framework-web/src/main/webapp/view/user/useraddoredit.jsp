@@ -24,7 +24,7 @@
             <input class="easyui-validatebox" value="${user.userName}" id="userName" type="text" name="userName"
                    data-options="required:true"/>
         </div>
-        <div class="two"><label for="nikeName">昵称1:</label>
+        <div class="two"><label for="nikeName">昵称:</label>
             <input class="easyui-validatebox" value="${user.nikeName}" id="nikeName" type="text" name="nikeName"/>
         </div>
         <div class="two">
