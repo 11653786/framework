@@ -6,6 +6,7 @@ import com.yt.entity.mybatis.Employee;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.service.mybatis.system.EmployeeService;
+import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.UnSecurity;
 import com.yt.util.yt.annotation.system.UnSession;
@@ -100,24 +101,18 @@ public class IndexController extends BaseAction {
         return new BaseResult(true, "退出登录!");
     }
 
-    @RequestMapping(value = "/editCurrentUserPwdPage")
-    public ModelAndView editCurrentUserPwdPage() {
-        ModelAndView mv = new ModelAndView("webpage/user/userEditPwd");
-        return mv;
-    }
-
     /**
-     * 后台修改密码
+     * 修改密码页面
      *
-     * @param oldPwd
-     * @param newPwd
+     * @return
      */
-    @RequestMapping("/editCurrentUserPwd")
-    @ResponseBody
-    public void editCurrentUserPwd(
-            @RequestParam("oldPwd") String oldPwd,
-            @RequestParam("newPwd") String newPwd) {
+    @RequestMapping(value = "/editCurrentUserPwdPage")
+    @UnSecurity
+    public String editCurrentUserPwdPage(HttpSession session, Model model) {
+        Employee employee = EmployeeSessionUtil.getSessionEmployee(session);
+        if (!EmptyUtil.isEmpty(employee) && !EmptyUtil.isEmpty(employee.getId())) {
+            model.addAttribute("id", employee.getId());
+        }
+        return "employee/updialog";
     }
-
-
 }

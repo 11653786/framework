@@ -240,12 +240,12 @@ util.easyui.dialog = function () {
             }
 
             if (rows == null || rows == '' || rows == undefined) {
-                alert("没有数据表格");
+                alert("请选择要编辑的数据!");
                 return false;
             }
 
             if (rows.length != 1) {
-                alert("一次只能编辑一条数据");
+                alert("一次只能编辑一条数据!");
                 return false;
             }
 

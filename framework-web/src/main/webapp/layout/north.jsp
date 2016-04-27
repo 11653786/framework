@@ -19,10 +19,60 @@
 </div>
 
 <div id="layout_north_zxMenu" style="width: 100px; display: none;">
-    <div>修改密码</div>
+    <div id="updatePass">修改密码</div>
     <div id="layout">退出系统</div>
 </div>
+<div id="updialog"></div>
 <script type="text/javascript">
+
+    $("#updatePass").click(function () {
+        $('#updialog').dialog({
+            title: '修改密码',
+            width: 400,
+            height: 200,
+            closed: false,
+            cache: false,
+            href: '${pageContext.request.contextPath}/editCurrentUserPwdPage.do',
+            modal: true,
+            buttons: [{
+                text: '修改',
+                handler: function () {
+                    //找到dialog中的表单
+                    var addOrEditForm = $("#updialog").find("#addOrEditForm");
+                    //验证结果true为通过
+                    var isValid = addOrEditForm.form("validate");
+                    if (isValid) {
+                        addOrEditForm.form({
+                            onSubmit: function () {
+                            },
+                            success: function (data) {
+                                //转json
+                                var result = eval('(' + data + ')');
+                                $("#updialog").dialog("close", true);
+                                //提示消息
+                                $.messager.show({
+                                    title: '系统提示',
+                                    msg: result.msg,
+                                    timeout: 3000,
+                                    showType: 'slide'
+                                });
+                            }
+                        });
+
+                        addOrEditForm.submit();
+                    }
+                }
+            }, {
+                text: '关闭',
+                handler: function () {
+                    //关闭dialog
+                    $("#updialog").dialog("close", true);
+                }
+            }]
+        });
+    });
+
+
     $("#layout").click(function () {
 
         $.ajax({
