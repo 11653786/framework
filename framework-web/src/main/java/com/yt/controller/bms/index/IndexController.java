@@ -7,6 +7,7 @@ import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.service.mybatis.system.EmployeeService;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
+import com.yt.util.yt.annotation.system.UnSecurity;
 import com.yt.util.yt.annotation.system.UnSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 
@@ -88,9 +91,13 @@ public class IndexController extends BaseAction {
      *
      * @return
      */
-    @RequestMapping(value = "/loginOut", method = RequestMethod.GET)
+    @RequestMapping(value = "/loginOut", method = RequestMethod.POST)
+    @UnSecurity
     @ResponseBody
-    public void loginOut() {
+    public BaseResult loginOut(HttpSession session, HttpServletResponse response) {
+        EmployeeSessionUtil.deleteEmployeeAuth(session);
+        EmployeeSessionUtil.deleteSessionEmployee(session);
+        return new BaseResult(true, "退出登录!");
     }
 
     @RequestMapping(value = "/editCurrentUserPwdPage")

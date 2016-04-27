@@ -50,6 +50,15 @@ public class EmployeeSessionUtil {
         session.setAttribute(loginEmployee, employee);
     }
 
+    public static void deleteSessionEmployee(HttpSession session) {
+        session.removeAttribute(loginEmployee);
+    }
+
+    public static void deleteEmployeeAuth(HttpSession session) {
+        session.removeAttribute(loginAuth);
+    }
+
+
     public void setSessionUser(HttpSession session, Employee employee) {
         session.setAttribute(loginUser, employee);
     }

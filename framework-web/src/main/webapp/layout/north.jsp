@@ -20,5 +20,22 @@
 
 <div id="layout_north_zxMenu" style="width: 100px; display: none;">
     <div>修改密码</div>
-    <div>退出系统</div>
+    <div id="layout">退出系统</div>
 </div>
+<script type="text/javascript">
+    $("#layout").click(function () {
+
+        $.ajax({
+            url: "${pageContext.request.contextPath}/loginOut.do",
+            //data: params,
+            type: "post",
+            dataType: 'json',
+            success: function (data) {
+                location.href = "${pageContext.request.contextPath}/index.do";
+            },
+            error: function () {
+            }
+        });
+    });
+
+</script>
