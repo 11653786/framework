@@ -189,10 +189,8 @@ function ajaxUrl(url, datagridId) {
                 showType: 'slide'
             });
             //刷新datagrid
-            if (data.success) {
+            if (data.success && datagridId != null && datagridId != undefined) {
                 $("#" + datagridId).datagrid('reload');
-
-
             }
 
         },
