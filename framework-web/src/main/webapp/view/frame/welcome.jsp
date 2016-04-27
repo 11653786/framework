@@ -10,7 +10,9 @@
 <html>
 <head>
     <title>系统管理页面</title>
-    <simple:Script hasJquery="true" hasEasyUi="true" hasBootStrap="false" hasZtree="false" hasAngularjs="false"></simple:Script>
+    <simple:Script hasJquery="true" hasEasyUi="true" hasAngularjs="false" hasBootStrap="false"
+                   hasValid="true" hasYtUtil="true" hasYtResourcesCss="true" hasYtResourcesJs="false"
+                   hasYtTreeExtends="true"></simple:Script>
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',split:true" style="height:100px;"></div>

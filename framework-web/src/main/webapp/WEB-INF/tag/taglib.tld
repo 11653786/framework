@@ -13,6 +13,16 @@
         <!-- 带标签体,但是不能使用jsp  scriptless只能使用 empty 和tagdependent两种 -->
         <!-- 设定fragment 可以接受JspFragment标签体  -->
         <attribute>
+            <name>hasBootStrap</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasYtResourcesCss</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
             <name>hasJquery</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
@@ -28,9 +38,25 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>hasBootStrap</name>
-            <required>false</required>
+            <name>hasYtResourcesJs</name>
+            <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
+        <attribute>
+            <name>hasYtUtil</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasValid</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>hasYtTreeExtends</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+
     </tag>
 </taglib>
