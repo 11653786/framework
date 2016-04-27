@@ -5,6 +5,7 @@ import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.AuthExample;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthService;
+import com.yt.util.dhqjr.DateUtil;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
@@ -12,6 +13,7 @@ import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
 import com.yt.util.yt.annotation.system.ResourceAnnotation;
 import com.yt.util.yt.annotation.system.UnSecurity;
+import com.yt.util.yt.myutils.ExportExcel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,5 +190,38 @@ public class AuthController extends ResourceBaseController {
         }
         return menuAuths;
     }
+
+
+    @RequestMapping(value = "/export")
+    @UnSecurity
+    public void exportExcel(HttpServletResponse response) {
+        response.setContentType("octets/stream");
+        String fileName = "excel导出" + System.currentTimeMillis() + ".xls";
+        response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
+        AuthExample example = new AuthExample();
+        List<Auth> list = authService.selectByExample(example);
+
+        String[] headers = new String[]{"id", "权限名称", "权限类型", "父id", "是否可用", "权限url", "创建人", "创建日期", "修改人", "修改时间", "描述"};
+        ExportExcel<Auth> exportExcel = new ExportExcel<Auth>();
+        ServletOutputStream out = null;
+        try {
+            out = response.getOutputStream();
+            exportExcel.exportExcel("交易管理列表", headers, list, out, DateUtil.DATETIMESHOWFORMAT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
 
 }
