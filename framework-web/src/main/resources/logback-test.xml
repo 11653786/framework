@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!--这个才是logback的配置文件-->
 <configuration>
     <!--el表达式log.base表示logs-->
-    <substitutionProperty name="log.path" value="log"/>
+    <substitutionProperty name="log.path" value="logs"/>
 
     <jmxConfigurator/>
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
