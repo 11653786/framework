@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -43,7 +44,11 @@ public class LunceController extends BaseAction {
     @ResponseBody
     public String createIndex() {
         ResultSet rs = getResult();
-        lunceService.createIndex(rs, searchDir, "id", "auth_name");
+        File file = new File(searchDir);
+        //不存在就创建
+        if (!file.exists()) {
+            lunceService.createIndex(rs, searchDir, "id", "auth_name");
+        }
         return "ok...";
     }
 
