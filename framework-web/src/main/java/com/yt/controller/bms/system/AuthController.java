@@ -192,21 +192,4 @@ public class AuthController extends ResourceBaseController {
         }
         return menuAuths;
     }
-
-
-    @RequestMapping(value = "/export")
-    @UnSecurity
-    public void exportExcel(HttpServletResponse response) {
-        response.setContentType("octets/stream");
-        String fileName = "excel导出" + System.currentTimeMillis() + ".xls";
-        response.addHeader("Content-Disposition", "attachment;filename=" + fileName);
-        AuthExample example = new AuthExample();
-        List<Auth> list = authService.selectByExample(example);
-        String[] headers = new String[]{"id", "权限名称", "权限类型", "父id", "是否可用", "权限url", "创建人", "创建日期", "修改人", "修改时间", "描述"};
-        ExcelUtils.export(response,headers,list);
-
-
-    }
-
-
 }
