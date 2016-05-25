@@ -87,18 +87,22 @@ public class ScriptTagSupport extends TagSupport {
         StringWriter sw = new StringWriter();
 
 
-        if (!StringUtils.isEmpty(hasYtResourcesCss) && hasYtResourcesCss) {
-            sw.append("<link rel='stylesheet' href=" + getWebPath() + "/static"+ resourcePath + "resource.css></link>");
-        }
-
-        if (!StringUtils.isEmpty(hasBootStrap) && hasBootStrap) {
-            sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "bootstrap/css/bootstrap.min.css></link>");
-        }
-
-
         if (validJquery()) {
             sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "jquery/jquery.js></script>");
         }
+
+
+        if (!StringUtils.isEmpty(hasYtResourcesCss) && hasYtResourcesCss) {
+            sw.append("<link rel='stylesheet' href=" + getWebPath() + "/static" + resourcePath + "resource.css></link>");
+        }
+
+        if (!StringUtils.isEmpty(hasBootStrap) && hasBootStrap) {
+            sw.append("<link rel='stylesheet' href=" + getWebPath() + cssPath + "bootstrap/css/bootstrap.css></link>");
+            sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "/bootstrap/js/bootstrap.js></script>");
+        }
+
+
+
 
         if (!StringUtils.isEmpty(hasAngularjs) && hasAngularjs) {
             sw.append("<script type='text/javascript' src=" + getWebPath() + jsPath + "angularjs/angular.1.2.29.js></script>");
