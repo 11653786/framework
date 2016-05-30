@@ -4,12 +4,11 @@ import com.yt.base.BaseAction;
 import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.AuthExample;
 import com.yt.service.mybatis.system.AuthService;
-import com.yt.util.yt.annotation.system.UnSession;
+import com.yt.util.yt.annotation.system.BmsUnSession;
 import com.yt.util.yt.myutils.ExcelUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -34,7 +33,7 @@ public class ExportController extends BaseAction {
      *
      * @return
      */
-    @UnSession
+    @BmsUnSession
     @RequestMapping(value = "/export")
     public void exports(HttpServletResponse response) {
         response.setContentType("octets/stream");

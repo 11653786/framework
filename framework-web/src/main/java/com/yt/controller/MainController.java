@@ -1,17 +1,10 @@
 package com.yt.controller;
 
-import com.yt.entity.mybatis.Auth;
-import com.yt.entity.mybatis.AuthExample;
 import com.yt.service.mybatis.system.AuthService;
-import com.yt.util.yt.annotation.system.UnSecurity;
-import com.yt.util.yt.annotation.system.UnSession;
-import com.yt.util.yt.myutils.ExcelUtils;
+import com.yt.util.yt.annotation.system.BmsUnSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 /**
  * 前台首页
@@ -35,7 +28,7 @@ public class MainController {
      * @return
      */
     @RequestMapping(value = "index")
-    @UnSession
+    @BmsUnSession
     public String index() {
         return "main/index";
     }

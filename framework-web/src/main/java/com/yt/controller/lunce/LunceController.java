@@ -2,7 +2,7 @@ package com.yt.controller.lunce;
 
 import com.yt.base.BaseAction;
 import com.yt.service.search.lunce.LunceService;
-import com.yt.util.yt.annotation.system.UnSession;
+import com.yt.util.yt.annotation.system.BmsUnSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +39,7 @@ public class LunceController extends BaseAction {
      *
      * @return
      */
-    @UnSession
+    @BmsUnSession
     @RequestMapping(value = "/createIndex")
     @ResponseBody
     public String createIndex() {
@@ -58,7 +58,7 @@ public class LunceController extends BaseAction {
      * @return
      */
     @RequestMapping(value = "/search")
-    @UnSession
+    @BmsUnSession
     public void search() {
         lunceService.createSearch(searchDir, "auth_name", "员工");
     }

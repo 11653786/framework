@@ -5,17 +5,13 @@ import com.yt.entity.mybatis.Auth;
 import com.yt.entity.mybatis.AuthExample;
 import com.yt.model.BaseResult;
 import com.yt.service.mybatis.system.AuthService;
-import com.yt.util.dhqjr.DateUtil;
 import com.yt.util.dhqjr.EmptyUtil;
 import com.yt.util.dhqjr.page.utils.PageResult;
 import com.yt.util.dhqjr.page.utils.PageSearch;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
 import com.yt.util.yt.annotation.system.ResourceAnnotation;
-import com.yt.util.yt.annotation.system.UnSecurity;
-import com.yt.util.yt.myutils.ExcelUtils;
-import com.yt.util.yt.myutils.ExportExcel;
-import org.apache.poi.ss.formula.functions.T;
+import com.yt.util.yt.annotation.system.BmsUnSecurity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +115,7 @@ public class AuthController extends ResourceBaseController {
      * @return
      */
     @RequestMapping(value = "/getAllTree", method = RequestMethod.POST)
-    @UnSecurity
+    @BmsUnSecurity
     @ResponseBody
     public List<Auth> getAllTree() {
         AuthExample example = new AuthExample();
@@ -130,7 +123,7 @@ public class AuthController extends ResourceBaseController {
     }
 
     @RequestMapping(value = "/getLoginTree", method = RequestMethod.POST)
-    @UnSecurity
+    @BmsUnSecurity
     @ResponseBody
     public List<Auth> getLoginTree(HttpSession session, @RequestParam(value = "authName", defaultValue = "1") String authName) {
         authName = authName.equals("1") ? "业务管理" : "系统管理";

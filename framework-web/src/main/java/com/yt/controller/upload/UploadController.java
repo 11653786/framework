@@ -1,23 +1,16 @@
 package com.yt.controller.upload;
 
 import com.yt.base.BaseAction;
-import com.yt.service.mybatis.system.AuthService;
 import com.yt.util.dhqjr.EmptyUtil;
-import com.yt.util.yt.annotation.system.UnSecurity;
-import com.yt.util.yt.annotation.system.UnSession;
+import com.yt.util.yt.annotation.system.BmsUnSession;
 import com.yt.util.yt.myutils.ValidUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.sql.ResultSet;
 
 /**
  * @author zhangsan
@@ -35,7 +28,7 @@ public class UploadController extends BaseAction {
      *
      * @return
      */
-    @UnSession
+    @BmsUnSession
     @RequestMapping(value = "/upload")
     public String exports() {
         return "upload/upload";
@@ -47,7 +40,7 @@ public class UploadController extends BaseAction {
      * @return
      * @throws java.io.IOException
      */
-    @UnSession
+    @BmsUnSession
     @RequestMapping(value = "/uploadPic")
     @ResponseBody
     public String createIndex(@RequestParam(value = "uploadFile", required = false) MultipartFile multipartFile,

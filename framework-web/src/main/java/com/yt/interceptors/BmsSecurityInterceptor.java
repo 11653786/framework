@@ -1,15 +1,12 @@
 package com.yt.interceptors;
 
 import com.yt.entity.mybatis.Auth;
-import com.yt.entity.mybatis.AuthGroup;
 import com.yt.entity.mybatis.Employee;
 import com.yt.service.mybatis.system.AuthService;
-import com.yt.service.mybatis.system.EmployeeAuthGroupRelationShipService;
 import com.yt.util.sessionutil.EmployeeSessionUtil;
 import com.yt.util.yt.annotation.system.ParentSecurity;
-import com.yt.util.yt.annotation.system.UnSecurity;
-import com.yt.util.yt.annotation.system.UnSession;
-import com.yt.util.yt.myutils.ValidUtils;
+import com.yt.util.yt.annotation.system.BmsUnSecurity;
+import com.yt.util.yt.annotation.system.BmsUnSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +45,8 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
         //拦截的类名称.和方法
         String logInfo = className + "." + handlerMethod.getMethod().getName();
         logger.info("拦截方法名称: " + logInfo);
-        UnSession unSession = handlerMethod
-                .getMethodAnnotation(UnSession.class);
+        BmsUnSession unSession = handlerMethod
+                .getMethodAnnotation(BmsUnSession.class);
         HttpSession session = request.getSession();
         if (unSession != null) {
             return true;
@@ -73,8 +70,8 @@ public class BmsSecurityInterceptor extends HandlerInterceptorAdapter {
                     }
 
                 } else {
-                    UnSecurity security = handlerMethod
-                            .getMethodAnnotation(UnSecurity.class);
+                    BmsUnSecurity security = handlerMethod
+                            .getMethodAnnotation(BmsUnSecurity.class);
                     if (security != null) {
                         return true;
                     } else {
