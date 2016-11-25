@@ -26,7 +26,7 @@ import java.sql.Statement;
 @RequestMapping(value = "/lunce")
 public class LunceController extends BaseAction {
 
-    @Autowired
+    //@Autowired
     private LunceService lunceService;
     private Connection conn = null;
     private Statement stmt = null;
