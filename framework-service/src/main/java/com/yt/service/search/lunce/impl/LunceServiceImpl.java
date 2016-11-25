@@ -39,8 +39,8 @@ import java.sql.SQLException;
  * @date 2016/5/24 0024 9:17
  * @descption: 疯狂的王麻子团队!
  */
-@Service
-@Transactional(propagation = Propagation.REQUIRED)
+//@Service
+//@Transactional(propagation = Propagation.REQUIRED)
 public class LunceServiceImpl implements LunceService {
 
 
