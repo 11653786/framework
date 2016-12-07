@@ -39,7 +39,7 @@ public class PZSignUtil {
         mapping.put("ua", "iPhone7_2");
         mapping.put("imei", "");
         mapping.put("imsi", "");
-        mapping.put("sid", "20ezp4ecfdDwwMcg49uW3jA18S59HHtZ826Gp6795lHJKxMMOy");
+       // mapping.put("sid", "20ezp4ecfdDwwMcg49uW3jA18S59HHtZ826Gp6795lHJKxMMOy");
         mapping.put("conn", "wifi");
         mapping.put("mtid", "159fe58f8d47011813fb25bd91b46673");
         mapping.put("mtxid", "882593c08fed");
@@ -73,7 +73,7 @@ public class PZSignUtil {
         String sig = Md5Utils.getMD5String(sb.append(md5Key).toString().getBytes("utf-8"));
 
         //2.3 将签名值加入到请求参数中
-        mapping.put("_sig", sig);
+        mapping.put("sid", sig);
 
         //3. 拼接最终的请求URL，注意参数需要用URLEncode
         StringBuilder req = new StringBuilder();
@@ -306,13 +306,24 @@ public class PZSignUtil {
      */
     public static void main(String[] args) throws Exception {
 
-        Map<String, String> params = new HashMap<String, String>();
-        params.put("logid", "5");
-        params.put("id", "110438312");
-        params.put("uid", "110438");
+//        Map<String, String> params = new HashMap<String, String>();
+//        params.put("logid", "5");
+//        params.put("id", "181920094");
+//        params.put("uid", "110438312");
+//
+//        String request = signDataForOldForYK("http://116.211.167.106/", "api/user/info?", "20ezp4ecfdDwwMcg49uW3jA18S59HHtZ826Gp6795lHJKxMMOy", params);
+//        String result = HttpUtil.getUrl(request);
+//        System.out.println(result);
 
-        String request = signDataForOldForYK("http://116.211.167.106/", "api/user/info?", "20ezp4ecfdDwwMcg49uW3jA18S59HHtZ826Gp6795lHJKxMMOy", params);
-        String result = HttpUtil.getUrl(request);
-        System.out.println(result);
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("language", "zh");
+        params.put("extensions", "all");
+        params.put("key", "743f496cbcb0fa4ed77dec485c50dfb9");
+        params.put("location", "121.379681,31.233225");
+        params.put("ts", "1480507813410");
+        //http://restapi.amap.com/v3/geocode/regeo?language=zh&extensions=all&key=743f496cbcb0fa4ed77dec485c50dfb9&location=121.379681%2C31.233225&scode=51bb3b4615e18fced383ad5ca9eb6328&ts=1480507813410
+        //scode=51bb3b4615e18fced383ad5ca9eb6328&ts=1480507813410
+
+
     }
 }
