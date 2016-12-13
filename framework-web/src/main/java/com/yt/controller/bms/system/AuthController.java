@@ -178,7 +178,7 @@ public class AuthController extends ResourceBaseController {
             //先添加顶级权限,业务管理和系统管理
             menuAuths.add(parentAuth);
             for (Auth auth : sessionAuth) {
-                if (auth.get_parentId() == parentAuth.getId()) {
+                if (auth.get_parentId().equals(parentAuth.getId())) {
                     menuAuths.add(auth);
                 }
             }
